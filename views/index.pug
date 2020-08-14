@@ -1,5 +1,47 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.card
+    h1= title
+    p Welcome to Sandwiches Order Doua
+    form#command(action="/command" method="POST")
+      div.field
+        label(for="department") Department:
+        input#department(type="list" list="department-list" name="department" required)
+        datalist#department-list
+          option(value="Info")
+          option(value="Bio")
+          option(value="Chimi")
+          option(value="GC")
+          option(value="GEA")
+
+      div.field
+        label(for="firstname") First name:
+        input#firstname(type="text" name="firstname" required)
+      div.field
+        label(for="lastname") Last name:
+        input#lastname(type="text" name="lastname" required)
+
+      div#command1.command
+        h2 Command 1
+        div.field
+          label(for="sandwich") Sandwich:
+          input#sandwich(type="list" list="sandwich-list" name="sandwich1" required)
+        div.field
+          label(for="day") Day:
+          input#day(type="list" list="date-list" name="date1" required)
+
+      div#command-action
+        a#add-command
+          p +
+        a#remove-command.hide
+          p -
+
+      div.field
+        input#send(type="submit" value="Pay")
+
+      datalist#sandwich-list
+        option(value="Jambon beurre")
+      datalist#date-list
+        option(value="14/08/2020")
+  script(src="javascripts/index.js")
