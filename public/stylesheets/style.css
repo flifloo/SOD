@@ -20,7 +20,6 @@ body {
   display: flex;
   flex-direction: column;
   width: max-content;
-  min-height: 80%;
   height: auto;
   padding: 1em;
   margin: auto;
