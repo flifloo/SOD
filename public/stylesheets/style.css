@@ -6,7 +6,7 @@ html, body {
 body {
   display: flex;
   align-items: center;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: large "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #db970a;
   background-image: linear-gradient(white 2px, transparent 2px),
   linear-gradient(90deg, white 2px, transparent 2px),
@@ -14,6 +14,12 @@ body {
   linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
   background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
   background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  body {
+    font-size: xx-large;
+  }
 }
 
 .card {
@@ -28,7 +34,8 @@ body {
  /* overflow-y: scroll; */
 }
 
-h1, h2, p{
+h1, h2, p, label {
+  display: block;
   text-align: center;
 }
 
@@ -43,25 +50,28 @@ a {
 }
 
 .field {
-  margin: auto auto 1em auto;
+  margin: 1em auto auto auto;
+  width: 90%;
 }
 
 .field input {
   box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 255, .2);
+  margin: auto;
+  width: 100%;
+  font-size: 100%;
 }
 
 .field input[type="text"], .field input[type="list"] {
-  margin: auto;
-  width: 10vw;
+  height: 2.5vh;
   border-top: none;
   border-left: none;
   border-right: none;
   border-bottom: 1px gray solid;
 }
 
-.field label {
-  display: block;
-  text-align: center;
+.field input[type="submit"] {
+  height: 4vh;
+  border: none;
 }
 
 #command-action {
