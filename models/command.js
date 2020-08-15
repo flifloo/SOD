@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Command extends Model {
     static associate(models) {
-      Command.belongsToMany(models.Sandwich, {through: "SandwichCommand"});
+      Command.belongsToMany(models.Sandwich, {through: {model: models.SandwichCommand, unique: false}});
       Command.belongsTo(models.Department);
     }
   }
@@ -19,8 +19,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     date: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
+      allowNull: false
+    },
+    price: {
+      type: DataTypes.FLOAT,
       allowNull: false
     }
   }, {

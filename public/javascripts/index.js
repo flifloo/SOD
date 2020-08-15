@@ -16,11 +16,11 @@ document.getElementById("add-command").addEventListener("click", () => {
     <h2>Command ${id}</h2>
     <div class="field">
         <label for="sandwich">Sandwich:</label>
-        <input id="sandwich" type="list" list="sandwich-list" name="sandwich${id}" required>
+        <input id="sandwich" type="list" list="sandwich-list" name="sandwich${id}" autocomplete="off" required>
     </div>
     <div class="field">
         <label for="day">Day:</label>
-        <input id="day" type="list" list="date-list" name="date${id}" required>
+        <input id="day" type="date" name="date${id}" required>
     </div>
 </div>`);
     document.getElementById("command"+lastCommandId()).scrollIntoView({behavior: "smooth"});

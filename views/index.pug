@@ -6,27 +6,27 @@ block content
     p Welcome to Sandwiches Order Doua
     form#command(action="/command" method="POST")
       div.field
-        label(for="sandwich") Department:
-        input#department(type="list" list="department-list" name="department" required)
+        label(for="department") Department:
+        input#department(type="list" list="department-list" name="department" autocomplete="off" required)
         datalist#department-list
           each department in departments
             option(value=department.name)
 
       div.field
         label(for="firstname") First name:
-        input#firstname(type="text" name="firstname" required)
+        input#firstname(type="text" name="firstName" required)
       div.field
         label(for="lastname") Last name:
-        input#lastname(type="text" name="lastname" required)
+        input#lastname(type="text" name="lastName" required)
 
       div#command1.command
         h2 Command 1
         div.field
           label(for="sandwich") Sandwich:
-          input#sandwich(type="list" list="sandwich-list" name="sandwich1" required)
+          input#sandwich(type="list" list="sandwich-list" name="sandwich1" autocomplete="off" required)
         div.field
           label(for="day") Day:
-          input#day(type="list" list="date-list" name="date1" required)
+          input#day(type="date" name="date1" required)
 
       div#command-action
         a#add-command +
@@ -38,8 +38,6 @@ block content
       datalist#sandwich-list
         each sandwich in sandwichs
           option(value=sandwich.name)
-      datalist#date-list
-        option(value="14/08/2020")
 
   div#more
     a About

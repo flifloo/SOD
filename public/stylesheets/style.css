@@ -62,7 +62,7 @@ a {
   font-size: 100%;
 }
 
-.field input[type="text"], .field input[type="list"] {
+.field input[type="text"], .field input[type="list"], .field input[type="date"] {
   height: 2.5vh;
   border-top: none;
   border-left: none;
