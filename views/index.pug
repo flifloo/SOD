@@ -6,14 +6,11 @@ block content
     p Welcome to Sandwiches Order Doua
     form#command(action="/command" method="POST")
       div.field
-        label(for="department") Department:
+        label(for="sandwich") Department:
         input#department(type="list" list="department-list" name="department" required)
         datalist#department-list
-          option(value="Info")
-          option(value="Bio")
-          option(value="Chimi")
-          option(value="GC")
-          option(value="GEA")
+          each department in departments
+            option(value=department.name)
 
       div.field
         label(for="firstname") First name:
@@ -39,13 +36,14 @@ block content
         input#send(type="submit" value="Pay")
 
       datalist#sandwich-list
-        option(value="Jambon beurre")
+        each sandwich in sandwichs
+          option(value=sandwich.name)
       datalist#date-list
         option(value="14/08/2020")
 
   div#more
-    a(href="#about") About
-    a(href="#contact") Contact
+    a About
+    a Contact
 
   div#dark.hide
   div#about.card.hide
