@@ -1,13 +1,16 @@
 const commandAction = document.getElementById("command-action");
-const addButton = document.getElementById("add-command");
 const rmButton = document.getElementById("remove-command");
+const more = document.getElementById("more");
+const dark = document.getElementById("dark");
+const about = document.getElementById("about");
+const contact = document.getElementById("contact");
 
 function lastCommandId() {
     let list = document.querySelectorAll("div.command h2");
     return parseInt(list[list.length-1].innerText.replace("Command ", ""));
 }
 
-addButton.addEventListener("click", () => {
+document.getElementById("add-command").addEventListener("click", () => {
     let id = lastCommandId() + 1;
     commandAction.insertAdjacentHTML("beforebegin", `<div id="command${id}" class="command">
     <h2>Command ${id}</h2>
@@ -29,4 +32,22 @@ rmButton.addEventListener("click", () => {
     document.getElementById("command"+id).remove();
     if (id === 2)
         rmButton.classList.add("hide");
+});
+
+more.firstChild.addEventListener("click", () => {
+    dark.classList.remove("hide");
+    about.classList.remove("hide");
+});
+
+more.lastChild.addEventListener("click", () => {
+    dark.classList.remove("hide");
+    contact.classList.remove("hide")
+});
+
+dark.addEventListener("click", () => {
+    dark.classList.add("hide");
+    if (! about.classList.contains("hide"))
+        about.classList.add("hide");
+    else
+        contact.classList.add("hide");
 });
