@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    div#date-selector.card
+        label(for="date") Date
+        input#date(type="date" value=date)
+    div.card
+        h1 Sandwiches
+        each sandwich in sandwiches
+            div.sandwich
+                h2 #{sandwich.SandwichName}: #{sandwich.dataValues.number}
+
+    script(src="javascripts/sandwiches.js")
