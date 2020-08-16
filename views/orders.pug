@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    div#date-selector.card
+        label(for="date") Date
+        input#date(type="date" value=date)
+    div#orders.card
+        h1 Orders
+        each user, department in commands
+            div.department
+                h2= department
+                each command, name in user
+                    div.user
+                        h3= name
+                        each order, id in command
+                            div.order
+                                h4 Command N°#{id}
+                                each sandwich in order
+                                    div.sandwich
+                                        h4= sandwich.Sandwich.name
+
+    script(src="javascripts/orders.js")

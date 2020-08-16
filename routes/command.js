@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
         return;
     }
 
-    let sandwichs = [];
+    let sandwiches = [];
     let price = 0;
     for (let i = 1; req.body["sandwich" + i] !== undefined; i++) {
         if (req.body["date" + i] === undefined) {
@@ -31,7 +31,7 @@ router.post("/", async (req, res) => {
             });
             return;
         }
-        sandwichs.push([sandwich.name, req.body["date" + i]]);
+        sandwiches.push([sandwich.name, req.body["date" + i]]);
         price += sandwich.price;
     }
 
@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
         price: price
     });
     await command.setDepartment(department);
-    for (let data of sandwichs)
+    for (let data of sandwiches)
         try {
             console.log(command.id);
             console.log(data);

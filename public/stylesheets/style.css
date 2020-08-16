@@ -144,3 +144,18 @@ p.before-link a::before {
   height: 100%;
   background-color: rgba(52, 55, 55, .4);
 }
+
+#date-selector {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 0 0 0.5em 0.5em;
+}
+
+.department {
+  box-shadow: 0.3em 0.3em 0.3em rgba(0, 0, 255, .2);
+}
+
+.sandwich {
+  margin-left: 1em;
+}

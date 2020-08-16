@@ -4,8 +4,8 @@ let models = require("../models");
 
 router.get("/", async (req, res) => {
   let departments = await models.Department.findAll();
-  let sandwichs = await models.Sandwich.findAll();
-  res.render("index", { title: "SOD", departments: departments, sandwichs: sandwichs });
+  let sandwiches = await models.Sandwich.findAll();
+  res.render("index", { title: "SOD", departments: departments, sandwiches: sandwiches });
 });
 
 module.exports = router;
