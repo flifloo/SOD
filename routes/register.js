@@ -36,9 +36,16 @@ router.get("/",  async (req, res) => {
                         lastName: req.body.lastName,
                         passwordHash: req.body.password
                     });
+
                     await user.setDepartment(department);
                     req.session.user = user;
                     res.redirect("/");
+                    for (let c of await models.Command.findAll({where: {
+                            firstName: user.firstName,
+                            lastName: user.lastName,
+                            UserUsername: null
+                        }}))
+                        await c.setUser(user);
                 } catch (e) {
                     res.render("error", {message: "Registration fail !", error: {}});
                     throw e;

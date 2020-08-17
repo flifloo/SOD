@@ -40,11 +40,12 @@ router.post("/", async (req, res) => {
         lastName: req.body.lastName,
         price: price
     });
+    let user = await models.User.findOne({where: {firstName: req.body.firstName, lastName: req.body.lastName}});
+    if (user)
+        await command.setUser(user);
     await command.setDepartment(department);
     for (let data of sandwiches)
         try {
-            console.log(command.id);
-            console.log(data);
             await models.SandwichCommand.create({CommandId: command.id, SandwichName: data[0], date: data[1]});
         } catch (e) {
             await command.destroy();

@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Command.belongsToMany(models.Sandwich, {through: {model: models.SandwichCommand, unique: false}});
       Command.belongsTo(models.Department);
+      Command.belongsTo(models.User);
     }
   }
   Command.init({
