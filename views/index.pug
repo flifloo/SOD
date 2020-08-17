@@ -7,17 +7,17 @@ block content
     form#command(action="/command" method="POST")
       div.field
         label(for="department") Department:
-        input#department(type="list" list="department-list" name="department" autocomplete="off" required)
+        input#department(type="list" list="department-list" name="department" value=user ? user.DepartmentName : "" autocomplete="off" required)
         datalist#department-list
           each department in departments
             option(value=department.name)
 
       div.field
         label(for="firstname") First name:
-        input#firstname(type="text" name="firstName" required)
+        input#firstname(type="text" name="firstName" value=user ? user.firstName : "" required)
       div.field
         label(for="lastname") Last name:
-        input#lastname(type="text" name="lastName" required)
+        input#lastname(type="text" name="lastName" value=user ? user.lastName : "" required)
 
       div#command1.command
         h2 Command 1
@@ -38,51 +38,5 @@ block content
       datalist#sandwich-list
         each sandwich in sandwiches
           option(value=sandwich.name)
-
-  div#more
-    a About
-    a Contact
-
-  div#dark.hide
-  div#about.popup.card.hide
-    h1 About
-    p This software respond to the COVID-19 health crisis for the following students' offices food supply
-    div.images
-      div
-        img(src="images/logoBio.png")
-        p Bio student office
-      div
-        img(src="images/logoChimie.png")
-        p Chemical student office
-      div
-        img(src="images/logoGC.png")
-        p Civil engineering student office
-      div
-        img(src="images/logoGCGP.png")
-        p Chemical and process engineering student office
-      div
-        img(src="images/logoGEA.png")
-        p Management of companies and administrations student office
-      div
-        img(src="images/logoInfo.png")
-        p IT student office
-    p.before-link Made with ❤️ by
-      a(href="https://www.linkedin.com/in/florian-charlaix" target="_blank") Florian Charlaix
-  div#contact.popup.card.hide
-    h1 Contact
-    p.before-link Order issue:
-      a(href="mailto: ") test@test.fr
-    p.before-link Bio student office:
-      a(href="mailto: ")
-    p.before-link Chemical student office:
-      a(href="mailto: ")
-    p.before-link Civil engineering student office:
-      a(href="mailto: ")
-    p.before-link Chemical and process engineering student office:
-      a(href="mailto: bde.gcgp.lyon1@gmail.com") bde.gcgp.lyon1@gmail.com
-    p.before-link Management of companies and administrations student office:
-      a(href="mailto: ")
-    p.before-link IT student office:
-      a(href="mailto: contact@bde-info.org") contact@bde-info.org
 
   script(src="javascripts/index.js")

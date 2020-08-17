@@ -5,6 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class User extends Model {
         static associate(models) {
+            User.belongsTo(models.Department);
         }
 
         checkPassword(password) {
@@ -18,6 +19,23 @@ module.exports = (sequelize, DataTypes) => {
         username: {
             type: DataTypes.STRING,
             primaryKey: true
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isEmail: true
+            }
+        },
+        firstName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: "userFullName"
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: "userFullName"
         },
         passwordHash: {
             type: DataTypes.STRING,

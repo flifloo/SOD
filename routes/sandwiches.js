@@ -10,6 +10,7 @@ router.get("/", sessionCheck(1), async (req, res) => {
 
     res.render("sandwiches", {
         title: "SOD",
+        user: req.session.user,
         sandwiches: await models.SandwichCommand.findAll({
             attributes: ["SandwichName", [sequelize.fn("COUNT", sequelize.col("SandwichName")), "number"]],
             where: {date: date},

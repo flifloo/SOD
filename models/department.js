@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Department extends Model {
     static associate(models) {
       Department.hasMany(models.Command);
+      Department.hasMany(models.User);
     }
   }
   Department.init({

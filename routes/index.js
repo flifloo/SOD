@@ -5,7 +5,7 @@ let models = require("../models");
 router.get("/", async (req, res) => {
   let departments = await models.Department.findAll();
   let sandwiches = await models.Sandwich.findAll();
-  res.render("index", { title: "SOD", departments: departments, sandwiches: sandwiches });
+  res.render("index", { title: "SOD", user: req.session.user, departments: departments, sandwiches: sandwiches });
 });
 
 module.exports = router;

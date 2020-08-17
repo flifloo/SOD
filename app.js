@@ -6,6 +6,7 @@ let logger = require("morgan");
 let config = require("./config/config.json");
 
 let indexRouter = require("./routes/index");
+let registerRouter = require("./routes/register");
 let loginRouter = require("./routes/login");
 let logoutRouter = require("./routes/logout");
 let commandRouter = require("./routes/command");
@@ -36,6 +37,7 @@ app.use(session(sess));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
+app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
 app.use("/command", commandRouter);
