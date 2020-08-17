@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    div.card
+        h1 Administration
+        div
+            h2 Order management
+            div.buttons
+                a(href="/admin/orders/date")
+                    button Orders date
+                a(href="/admin/order")
+                    button Manage orders
+
+        div
+            h2 Sandwich management
+            div.buttons
+                a(href="/admin/sandwiches")
+                    button Manage sandwiches
+
+        div
+            h2 User management
+            div.buttons
+                a(href="/admin/users")
+                    button Manage users

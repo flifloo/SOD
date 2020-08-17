@@ -11,6 +11,7 @@ let logoutRouter = require("./routes/logout");
 let commandRouter = require("./routes/command");
 let ordersRouter = require("./routes/orders");
 let sandwichesRouter = require("./routes/sandwiches");
+let adminRouter = require("./routes/admin");
 
 let app = express();
 let sess = {
@@ -40,6 +41,7 @@ app.use("/logout", logoutRouter);
 app.use("/command", commandRouter);
 app.use("/orders", ordersRouter);
 app.use("/sandwiches", sandwichesRouter);
+app.use("/admin", adminRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res) => {
