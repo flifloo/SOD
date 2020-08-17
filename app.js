@@ -1,14 +1,27 @@
 let express = require("express");
 let path = require("path");
 let cookieParser = require("cookie-parser");
+let session = require("express-session");
 let logger = require("morgan");
+let config = require("./config/config.json");
 
 let indexRouter = require("./routes/index");
+let loginRouter = require("./routes/login");
+let logoutRouter = require("./routes/logout");
 let commandRouter = require("./routes/command");
 let ordersRouter = require("./routes/orders");
 let sandwichesRouter = require("./routes/sandwiches");
 
 let app = express();
+let sess = {
+  secret: config.secret,
+  cookie: {}
+}
+
+if (app.get("env") === "production") {
+  app.set("trust proxy", 1);
+  sess.cookie.secure = true;
+}
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -18,9 +31,12 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session(sess));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
+app.use("/login", loginRouter);
+app.use("/logout", logoutRouter);
 app.use("/command", commandRouter);
 app.use("/orders", ordersRouter);
 app.use("/sandwiches", sandwichesRouter);
