@@ -8,6 +8,16 @@ html
 
     div#user
       a(href="/") Home
+      if user
+        if user.permissions >= 1
+          p -
+          a(href="/sandwiches") Sandwiches
+        if user.permissions >= 2
+          p -
+          a(href="/orders") Commands
+        if user.permissions >= 3
+          p -
+          a(href="/admin") Administration
       p |
       if user
         a(href="/profile")=user.username
