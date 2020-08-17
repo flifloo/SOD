@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    div.card
+        h1 Profile
+        form(action="/profile" method="POST")
+            h2 Infos
+            div.field
+                label(for="username") Username:
+                input#username(type="text" name="username" value=user.username disabled required)
+            div.field
+                label(for="email") Email:
+                input#email(type="email" name="email" value=user.email required)
+            div.field
+                label(for="firstName") First name:
+                input#firstName(type="text" name="firstName" value=user.firstName required)
+            div.field
+                label(for="lastName") Last name:
+                input#lastName(type="text" name="lastName" value=user.lastName required)
+            div.field
+                label(for="department") Department:
+                input#department(type="list" list="department-list" name="department" value=user.DepartmentName required)
+            div.field
+                label(for="password") Password:
+                input#password(type="password" name="password")
+            div.field
+                input(type="submit" value="Save")
+
+            datalist#department-list
+                each department in departments
+                    option(value=department.name)
+
+    div.card#userCommandList
+        h1 Commands
+        each command in commands
+            div
+                h2=command.id
+                each sandwich in command.Sandwiches
+                    p #{sandwich.name} - #{sandwich.SandwichCommand.date}

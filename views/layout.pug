@@ -8,7 +8,7 @@ html
 
     div#user
       if user
-        p=user.username
+        a(href="/profile")=user.username
         a(href="/logout") Logout
       else
         a(href="/login") Login

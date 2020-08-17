@@ -185,6 +185,11 @@ p.before-link a::before {
   color: black;
 }
 
+#userCommandList {
+  max-height: 90%;
+  overflow-y: auto;
+}
+
 @media (hover: none) and (pointer: coarse) {
   body {
     font-size: xx-large;

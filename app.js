@@ -12,6 +12,7 @@ let logoutRouter = require("./routes/logout");
 let commandRouter = require("./routes/command");
 let ordersRouter = require("./routes/orders");
 let sandwichesRouter = require("./routes/sandwiches");
+let profileRouter = require("./routes/profile");
 let adminRouter = require("./routes/admin");
 
 let app = express();
@@ -43,6 +44,7 @@ app.use("/logout", logoutRouter);
 app.use("/command", commandRouter);
 app.use("/orders", ordersRouter);
 app.use("/sandwiches", sandwichesRouter);
+app.use("/profile", profileRouter);
 app.use("/admin", adminRouter);
 
 // catch 404 and forward to error handler
