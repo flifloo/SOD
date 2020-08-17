@@ -7,7 +7,7 @@ router.get("/",  async (req, res) => {
     if (req.session.user)
         res.redirect("/");
     else
-        res.render("register", {title: "SOD", departments: await models.Department.findAll()});
+        res.render("register", {title: "SOD - register", departments: await models.Department.findAll()});
 })
     .post("/", async (req, res) => {
         if (!req.body.username || !req.body.email || !req.body.firstName || !req.body.lastName ||

@@ -6,7 +6,7 @@ router.get("/", async (req, res) => {
     if (req.session.user)
         res.redirect("/")
     else
-        res.render("login", { title: "Kfet - Login" });
+        res.render("login", { title: "SOD - Login" });
 })
     .post("/", async (req, res) => {
         if (!req.body.username || !req.body.password)

@@ -9,7 +9,7 @@ router.get("/", sessionCheck(1), async (req, res) => {
     let date = req.query.date ? req.query.date : (new Date()).toISOString().substring(0,10);
 
     res.render("sandwiches", {
-        title: "SOD",
+        title: "SOD - Sandwiches",
         user: req.session.user,
         sandwiches: await models.SandwichCommand.findAll({
             attributes: ["SandwichName", [sequelize.fn("COUNT", sequelize.col("SandwichName")), "number"]],

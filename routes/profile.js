@@ -5,7 +5,7 @@ let models = require("../models");
 
 router.get("/", sessionCheck(0), async (req, res) => {
     res.render("profile", {
-        title: "SOD",
+        title: "SOD - Profile",
         user: req.session.user,
         departments: await models.Department.findAll(),
         commands: await models.Command.findAll({

@@ -6,7 +6,7 @@ let models = require("../../models");
 
 router.get("/", sessionCheck(3), async (req, res) => {
     res.render("admin/commands", {
-        title: "SOD",
+        title: "SOD - Commands administration",
         user: req.session.user,
         commands: await models.Command.findAll({include: models.Sandwich, order: ["date"]})
     });
