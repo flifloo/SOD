@@ -190,6 +190,33 @@ p.before-link a::before {
   overflow-y: auto;
 }
 
+#commandsManagement {
+  max-height: 90%;
+}
+
+#commandsManagement h2 {
+  margin: 0.2em 0 0 0;
+}
+
+#commandsManagement>div {
+  overflow-y: auto;
+}
+
+#commandsManagement .command {
+  box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 255, .2);
+}
+
+#commandsManagement .command .title, #commandsManagement .sandwich {
+  display: flex;
+  justify-content: center;
+}
+
+#commandsManagement input[value="x"] {
+  border: none;
+  background-color: unset;
+  cursor: pointer;
+}
+
 @media (hover: none) and (pointer: coarse) {
   body {
     font-size: xx-large;
