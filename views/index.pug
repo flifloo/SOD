@@ -3,37 +3,37 @@ extends layout
 block content
   div.card
     h1= title
-    p Welcome to Sandwiches Order Doua
+    p=__("index.welcome")
     form#command(action="/command" method="POST")
       div.field
-        label(for="department") Department:
+        label(for="department")=__("index.department")+":"
         input#department(type="list" list="department-list" name="department" value=user ? user.DepartmentName : "" autocomplete="off" required)
         datalist#department-list
           each department in departments
             option(value=department.name)
 
       div.field
-        label(for="firstname") First name:
+        label(for="firstname")=__("index.firstName")+":"
         input#firstname(type="text" name="firstName" value=user ? user.firstName : "" required)
       div.field
-        label(for="lastname") Last name:
+        label(for="lastname")=__("index.lastName")+":"
         input#lastname(type="text" name="lastName" value=user ? user.lastName : "" required)
 
       div#command1.command
-        h2 Command 1
+        h2=__("index.command")+" 1"
         div.field
-          label(for="sandwich") Sandwich:
-          input#sandwich(type="list" list="sandwich-list" name="sandwich1" autocomplete="off" required)
+          label(for="sandwich1")=__("index.sandwich")+":"
+          input#sandwich1(type="list" list="sandwich-list" name="sandwich1" autocomplete="off" required)
         div.field
-          label(for="day") Day:
-          input#day(type="date" name="date1" required)
+          label(for="day1")=__("index.day")+":"
+          input#day1(type="date" name="date1" required)
 
       div#command-action
         a#add-command +
         a#remove-command.hide -
 
       div.field
-        input#send(type="submit" value="Pay")
+        input#send(type="submit" value=__("index.pay"))
 
       datalist#sandwich-list
         each sandwich in sandwiches

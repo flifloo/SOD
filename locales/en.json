@@ -1,22 +1,32 @@
 {
-  "layout": {
-    "home": "Home",
-    "sandwiches": "Sandwiches",
-    "commands": "Commands",
-    "administration": "Administration",
-    "logout": "Logout",
-    "login": "Login",
-    "register": "Register",
-    "about": "About",
-    "aboutDescription": "This software respond to the COVID-19 health crisis for the following students' offices food supply",
-    "bio": "Bio student office",
-    "chemistry": "Chemistry student office",
-    "GC": "Civil engineering student office",
-    "GCPD": "Chemical and process engineering student office",
-    "GEA": "Management of companies and administrations student office",
-    "IT": "IT student office",
-    "made": "Made with ❤️ by",
-    "contact": "Contact",
-    "orderIssue": "Order issue"
-  }
+	"layout": {
+		"home": "Home",
+		"sandwiches": "Sandwiches",
+		"commands": "Commands",
+		"administration": "Administration",
+		"logout": "Logout",
+		"login": "Login",
+		"register": "Register",
+		"about": "About",
+		"aboutDescription": "This software respond to the COVID-19 health crisis for the following students' offices food supply",
+		"bio": "Bio student office",
+		"chemistry": "Chemistry student office",
+		"GC": "Civil engineering student office",
+		"GCPD": "Chemical and process engineering student office",
+		"GEA": "Management of companies and administrations student office",
+		"IT": "IT student office",
+		"made": "Made with ❤️ by",
+		"contact": "Contact",
+		"orderIssue": "Order issue"
+	},
+	"index": {
+		"welcome": "Welcome to Sandwiches Order Doua",
+		"department": "Department",
+		"firstName": "First name",
+		"lastName": "Last name",
+		"command": "Command",
+		"sandwich": "Sandwich",
+		"day": "Day",
+		"pay": "Pay"
+	}
 }
