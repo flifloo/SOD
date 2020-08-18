@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup nodejs & npm
+      uses: actions/setup-node@v1
+      with:
+        node-version: "12"
+    
+    - name: Install projetc dependecies
+      run: npm install
+    
+    - name: Launch unitary test
+      run: npm test
