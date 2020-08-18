@@ -5,18 +5,18 @@ block content
         label(for="date")=__("date")
         input#date(type="date" value=date)
     div#orders.card
-        h1=__("commands")
-        each user, department in commands
+        h1=__("orders")
+        each user, department in orders
             div.department
                 h2= department
-                each command, name in user
+                each orders, name in user
                     div.user
                         h3= name
-                        each order, id in command
+                        each order, id in orders
                             div.order
-                                h4 #{__("command")} N°#{id}
+                                h4 #{__("order")} N°#{id}
                                 each sandwich in order
                                     div.sandwich
                                         h4= sandwich.Sandwich.name
 
-    script(src="/javascripts/commands.js")
+    script(src="/javascripts/orders.js")

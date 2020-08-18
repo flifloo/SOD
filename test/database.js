@@ -174,7 +174,7 @@ describe("Database User test", () => {
     });
 });
 
-describe("Database Command tests", () => {
+describe("Database Order tests", () => {
     let models;
 
     before(async () => {
@@ -188,15 +188,15 @@ describe("Database Command tests", () => {
         await wipeDatabase(models);
     });
 
-    it("Command creation", async () => {
-        expect(await models.Command.create({
+    it("Order creation", async () => {
+        expect(await models.Order.create({
             firstName: "Test",
             lastName: "Test",
             price: 1.5
-        })).to.be.instanceOf(models.Command);
+        })).to.be.instanceOf(models.Order);
     });
-    it("Command associations", async () => {
-        let testCommand = await models.Command.create({firstName: "Test", lastName: "Test", price: 1.5, },
+    it("Order associations", async () => {
+        let testOrder = await models.Order.create({firstName: "Test", lastName: "Test", price: 1.5, },
             {include: [models.Department, models.Sandwich, models.User]});
         let testDepartment = await models.Department.create({name: "TestDepartment"});
         let testSandwich = await models.Sandwich.create({name: "TestSandwich", price: 1.5});
@@ -207,19 +207,19 @@ describe("Database Command tests", () => {
             lastName: "Test",
             passwordHash: "test"});
 
-        await testCommand.setDepartment(testDepartment);
-        await testCommand.reload();
-        expect(testCommand.Department).to.be.instanceOf(models.Department);
-        expect(testCommand.Department.name).to.be.equal(testDepartment.name);
+        await testOrder.setDepartment(testDepartment);
+        await testOrder.reload();
+        expect(testOrder.Department).to.be.instanceOf(models.Department);
+        expect(testOrder.Department.name).to.be.equal(testDepartment.name);
 
-        await testCommand.addSandwiches(testSandwich);
-        await testCommand.reload();
-        expect(testCommand.Sandwiches[0]).to.be.instanceOf(models.Sandwich);
-        expect(testCommand.Sandwiches[0].name).to.be.equal(testSandwich.name);
+        await testOrder.addSandwiches(testSandwich);
+        await testOrder.reload();
+        expect(testOrder.Sandwiches[0]).to.be.instanceOf(models.Sandwich);
+        expect(testOrder.Sandwiches[0].name).to.be.equal(testSandwich.name);
 
-        await testCommand.setUser(testUser);
-        await testCommand.reload();
-        expect(testCommand.User).to.be.instanceOf(models.User);
-        expect(testCommand.User.username).to.be.equal(testUser.username);
+        await testOrder.setUser(testUser);
+        await testOrder.reload();
+        expect(testOrder.User).to.be.instanceOf(models.User);
+        expect(testOrder.User.username).to.be.equal(testUser.username);
     });
 });

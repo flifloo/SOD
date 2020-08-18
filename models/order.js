@@ -3,14 +3,14 @@ const {
   Model
 } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Command extends Model {
+  class Order extends Model {
     static associate(models) {
-      Command.belongsToMany(models.Sandwich, {through: {model: models.SandwichCommand, unique: false}});
-      Command.belongsTo(models.Department);
-      Command.belongsTo(models.User);
+      Order.belongsToMany(models.Sandwich, {through: {model: models.SandwichOrder, unique: false}});
+      Order.belongsTo(models.Department);
+      Order.belongsTo(models.User);
     }
   }
-  Command.init({
+  Order.init({
     firstName: {
       type: DataTypes.STRING,
       allowNull: false
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: "Command",
+    modelName: "Order",
   });
-  return Command;
+  return Order;
 };

@@ -80,9 +80,9 @@ describe("Public pages test", () => {
             .get("/sandwiches")
             .expect(302, done);
     });
-    it("Response to /commands", (done) => {
+    it("Response to /orders", (done) => {
         request(app)
-            .get("/commands")
+            .get("/orders")
             .expect(302, done);
     });
     it("Response to /admin", (done) => {
@@ -90,9 +90,9 @@ describe("Public pages test", () => {
             .get("/admin")
             .expect(302, done);
     });
-    it("Response to /admin/commands", (done) => {
+    it("Response to /admin/orders", (done) => {
         request(app)
-            .get("/admin/commands")
+            .get("/admin/orders")
             .expect(302, done);
     });
     it("404 everything else", (done) => {
@@ -169,9 +169,9 @@ for (let [p, a] of Object.entries({0: [403, 403, 403, 403], 1: [200, 403, 403, 4
                 .get("/sandwiches")
                 .expect(a[0]);
         });
-        it("Commands page", async () => {
+        it("Orders page", async () => {
             await (await getLoginAgent(app))
-                .get("/commands")
+                .get("/orders")
                 .expect(a[1]);
         });
         it("Admin page", async () => {
@@ -179,9 +179,9 @@ for (let [p, a] of Object.entries({0: [403, 403, 403, 403], 1: [200, 403, 403, 4
                 .get("/admin")
                 .expect(a[2]);
         });
-        it("Commands administration page", async () => {
+        it("Orders administration page", async () => {
             await (await getLoginAgent(app))
-                .get("/admin/commands")
+                .get("/admin/orders")
                 .expect(a[3]);
         });
     });

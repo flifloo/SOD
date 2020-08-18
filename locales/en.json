@@ -37,9 +37,9 @@
 	},
 	"admin": {
 		"title": "Administration",
-		"commandsManagement": "Commands management",
+		"ordersManagement": "Orders management",
 		"ordersDate": "Orders date",
-		"manageCommands": "Manage commands",
+		"manageOrders": "Manage orders",
 		"sandwichManagement": "Sandwich management",
 		"manageSandwiches": "Manage sandwiches",
 		"userManagement": "User management",
@@ -51,8 +51,8 @@
 	"password": "Password",
 	"email": "Email",
 	"department": "Department",
-	"commands": "Commands",
+	"orders": "Orders",
 	"sandwiches": "Sandwiches",
 	"date": "Date",
-	"command": "Command"
+	"order": "Order"
 }

@@ -3,11 +3,11 @@ const {
   Model
 } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class SandwichCommand extends Model {
+  class SandwichOrder extends Model {
     static associate(models) {
     }
   }
-  SandwichCommand.init({
+  SandwichOrder.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: "SandwichCommand",
+    modelName: "SandwichOrder",
   });
-  return SandwichCommand;
+  return SandwichOrder;
 };

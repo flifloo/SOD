@@ -11,7 +11,7 @@ router.get("/", sessionCheck(1), async (req, res) => {
     res.render("sandwiches", {
         title: "SOD - Sandwiches",
         user: req.session.user,
-        sandwiches: await models.SandwichCommand.findAll({
+        sandwiches: await models.SandwichOrder.findAll({
             attributes: ["SandwichName", [sequelize.fn("COUNT", sequelize.col("SandwichName")), "number"]],
             where: {date: date},
             group: "SandwichName"

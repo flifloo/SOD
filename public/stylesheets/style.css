@@ -38,7 +38,7 @@ a {
   text-decoration: none;
 }
 
-#command {
+#order {
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -70,12 +70,12 @@ a {
   border: none;
 }
 
-#command-action {
+#order-action {
   display: flex;
   justify-content: space-around;
 }
 
-#add-command, #remove-command {
+#add-order, #remove-order {
   font-weight: bold;
   font-size: 2em;
   margin: auto auto 1em auto;
@@ -185,33 +185,33 @@ p.before-link a::before {
   color: black;
 }
 
-#userCommandList {
+#userOrderList {
   max-height: 90%;
   overflow-y: auto;
 }
 
-#commandsManagement {
+#ordersManagement {
   max-height: 90%;
 }
 
-#commandsManagement h2 {
+#ordersManagement h2 {
   margin: 0.2em 0 0 0;
 }
 
-#commandsManagement>div {
+#ordersManagement>div {
   overflow-y: auto;
 }
 
-#commandsManagement .command {
+#ordersManagement .order {
   box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 255, .2);
 }
 
-#commandsManagement .command .title, #commandsManagement .sandwich {
+#ordersManagement .order .title, #ordersManagement .sandwich {
   display: flex;
   justify-content: center;
 }
 
-#commandsManagement input[value="x"] {
+#ordersManagement input[value="x"] {
   border: none;
   background-color: unset;
   cursor: pointer;

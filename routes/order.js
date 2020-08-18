@@ -5,13 +5,13 @@ let models = require("../models");
 
 router.post("/", async (req, res) => {
     if (!req.body.department || !req.body.firstName || !req.body.lastName || !req.body.sandwich1 || !req.body.date1) {
-        res.render("error", {message: "Invalid command !", "error": {status: "Missing arguments"}});
+        res.render("error", {message: "Invalid order !", "error": {status: "Missing arguments"}});
         return;
     }
 
     let department = await models.Department.findByPk(req.body.department);
     if (!department) {
-        res.render("error", {message: "Invalid command !", error: {status: "Invalid department"}});
+        res.render("error", {message: "Invalid order !", error: {status: "Invalid department"}});
         return;
     }
 
@@ -19,14 +19,14 @@ router.post("/", async (req, res) => {
     let price = 0;
     for (let i = 1; req.body["sandwich" + i] !== undefined; i++) {
         if (req.body["date" + i] === undefined) {
-            res.render("error", {message: "Invalid command !", error: {status: "Sandwich without date"}});
+            res.render("error", {message: "Invalid order !", error: {status: "Sandwich without date"}});
             return;
         }
 
         let sandwich = await models.Sandwich.findByPk(req.body["sandwich" + i]);
         if (!sandwich) {
             res.render("error", {
-                message: "Invalid command !",
+                message: "Invalid order !",
                 error: {status: "Invalid sandwich: "+req.body["sandwich" + i]}
             });
             return;
@@ -35,21 +35,21 @@ router.post("/", async (req, res) => {
         price += sandwich.price;
     }
 
-    let command = await models.Command.create({
+    let order = await models.Order.create({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         price: price
     });
     let user = await models.User.findOne({where: {firstName: req.body.firstName, lastName: req.body.lastName}});
     if (user)
-        await command.setUser(user);
-    await command.setDepartment(department);
+        await order.setUser(user);
+    await order.setDepartment(department);
     for (let data of sandwiches)
         try {
-            await models.SandwichCommand.create({CommandId: command.id, SandwichName: data[0], date: data[1]});
+            await models.SandwichOrder.create({OrderId: order.id, SandwichName: data[0], date: data[1]});
         } catch (e) {
-            await command.destroy();
-            res.render("error", {message: "Invalid command !", error: {status: "Invalid date"}});
+            await order.destroy();
+            res.render("error", {message: "Invalid order !", error: {status: "Invalid date"}});
             throw e;
         }
     res.send("Ok");

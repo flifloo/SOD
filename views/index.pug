@@ -4,7 +4,7 @@ block content
   div.card
     h1= title
     p=__("index.welcome")
-    form#command(action="/command" method="POST")
+    form#order(action="/order" method="POST")
       div.field
         label(for="department")=__("department")+":"
         input#department(type="list" list="department-list" name="department" value=user ? user.DepartmentName : "" autocomplete="off" required)
@@ -19,8 +19,8 @@ block content
         label(for="lastname")=__("lastName")+":"
         input#lastname(type="text" name="lastName" value=user ? user.lastName : "" required)
 
-      div#command1.command
-        h2=__("command")+" 1"
+      div#order1.order
+        h2=__("order")+" 1"
         div.field
           label(for="sandwich1")=__("index.sandwich")+":"
           input#sandwich1(type="list" list="sandwich-list" name="sandwich1" autocomplete="off" required)
@@ -28,9 +28,9 @@ block content
           label(for="day1")=__("index.day")+":"
           input#day1(type="date" name="date1" required)
 
-      div#command-action
-        a#add-command +
-        a#remove-command.hide -
+      div#order-action
+        a#add-order +
+        a#remove-order.hide -
 
       div.field
         input#send(type="submit" value=__("index.pay"))

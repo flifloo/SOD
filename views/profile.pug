@@ -30,10 +30,10 @@ block content
                 each department in departments
                     option(value=department.name)
 
-    div.card#userCommandList
-        h1=__("commands")
-        each command in commands
+    div.card#userOrderList
+        h1=__("orders")
+        each order in orders
             div
-                h2=command.id
-                each sandwich in command.Sandwiches
-                    p #{sandwich.name} - #{sandwich.SandwichCommand.date}
+                h2=order.id
+                each sandwich in order.Sandwiches
+                    p #{sandwich.name} - #{sandwich.SandwichOrder.date}

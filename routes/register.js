@@ -40,7 +40,7 @@ router.get("/",  async (req, res) => {
                     await user.setDepartment(department);
                     req.session.user = user;
                     res.redirect("/");
-                    for (let c of await models.Command.findAll({where: {
+                    for (let c of await models.Order.findAll({where: {
                             firstName: user.firstName,
                             lastName: user.lastName,
                             UserUsername: null

@@ -1,20 +1,20 @@
-const commandAction = document.getElementById("command-action");
-const rmButton = document.getElementById("remove-command");
+const orderAction = document.getElementById("order-action");
+const rmButton = document.getElementById("remove-order");
 const locals = {
-    command: document.querySelector("#command1>h2").innerHTML.replace(" 1", ""),
+    order: document.querySelector("#order1>h2").innerHTML.replace(" 1", ""),
     sandwich: document.querySelector("label[for='sandwich1']").innerHTML,
     day: document.querySelector("label[for='day1']").innerHTML
 };
 
-function lastCommandId() {
-    let list = document.querySelectorAll("div.command h2");
-    return parseInt(list[list.length-1].innerText.replace("Command ", ""));
+function lastOrderId() {
+    let list = document.querySelectorAll("div.order h2");
+    return parseInt(list[list.length-1].innerText.replace(locals.order+" ", ""));
 }
 
-document.getElementById("add-command").addEventListener("click", () => {
-    let id = lastCommandId() + 1;
-    commandAction.insertAdjacentHTML("beforebegin", `<div id="command${id}" class="command">
-    <h2>${locals.command} ${id}</h2>
+document.getElementById("add-order").addEventListener("click", () => {
+    let id = lastOrderId() + 1;
+    orderAction.insertAdjacentHTML("beforebegin", `<div id="order${id}" class="order">
+    <h2>${locals.order} ${id}</h2>
     <div class="field">
         <label for="sandwich${id}">${locals.sandwich}</label>
         <input id="sandwich${id}" type="list" list="sandwich-list" name="sandwich${id}" autocomplete="off" required>
@@ -24,13 +24,13 @@ document.getElementById("add-command").addEventListener("click", () => {
         <input id="da${id}y" type="date" name="date${id}" required>
     </div>
 </div>`);
-    document.getElementById("command"+lastCommandId()).scrollIntoView({behavior: "smooth"});
+    document.getElementById("order"+lastOrderId()).scrollIntoView({behavior: "smooth"});
     rmButton.classList.remove("hide");
 });
 
 rmButton.addEventListener("click", () => {
-    let id = lastCommandId();
-    document.getElementById("command"+id).remove();
+    let id = lastOrderId();
+    document.getElementById("order"+id).remove();
     if (id === 2)
         rmButton.classList.add("hide");
 });

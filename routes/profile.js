@@ -8,7 +8,7 @@ router.get("/", sessionCheck(0), async (req, res) => {
         title: "SOD - Profile",
         user: req.session.user,
         departments: await models.Department.findAll(),
-        commands: await models.Command.findAll({
+        orders: await models.Order.findAll({
             where: {UserUsername: req.session.user.username},
             include: models.Sandwich,
             order: ["date"]
@@ -39,7 +39,7 @@ router.get("/", sessionCheck(0), async (req, res) => {
         else {
             user.firstName = req.body.firstName;
             user.lastName = req.body.lastName;
-            for (let c of await models.Command.findAll({where: {
+            for (let c of await models.Order.findAll({where: {
                 firstName: req.session.user.firstName,
                     lastName: req.session.user.lastName}})) {
                 c.firstName = user.firstName;

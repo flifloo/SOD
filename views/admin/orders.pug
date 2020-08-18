@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+    div.card#ordersManagement
+        h1=__("admin.ordersManagement")
+        div
+            each order in orders
+                div.order
+                    div.title
+                        h2=order.id
+                        form(action="/admin/orders/order/delete" method="POST")
+                            input.hide(type="number" name="id" value=order.id)
+                            input(type="submit" value="x")
+                    h3 #{order.firstName} #{order.lastName}
+                    each sandwich in order.Sandwiches
+                        div.sandwich
+                            p #{sandwich.name} - #{sandwich.SandwichOrder.date}
+                            form(action="/admin/orders/sandwich/delete" method="POST")
+                                input.hide(type="number" name="id" value=sandwich.SandwichOrder.id)
+                                input(type="submit" value="x")

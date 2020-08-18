@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Sandwich extends Model {
     static associate(models) {
-      Sandwich.belongsToMany(models.Command, {through: {model: models.SandwichCommand, unique: false}});
+      Sandwich.belongsToMany(models.Order, {through: {model: models.SandwichOrder, unique: false}});
     }
   }
   Sandwich.init({

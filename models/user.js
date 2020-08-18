@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     class User extends Model {
         static associate(models) {
             User.belongsTo(models.Department);
-            User.hasMany(models.Command);
+            User.hasMany(models.Order);
         }
 
         checkPassword(password) {

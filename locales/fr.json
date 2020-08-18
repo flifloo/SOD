@@ -14,7 +14,7 @@
     "IT": "BDE Info",
     "made": "Fait avec ❤️ par",
     "contact": "Contact",
-    "orderIssue": "Problème de ordere"
+    "orderIssue": "Problème de commande"
   },
   "index": {
     "welcome": "Bienvenue sur Sandwiches Order Doua",
@@ -24,7 +24,7 @@
   },
   "login": {
     "title": "Se connecter",
-    "submit": "Connection"
+    "submit": "Connexion"
   },
   "register": {
     "title": "S'inscrire",
@@ -37,9 +37,9 @@
   },
   "admin": {
     "title": "Administration",
-    "commandsManagement": "Gestion des orderes",
-    "ordersDate": "Date des orderes",
-    "manageCommands": "Gérer les orderes",
+    "ordersManagement": "Gestion des commandes",
+    "ordersDate": "Date des commandes",
+    "manageOrders": "Gérer les commandes",
     "sandwichManagement": "Gestion des sandwichs",
     "manageSandwiches": "Gérer les sandwichs",
     "userManagement": "Gestion des utilisateurs",
@@ -51,8 +51,8 @@
   "password": "Mot de passe",
   "email": "Email",
   "department": "Département",
-  "commands": "Orderes",
+  "orders": "Commandes",
   "sandwiches": "Sandwichs",
   "date": "Date",
-  "command": "Order"
+  "order": "Commande"
 }

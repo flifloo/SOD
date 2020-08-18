@@ -9,12 +9,12 @@ let indexRouter = require("./routes/index");
 let registerRouter = require("./routes/register");
 let loginRouter = require("./routes/login");
 let logoutRouter = require("./routes/logout");
-let commandRouter = require("./routes/command");
-let ordersRouter = require("./routes/commands");
+let orderRouter = require("./routes/order");
+let ordersRouter = require("./routes/orders");
 let sandwichesRouter = require("./routes/sandwiches");
 let profileRouter = require("./routes/profile");
 let adminRouter = require("./routes/admin");
-let adminCommandsRouter = require("./routes/admin/commands");
+let adminOrdersRouter = require("./routes/admin/orders");
 
 let app = express();
 let sess = {
@@ -50,12 +50,12 @@ app.use("/", indexRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
-app.use("/command", commandRouter);
-app.use("/commands", ordersRouter);
+app.use("/order", orderRouter);
+app.use("/orders", ordersRouter);
 app.use("/sandwiches", sandwichesRouter);
 app.use("/profile", profileRouter);
 app.use("/admin", adminRouter);
-app.use("/admin/commands", adminCommandsRouter);
+app.use("/admin/orders", adminOrdersRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res) => {
