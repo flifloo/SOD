@@ -2,12 +2,12 @@ extends layout
 
 block content
     form.card(action="/login" method="POST")
-        h1 Login
+        h1=__("login.title")
         div.field
-            label(for="username") Username:
+            label(for="username")=__("login.username")+":"
             input#username(type="text" name="username" required)
         div.field
-            label(for="password") Password:
+            label(for="password")=__("login.password")+":"
             input#password(type="password" name="password" required)
         div.field
-            input(type="submit" value="Login")
+            input(type="submit" value=__("login.submit"))

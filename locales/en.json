@@ -28,5 +28,11 @@
 		"sandwich": "Sandwich",
 		"day": "Day",
 		"pay": "Pay"
+	},
+	"login": {
+		"title": "Login",
+		"username": "Username",
+		"password": "Password",
+		"submit": "Login"
 	}
 }
