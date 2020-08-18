@@ -21,9 +21,6 @@
 	},
 	"index": {
 		"welcome": "Welcome to Sandwiches Order Doua",
-		"department": "Department",
-		"firstName": "First name",
-		"lastName": "Last name",
 		"command": "Command",
 		"sandwich": "Sandwich",
 		"day": "Day",
@@ -31,8 +28,16 @@
 	},
 	"login": {
 		"title": "Login",
-		"username": "Username",
-		"password": "Password",
 		"submit": "Login"
-	}
+	},
+	"register": {
+		"title": "Register",
+		"email": "Email",
+		"submit": "Register"
+	},
+	"firstName": "First name",
+	"lastName": "Last name",
+	"username": "Username",
+	"password": "Password",
+	"department": "Department"
 }

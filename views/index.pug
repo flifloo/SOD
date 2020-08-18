@@ -6,17 +6,17 @@ block content
     p=__("index.welcome")
     form#command(action="/command" method="POST")
       div.field
-        label(for="department")=__("index.department")+":"
+        label(for="department")=__("department")+":"
         input#department(type="list" list="department-list" name="department" value=user ? user.DepartmentName : "" autocomplete="off" required)
         datalist#department-list
           each department in departments
             option(value=department.name)
 
       div.field
-        label(for="firstname")=__("index.firstName")+":"
+        label(for="firstname")=__("firstName")+":"
         input#firstname(type="text" name="firstName" value=user ? user.firstName : "" required)
       div.field
-        label(for="lastname")=__("index.lastName")+":"
+        label(for="lastname")=__("lastName")+":"
         input#lastname(type="text" name="lastName" value=user ? user.lastName : "" required)
 
       div#command1.command
