@@ -1,7 +1,6 @@
 {
 	"layout": {
 		"home": "Home",
-		"sandwiches": "Sandwiches",
 		"administration": "Administration",
 		"logout": "Logout",
 		"login": "Login",
@@ -44,5 +43,7 @@
 	"password": "Password",
 	"email": "Email",
 	"department": "Department",
-	"commands": "Commands"
+	"commands": "Commands",
+	"sandwiches": "Sandwiches",
+	"date": "Date"
 }

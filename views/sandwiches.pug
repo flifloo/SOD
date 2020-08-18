@@ -2,10 +2,10 @@ extends layout
 
 block content
     div#date-selector.card
-        label(for="date") Date
+        label(for="date")=__("date")
         input#date(type="date" value=date)
     div.card
-        h1 Sandwiches
+        h1=__("sandwiches")
         each sandwich in sandwiches
             div.sandwich
                 h2 #{sandwich.SandwichName}: #{sandwich.dataValues.number}
