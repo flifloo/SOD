@@ -20,6 +20,6 @@ document.querySelectorAll(".department").forEach(e => collapse(e, "user"));
 
 document.querySelectorAll(".user").forEach(e => collapse(e, "order"));
 
-document.querySelectorAll(".order").forEach(e => collapse(e, "sandwich"))
+document.querySelectorAll(".order").forEach(e => collapse(e, "sandwich"));
 
 date.addEventListener("change", () => window.location.href = "?date="+date.value);

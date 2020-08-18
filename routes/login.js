@@ -4,7 +4,7 @@ const models = require("../models");
 
 router.get("/", async (req, res) => {
     if (req.session.user)
-        res.redirect("/")
+        res.redirect("/");
     else
         res.render("login", { title: "SOD - Login" });
 })

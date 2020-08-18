@@ -19,7 +19,7 @@ let app = express();
 let sess = {
   secret: process.env.NODE_ENV === "test" ? "Keyboard Cat" : require("./config/config.json").secret,
   cookie: {}
-}
+};
 
 if (app.get("env") === "production") {
   app.set("trust proxy", 1);
