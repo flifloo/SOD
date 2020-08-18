@@ -1,4 +1,42 @@
 let request = require("supertest");
+let wipeDatabase = require("./utils/wipeDatabase");
+let expect = require("chai").expect;
+
+
+async function setup() {
+    let app = require("../app");
+    let models = require("../models");
+    await models.sequelize.sync();
+    await wipeDatabase(models);
+    return [app, models];
+}
+
+async function createTestUser(models, p) {
+    await models.User.create({
+        username: "test",
+        email: "test@test.fr",
+        firstName: "Test",
+        lastName: "Test",
+        passwordHash: "test",
+        permissions: p ? p : 0
+    });
+}
+
+async function clean() {
+    await wipeDatabase(models);
+    await models.sequelize.close();
+    for (let e of ["../app", "../models"])
+        delete require.cache[require.resolve(e)];
+}
+
+async function getLoginAgent(app) {
+    let agent = request.agent(app, {});
+    await agent
+        .post("/login")
+        .send({username: "test", password: "test"})
+        .expect(302);
+    return agent;
+}
 
 
 describe("Public pages test", () => {
@@ -6,14 +44,10 @@ describe("Public pages test", () => {
     let models;
 
     before(async () => {
-        app = require("../app");
-        models = require("../models");
-        await models.sequelize.sync();
+        [app, models] = await setup();
     });
-    after( async () => {
-        await models.sequelize.close();
-        for (let e of ["../app", "../models"])
-            delete require.cache[require.resolve(e)];
+    after(() => {
+        return clean;
     });
 
     it("Responds to /", (done) => {
@@ -67,3 +101,87 @@ describe("Public pages test", () => {
             .expect(404, done);
     });
 });
+
+describe("Global logged user pages", () => {
+    let app;
+    let models;
+
+    before(async () => {
+        [app, models] = await setup();
+        await createTestUser(models);
+    });
+    after( () => {
+        return clean;
+    });
+
+    it("Login user", async () => {
+        let res = await request(app)
+            .post("/login")
+            .send({username: "test", password: "test"})
+            .expect(302);
+        expect(res.headers.location).to.be.equal("/");
+    });
+    it("Login error", async () => {
+        let res = await request(app)
+            .post("/login")
+            .send({username: "wrong", password: "wrong"})
+            .expect(302);
+        expect(res.headers.location).to.be.equal("/login?err=true");
+    });
+    it("Register page", async () => {
+        await (await getLoginAgent(app))
+            .get("/register")
+            .expect(302);
+    });
+    it("Logout page", async () => {
+        let agent = await getLoginAgent(app);
+        await agent
+            .get("/logout")
+            .expect(302);
+
+        //Check if user is correctly logout
+        await agent
+            .get("/login")
+            .expect(200);
+    });
+    it("Profile page", async () => {
+        await (await getLoginAgent(app))
+            .get("/profile")
+            .expect(200);
+    });
+});
+
+for (let [p, a] of Object.entries({0: [403, 403, 403, 403], 1: [200, 403, 403, 403], 2: [200, 200, 403, 403], 3: [200, 200, 200, 200]}))
+    describe(`Permission ${p} pages`, () => {
+        let app;
+        let models;
+
+        before(async () => {
+            [app, models] = await setup();
+            await createTestUser(models, p);
+        });
+        after( () => {
+            return clean;
+        });
+
+        it("Sandwiches page", async () => {
+            await (await getLoginAgent(app))
+                .get("/sandwiches")
+                .expect(a[0]);
+        });
+        it("Commands page", async () => {
+            await (await getLoginAgent(app))
+                .get("/commands")
+                .expect(a[1]);
+        });
+        it("Admin page", async () => {
+            await (await getLoginAgent(app))
+                .get("/admin")
+                .expect(a[2]);
+        });
+        it("Commands administration page", async () => {
+            await (await getLoginAgent(app))
+                .get("/admin/commands")
+                .expect(a[3]);
+        });
+    });

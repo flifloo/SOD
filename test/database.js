@@ -1,12 +1,6 @@
 let expect = require("chai").expect;
+let wipeDatabase = require("./utils/wipeDatabase");
 
-
-async function wipeDatabase(models) {
-    for (let model in models) {
-        if (["sequelize", "Sequelize"].indexOf(model) < 0)
-            await models[model].destroy({where: {}});
-    }
-}
 
 async function databaseEnter() {
     let models = require("../models");
