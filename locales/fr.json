@@ -1,0 +1,58 @@
+{
+  "layout": {
+    "home": "Accueil",
+    "logout": "Se déconnecter",
+    "login": "S'identifier",
+    "register": "S'inscrire",
+    "about": "À propos",
+    "aboutDescription": "Ce logiciel répond à la crise sanitaire du COVID-19 pour l'approvisionnement alimentaire des bureaux d'étudiants suivants",
+    "bio": "BDE Bio",
+    "chemistry": "BDE Chimie",
+    "GC": "BDE GC",
+    "GCPD": "BDE GCPD",
+    "GEA": "BDE GEA",
+    "IT": "BDE Info",
+    "made": "Fait avec ❤️ par",
+    "contact": "Contact",
+    "orderIssue": "Problème de ordere"
+  },
+  "index": {
+    "welcome": "Bienvenue sur Sandwiches Order Doua",
+    "sandwich": "Sandwich",
+    "day": "Jour",
+    "pay": "Payer"
+  },
+  "login": {
+    "title": "Se connecter",
+    "submit": "Connection"
+  },
+  "register": {
+    "title": "S'inscrire",
+    "submit": "Envoyer"
+  },
+  "profile": {
+    "title": "Profil",
+    "infos": "Infos",
+    "save": "Enregistrer"
+  },
+  "admin": {
+    "title": "Administration",
+    "commandsManagement": "Gestion des orderes",
+    "ordersDate": "Date des orderes",
+    "manageCommands": "Gérer les orderes",
+    "sandwichManagement": "Gestion des sandwichs",
+    "manageSandwiches": "Gérer les sandwichs",
+    "userManagement": "Gestion des utilisateurs",
+    "manageUsers": "Gérer les utilisateurs"
+  },
+  "firstName": "Prénom",
+  "lastName": "Nom de famille",
+  "username": "Nom d'utilisateur",
+  "password": "Mot de passe",
+  "email": "Email",
+  "department": "Département",
+  "commands": "Orderes",
+  "sandwiches": "Sandwichs",
+  "date": "Date",
+  "command": "Order"
+}
