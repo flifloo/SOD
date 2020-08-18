@@ -3,6 +3,7 @@ let path = require("path");
 let cookieParser = require("cookie-parser");
 let session = require("express-session");
 let logger = require("morgan");
+let { I18n } = require("i18n");
 
 let indexRouter = require("./routes/index");
 let registerRouter = require("./routes/register");
@@ -20,6 +21,13 @@ let sess = {
   secret: process.env.NODE_ENV === "test" ? "Keyboard Cat" : require("./config/config.json").secret,
   cookie: {}
 };
+let i18n = new I18n({
+  locales: ["fr", "en"],
+  defaultLocale: "fr",
+  cookie: "locale",
+  directory: __dirname + "/locales",
+  objectNotation: true
+});
 
 if (app.get("env") === "production") {
   app.set("trust proxy", 1);
@@ -36,6 +44,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session(sess));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(i18n.init);
 
 app.use("/", indexRouter);
 app.use("/register", registerRouter);
