@@ -3,7 +3,6 @@ let path = require("path");
 let cookieParser = require("cookie-parser");
 let session = require("express-session");
 let logger = require("morgan");
-let config = require("./config/config.json");
 
 let indexRouter = require("./routes/index");
 let registerRouter = require("./routes/register");
@@ -18,7 +17,7 @@ let adminCommandsRouter = require("./routes/admin/commands");
 
 let app = express();
 let sess = {
-  secret: config.secret,
+  secret: process.env.NODE_ENV === "test" ? "Keyboard Cat" : require("./config/config.json").secret,
   cookie: {}
 }
 
@@ -51,6 +50,7 @@ app.use("/admin/commands", adminCommandsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res) => {
+  res.status(404);
   res.render("error", {message: "Page not found", "error": {}})
 });
 
