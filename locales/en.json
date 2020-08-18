@@ -2,7 +2,6 @@
 	"layout": {
 		"home": "Home",
 		"sandwiches": "Sandwiches",
-		"commands": "Commands",
 		"administration": "Administration",
 		"logout": "Logout",
 		"login": "Login",
@@ -32,12 +31,18 @@
 	},
 	"register": {
 		"title": "Register",
-		"email": "Email",
 		"submit": "Register"
+	},
+	"profile": {
+		"title": "Profile",
+		"infos": "Infos",
+		"save": "Save"
 	},
 	"firstName": "First name",
 	"lastName": "Last name",
 	"username": "Username",
 	"password": "Password",
-	"department": "Department"
+	"email": "Email",
+	"department": "Department",
+	"commands": "Commands"
 }
