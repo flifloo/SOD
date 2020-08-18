@@ -7,69 +7,69 @@ html
     block content
 
     div#user
-      a(href="/") Home
+      a(href="/")=__("layout.home")
       if user
         if user.permissions >= 1
           p -
-          a(href="/sandwiches") Sandwiches
+          a(href="/sandwiches")=__("layout.sandwiches")
         if user.permissions >= 2
           p -
-          a(href="/commands") Commands
+          a(href="/commands")=__("layout.commands")
         if user.permissions >= 3
           p -
-          a(href="/admin") Administration
+          a(href="/admin")=__("layout.administration")
       p |
       if user
         a(href="/profile")=user.username
-        a(href="/logout") Logout
+        a(href="/logout")=__("layout.logout")
       else
-        a(href="/login") Login
-        a(href="/register") Register
+        a(href="/login")=__("layout.login")
+        a(href="/register")=__("layout.register")
 
     div#more
-      a About
-      a Contact
+      a=__("layout.about")
+      a=__("layout.contact")
 
     div#dark.hide
     div#about.popup.card.hide
-      h1 About
-      p This software respond to the COVID-19 health crisis for the following students' offices food supply
+      h1=__("layout.about")
+      p=__("layout.aboutDescription")
       div.images
         div
           img(src="/images/logoBio.png")
-          p Bio student office
+          p=__("layout.bio")
         div
           img(src="/images/logoChimie.png")
-          p Chemical student office
+          p=__("layout.chemistry")
         div
           img(src="/images/logoGC.png")
-          p Civil engineering student office
+          p=__("layout.GC")
         div
           img(src="/images/logoGCGP.png")
-          p Chemical and process engineering student office
+          p=__("layout.GCPD")
         div
           img(src="/images/logoGEA.png")
-          p Management of companies and administrations student office
+          p=__("layout.GEA")
         div
           img(src="/images/logoInfo.png")
-          p IT student office
-      p.before-link Made with ❤️ by
+          p=__("layout.IT")
+      p.before-link=__("layout.made")
         a(href="https://www.linkedin.com/in/florian-charlaix" target="_blank") Florian Charlaix
     div#contact.popup.card.hide
-      h1 Contact
-      p.before-link Order issue:
+      h1=__("layout.contact")
+      p.before-link=__("layout.orderIssue")+":"
         a(href="mailto: ") test@test.fr
-      p.before-link Bio student office:
+      p.before-link=__("layout.bio")+":"
         a(href="mailto: ")
-      p.before-link Chemical student office:
+      p.before-link=__("layout.chemistry")+":"
         a(href="mailto: ")
-      p.before-link Civil engineering student office:
+      p.before-link=__("layout.GC")+":"
         a(href="mailto: ")
-      p.before-link Chemical and process engineering student office:
+      p.before-link=__("layout.GCPD")+":"
         a(href="mailto: bde.gcgp.lyon1@gmail.com") bde.gcgp.lyon1@gmail.com
-      p.before-link Management of companies and administrations student office:
+      p.before-link=__("layout.GEA")+":"
         a(href="mailto: ")
-      p.before-link IT student office:
+      p.before-link=__("layout.IT")+":"
         a(href="mailto: contact@bde-info.org") contact@bde-info.org
 
     script(src="/javascripts/layout.js")
