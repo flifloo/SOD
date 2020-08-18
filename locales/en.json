@@ -19,7 +19,6 @@
 	},
 	"index": {
 		"welcome": "Welcome to Sandwiches Order Doua",
-		"command": "Command",
 		"sandwich": "Sandwich",
 		"day": "Day",
 		"pay": "Pay"
@@ -45,5 +44,6 @@
 	"department": "Department",
 	"commands": "Commands",
 	"sandwiches": "Sandwiches",
-	"date": "Date"
+	"date": "Date",
+	"command": "Command"
 }

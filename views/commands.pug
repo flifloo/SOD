@@ -2,10 +2,10 @@ extends layout
 
 block content
     div#date-selector.card
-        label(for="date") Date
+        label(for="date")=__("date")
         input#date(type="date" value=date)
     div#orders.card
-        h1 Orders
+        h1=__("commands")
         each user, department in commands
             div.department
                 h2= department
@@ -14,7 +14,7 @@ block content
                         h3= name
                         each order, id in command
                             div.order
-                                h4 Command N°#{id}
+                                h4 #{__("command")} N°#{id}
                                 each sandwich in order
                                     div.sandwich
                                         h4= sandwich.Sandwich.name
