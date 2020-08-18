@@ -2,23 +2,23 @@ extends ../layout
 
 block content
     div.card
-        h1 Administration
+        h1=__("admin.title")
         div
-            h2 Commands management
+            h2=__("admin.commandsManagement")
             div.buttons
                 a(href="/admin/commands/date")
-                    button Orders date
+                    button=__("admin.ordersDate")
                 a(href="/admin/commands")
-                    button Manage commands
+                    button=__("admin.manageCommands")
 
         div
-            h2 Sandwich management
+            h2=__("admin.sandwichManagement")
             div.buttons
                 a(href="/admin/sandwiches")
-                    button Manage sandwiches
+                    button=__("admin.manageSandwiches")
 
         div
-            h2 User management
+            h2=__("admin.userManagement")
             div.buttons
                 a(href="/admin/users")
-                    button Manage users
+                    button=__("admin.manageUsers")

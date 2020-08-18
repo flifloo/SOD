@@ -1,7 +1,6 @@
 {
 	"layout": {
 		"home": "Home",
-		"administration": "Administration",
 		"logout": "Logout",
 		"login": "Login",
 		"register": "Register",
@@ -35,6 +34,16 @@
 		"title": "Profile",
 		"infos": "Infos",
 		"save": "Save"
+	},
+	"admin": {
+		"title": "Administration",
+		"commandsManagement": "Commands management",
+		"ordersDate": "Orders date",
+		"manageCommands": "Manage commands",
+		"sandwichManagement": "Sandwich management",
+		"manageSandwiches": "Manage sandwiches",
+		"userManagement": "User management",
+		"manageUsers": "Manage users"
 	},
 	"firstName": "First name",
 	"lastName": "Last name",

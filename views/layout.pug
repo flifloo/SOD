@@ -17,7 +17,7 @@ html
           a(href="/commands")=__("commands")
         if user.permissions >= 3
           p -
-          a(href="/admin")=__("layout.administration")
+          a(href="/admin")=__("admin.title")
       p |
       if user
         a(href="/profile")=user.username
