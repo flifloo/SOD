@@ -1,3 +1,5 @@
+include mixin
+
 doctype html
 html
   head
@@ -57,19 +59,19 @@ html
         a(href="https://www.linkedin.com/in/florian-charlaix" target="_blank") Florian Charlaix
     div#contact.popup.card.hide
       h1=__("layout.contact")
-      p.before-link=__("layout.orderIssue")+":"
+      p.before-link=__("layout.orderIssue") + ":"
         a(href="mailto: ") test@test.fr
-      p.before-link=__("layout.bio")+":"
+      p.before-link=__("layout.bio") + ":"
         a(href="mailto: ")
-      p.before-link=__("layout.chemistry")+":"
+      p.before-link=__("layout.chemistry") + ":"
         a(href="mailto: ")
-      p.before-link=__("layout.GC")+":"
+      p.before-link=__("layout.GC") + ":"
         a(href="mailto: ")
-      p.before-link=__("layout.GCPD")+":"
+      p.before-link=__("layout.GCPD") + ":"
         a(href="mailto: bde.gcgp.lyon1@gmail.com") bde.gcgp.lyon1@gmail.com
-      p.before-link=__("layout.GEA")+":"
+      p.before-link=__("layout.GEA") + ":"
         a(href="mailto: ")
-      p.before-link=__("layout.IT")+":"
+      p.before-link=__("layout.IT") + ":"
         a(href="mailto: contact@bde-info.org") contact@bde-info.org
 
     script(src="/javascripts/layout.js")

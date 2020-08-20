@@ -22,7 +22,7 @@ block content
             label(for="password")=__("password")+":"
             input#password(type="password" name="password" required)
         div.field
-            input(type="submit" value=__("register.submit"))
+            +submit(value=__("register.submit"))
 
     datalist#department-list
         each department in departments

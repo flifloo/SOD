@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const models = require("../models");
+const reCaptcha = require("../middlewares/reCaptcha");
 
 router.get("/", async (req, res) => {
     if (req.session.user)
@@ -8,7 +9,7 @@ router.get("/", async (req, res) => {
     else
         res.render("login", { title: "SOD - Login" });
 })
-    .post("/", async (req, res) => {
+    .post("/", reCaptcha, async (req, res) => {
         if (!req.body.username || !req.body.password)
             res.redirect("/login");
         else {

@@ -4,6 +4,8 @@ let cookieParser = require("cookie-parser");
 let session = require("express-session");
 let logger = require("morgan");
 let { I18n } = require("i18n");
+let Recaptcha = require("express-recaptcha").RecaptchaV3;
+let config = process.env.NODE_ENV === "test" ? {} : require("./config/config.json");
 
 let indexRouter = require("./routes/index");
 let registerRouter = require("./routes/register");
@@ -17,7 +19,7 @@ let adminRouter = require("./routes/admin");
 
 let app = express();
 let sess = {
-  secret: process.env.NODE_ENV === "test" ? "Keyboard Cat" : require("./config/config.json").secret,
+  secret: process.env.NODE_ENV === "test" ? "Keyboard Cat" : config.secret,
   cookie: {}
 };
 let i18n = new I18n({
@@ -27,6 +29,7 @@ let i18n = new I18n({
   directory: __dirname + "/locales",
   objectNotation: true
 });
+let recaptcha = process.env.NODE_ENV === "test" ? null : new Recaptcha(config.siteKey, config.secretKey, {callback: "cb"});
 
 if (app.get("env") === "production") {
   app.set("trust proxy", 1);
@@ -36,6 +39,7 @@ if (app.get("env") === "production") {
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
+app.set("recaptcha", recaptcha);
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -48,6 +52,7 @@ if(process.env.NODE_ENV === "test")
   app.locals.test = true;
 app.use((req, res, next) => {
   res.locals.user = req.session.user;
+  res.locals.captcha = process.env.NODE_ENV === "test" ? undefined : recaptcha.render();
   next();
 });
 
