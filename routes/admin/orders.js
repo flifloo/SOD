@@ -28,11 +28,7 @@ router.get("/", sessionCheck(3), async (req, res) => {
 
     try {
         let sandwich = await models.SandwichOrder.findByPk(req.body.id);
-        let order = await models.Order.findByPk(sandwich.OrderId, {include: models.Sandwich});
         await sandwich.destroy();
-        await order.reload();
-        if (!order.Sandwiches.length)
-            await order.destroy();
         res.redirect("/admin/orders");
     } catch (e) {
         error(req, res, "Fail to remove sandwich !");
