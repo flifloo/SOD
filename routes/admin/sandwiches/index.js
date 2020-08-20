@@ -2,6 +2,7 @@ let express = require("express");
 let router = express.Router();
 let sessionCheck = require("../../../middlewares/sessionCheck");
 let models = require("../../../models");
+let error = require("../../utils/error");
 
 
 router.get("/", sessionCheck(3), async (req, res) => {
@@ -14,16 +15,14 @@ router.get("/", sessionCheck(3), async (req, res) => {
     .use("/edit", require("./edit"))
     .get("/delete", sessionCheck(3), async (req, res) => {
         if (!req.query.name)
-            res.render("error", {message: "Can't remove sandwich !", error: {status: "Missing arg"}});
-        else {
-            let sandwich = await models.Sandwich.findByPk(req.query.name);
-            if (!sandwich)
-                res.render("error", {message: "Can't remove sandwich !", error: {status: "Invalid sandwich"}});
-            else {
-                await sandwich.destroy();
-                res.redirect("/admin/sandwiches");
-            }
-        }
+            return error(req, res, "Can't remove sandwich !", 400, "Missing arg");
+
+        let sandwich = await models.Sandwich.findByPk(req.query.name);
+        if (!sandwich)
+            return error(req, res, "Can't remove sandwich !", 400, "Invalid sandwich");
+
+        await sandwich.destroy();
+        res.redirect("/admin/sandwiches");
     });
 
 module.exports = router;
