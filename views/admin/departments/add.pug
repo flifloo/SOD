@@ -1,0 +1,11 @@
+extends ../../layout
+
+block content
+    div.card#departmentsManagement
+        h1=__("admin.new")+" "+__("department")
+        form(action="/admin/departments/add" method="POST")
+            div.field
+                label(for="name")=__("admin.name")+":"
+                input#name(type="text" name="name" required)
+            div.field
+                input(type="submit" value=__("admin.add"))

@@ -13,6 +13,7 @@ router.get("/", sessionCheck(3), async (req, res) => {
     });
 })
     .use("/orders", require("./orders"))
-    .use("/sandwiches", require("./sandwiches"));
+    .use("/sandwiches", require("./sandwiches"))
+    .use("/departments", require("./departments"));
 
 module.exports = router;

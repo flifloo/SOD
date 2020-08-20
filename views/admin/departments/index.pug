@@ -1,0 +1,18 @@
+extends ../../layout
+
+block content
+    div.card#departmentsManagement
+        h1=__("admin.departmentsManagement")
+        a.add(href="/admin/departments/add")
+            button=__("admin.add")
+        div
+            each department in departments
+                div.department
+                    h2=department.name
+                    div.buttons
+                        a.edit(href="/admin/departments/edit?name="+department.name)
+                            button=__("admin.edit")
+                        a.remove(href="/admin/departments/delete?name="+department.name)
+                            button=__("admin.remove")
+
+    script(src="/javascripts/admin/departments.js")

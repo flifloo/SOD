@@ -47,7 +47,9 @@
 		"remove": "Supprimer",
 		"name": "Nom",
 		"price": "Prix",
-		"new": "Nouveau"
+		"new": "Nouveau",
+		"departmentsManagement": "Gestion des départements",
+		"manageDepartments": "Gérer les départements"
 	},
 	"firstName": "Prénom",
 	"lastName": "Nom de famille",

@@ -47,7 +47,9 @@
 		"remove": "Remove",
 		"name": "Name,",
 		"price": "Price",
-		"new": "New"
+		"new": "New",
+		"departmentsManagement": "Departments management",
+		"manageDepartments": "Manage departments"
 	},
 	"firstName": "First name",
 	"lastName": "Last name",
