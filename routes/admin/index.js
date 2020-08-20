@@ -14,6 +14,7 @@ router.get("/", sessionCheck(3), async (req, res) => {
 })
     .use("/orders", require("./orders"))
     .use("/sandwiches", require("./sandwiches"))
-    .use("/departments", require("./departments"));
+    .use("/departments", require("./departments"))
+    .use("/users", require("./users"));
 
 module.exports = router;

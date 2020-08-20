@@ -1,0 +1,18 @@
+extends ../../layout
+
+block content
+    div.card#usersManagement
+        h1=__("admin.userManagement")
+        a.add(href="/admin/users/add")
+            button=__("admin.add")
+        div
+            each user in users
+                div.user
+                    h2=user.username
+                    div.buttons
+                        a.edit(href="/admin/users/edit?name="+user.username)
+                            button=__("admin.edit")
+                        a.remove(href="/admin/users/delete?name="+user.username)
+                            button=__("admin.remove")
+
+    script(src="/javascripts/admin/users.js")

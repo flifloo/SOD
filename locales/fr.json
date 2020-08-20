@@ -49,7 +49,9 @@
 		"price": "Prix",
 		"new": "Nouveau",
 		"departmentsManagement": "Gestion des départements",
-		"manageDepartments": "Gérer les départements"
+		"manageDepartments": "Gérer les départements",
+		"user": "Utilisateur",
+		"permissions": "Autorisations"
 	},
 	"firstName": "Prénom",
 	"lastName": "Nom de famille",

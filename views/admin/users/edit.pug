@@ -1,0 +1,35 @@
+extends ../../layout
+
+block content
+    div.card#sandwichesManagement
+        h1=__("admin.edit")+" "+targetUser.username
+        form(action="/admin/users/edit" method="POST")
+            h2=__("profile.infos")
+            input.hide(type="text" name="oldUsername" value=targetUser.username required)
+            div.field
+                label(for="username")=__("username") + ":"
+                input#username(type="text" name="username" value=targetUser.username required)
+            div.field
+                label(for="email")=__("email") + ":"
+                input#email(type="email" name="email" value=targetUser.email required)
+            div.field
+                label(for="firstName")=__("firstName") + ":"
+                input#firstName(type="text" name="firstName" value=targetUser.firstName required)
+            div.field
+                label(for="lastName")=__("lastName") + ":"
+                input#lastName(type="text" name="lastName" value=targetUser.lastName required)
+            div.field
+                label(for="department")=__("department") + ":"
+                input#department(type="list" list="department-list" name="department" value=targetUser.DepartmentName required)
+            div.field
+                label(for="password")=__("password") + ":"
+                input#password(type="password" name="password")
+            div.field
+                label(for="permissions")=__("admin.permissions")
+                input#permissions(type="number" min="0" max="3" value=targetUser.permissions name="permissions")
+            div.field
+                input(type="submit" value=__("save"))
+
+        datalist#department-list
+            each department in departments
+                option(value=department.name)

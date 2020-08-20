@@ -49,7 +49,9 @@
 		"price": "Price",
 		"new": "New",
 		"departmentsManagement": "Departments management",
-		"manageDepartments": "Manage departments"
+		"manageDepartments": "Manage departments",
+		"user": "User",
+		"permissions": "Permissions"
 	},
 	"firstName": "First name",
 	"lastName": "Last name",
