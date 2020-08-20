@@ -15,7 +15,6 @@ router.get("/", sessionCheck(3), async (req, res) => {
 
     res.render("admin/users/edit", {
         title: "SOD - Users administration",
-        user: req.session.user,
         targetUser: user,
         departments: await models.Department.findAll()
     });

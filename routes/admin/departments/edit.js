@@ -14,7 +14,6 @@ router.get("/", sessionCheck(3), async (req, res) => {
 
     res.render("admin/departments/edit", {
         title: "SOD - Departments administration",
-        user: req.session.user,
         department: department
     });
 }).post("/", sessionCheck(3), async (req, res) => {

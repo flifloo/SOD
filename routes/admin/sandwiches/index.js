@@ -8,7 +8,6 @@ let error = require("../../utils/error");
 router.get("/", sessionCheck(3), async (req, res) => {
     res.render("admin/sandwiches/index", {
         title: "SOD - Sandwiches administration",
-        user: req.session.user,
         sandwiches: await models.Sandwich.findAll()
     });
 })

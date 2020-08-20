@@ -7,7 +7,6 @@ let userUpdate = require("./utils/userUpdate");
 router.get("/", sessionCheck(0), async (req, res) => {
     res.render("profile", {
         title: "SOD - Profile",
-        user: req.session.user,
         departments: await models.Department.findAll(),
         orders: await models.Order.findAll({
             where: {UserUsername: req.session.user.username},

@@ -6,8 +6,7 @@ let error = require("../../utils/error");
 
 router.get("/", sessionCheck(3), (req, res) => {
     res.render("admin/sandwiches/add", {
-        title: "SOD - Sandwiches administration",
-        user: req.session.user
+        title: "SOD - Sandwiches administration"
     });
 }).post("/", sessionCheck(3), async (req, res) => {
     if (!req.body.name || !req.body.price)

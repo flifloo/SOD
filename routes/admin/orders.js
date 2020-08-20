@@ -8,7 +8,6 @@ let error = require("../utils/error");
 router.get("/", sessionCheck(3), async (req, res) => {
     res.render("admin/orders", {
         title: "SOD - Orders administration",
-        user: req.session.user,
         orders: await models.Order.findAll({include: models.Sandwich, order: ["date"]})
     });
 }).post("/order/delete", sessionCheck(3), async (req, res) => {

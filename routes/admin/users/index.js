@@ -8,7 +8,6 @@ let error = require("../../utils/error");
 router.get("/", sessionCheck(3), async (req, res) => {
     res.render("admin/users/index", {
         title: "SOD - Users administration",
-        user: req.session.user,
         users: await models.User.findAll()
     });
 })

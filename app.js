@@ -44,6 +44,12 @@ app.use(cookieParser());
 app.use(session(sess));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(i18n.init);
+if(process.env.NODE_ENV === "test")
+  app.locals.test = true;
+app.use((req, res, next) => {
+  res.locals.user = req.session.user;
+  next();
+});
 
 app.use("/", indexRouter);
 app.use("/register", registerRouter);
@@ -58,7 +64,7 @@ app.use("/admin", adminRouter);
 // catch 404 and forward to error handler
 app.use((req, res) => {
   res.status(404);
-  res.render("error", {title: "SOD - Page not found", user: req.session.user, message: "Page not found", "error": {}})
+  res.render("error", {title: "SOD - Page not found", message: "Page not found", "error": {}})
 });
 
 // error handler
@@ -66,7 +72,6 @@ app.use((err, req, res) => {
   // render the error page
   res.status(err.status || 500);
   res.render("error", {
-    user: req.session.user,
     message: err.message,
     error: req.app.get("env") === "development" ? err : {}
   });

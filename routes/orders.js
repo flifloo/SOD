@@ -23,7 +23,7 @@ router.get("/", sessionCheck(2), async (req, res) => {
             orders[i.Order.DepartmentName][name][i.Order.id] = [];
         orders[i.Order.DepartmentName][name][i.Order.id].push(i);
     }
-    res.render("orders", {title: "SOD - Orders", user: req.session.user, orders: orders, date: date});
+    res.render("orders", {title: "SOD - Orders", orders: orders, date: date});
 });
 
 module.exports = router;
