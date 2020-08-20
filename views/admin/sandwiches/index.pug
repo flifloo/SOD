@@ -3,7 +3,8 @@ extends ../../layout
 block content
     div.card#sandwichesManagement
         h1=__("admin.sandwichManagement")
-        input.add(type="button" value=__("admin.add"))
+        a.add(href="/admin/sandwiches/add")
+            button=__("admin.add")
         div
             each sandwich in sandwiches
                 div.sandwich

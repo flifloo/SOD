@@ -13,6 +13,7 @@ router.get("/", sessionCheck(3), async (req, res) => {
     });
 })
     .use("/edit", require("./edit"))
+    .use("/add", require("./add"))
     .get("/delete", sessionCheck(3), async (req, res) => {
         if (!req.query.name)
             return error(req, res, "Can't remove sandwich !", 400, "Missing arg");

@@ -58,7 +58,7 @@ app.use("/admin", adminRouter);
 // catch 404 and forward to error handler
 app.use((req, res) => {
   res.status(404);
-  res.render("error", {message: "Page not found", "error": {}})
+  res.render("error", {title: "SOD - Page not found", user: req.session.user, message: "Page not found", "error": {}})
 });
 
 // error handler

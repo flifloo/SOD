@@ -1,0 +1,14 @@
+extends ../../layout
+
+block content
+    div.card#sandwichesManagement
+        h1=__("admin.new")+" "+__("sandwich")
+        form(action="/admin/sandwiches/add" method="POST")
+            div.field
+                label(for="name")=__("admin.name")+":"
+                input#name(type="text" name="name" required)
+            div.field
+                label(for="price")=__("admin.price") + ":"
+                input#price(type="number" min="0" step="any" name="price" value="0" required)
+            div.field
+                input(type="submit" value=__("admin.add"))
