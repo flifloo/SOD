@@ -11,6 +11,8 @@ router.get("/", sessionCheck(3), async (req, res) => {
         sandwiches: await models.Sandwich.findAll(),
         users: await models.User.findAll()
     });
-});
+})
+    .use("/orders", require("./orders"))
+    .use("/sandwiches", require("./sandwiches"));
 
 module.exports = router;

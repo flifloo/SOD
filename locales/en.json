@@ -32,8 +32,7 @@
 	},
 	"profile": {
 		"title": "Profile",
-		"infos": "Infos",
-		"save": "Save"
+		"infos": "Infos"
 	},
 	"admin": {
 		"title": "Administration",
@@ -43,7 +42,12 @@
 		"sandwichManagement": "Sandwich management",
 		"manageSandwiches": "Manage sandwiches",
 		"userManagement": "User management",
-		"manageUsers": "Manage users"
+		"manageUsers": "Manage users",
+		"add": "Add",
+		"edit": "Edit",
+		"remove": "Remove",
+		"name": "Name,",
+		"price": "Price"
 	},
 	"firstName": "First name",
 	"lastName": "Last name",
@@ -54,5 +58,6 @@
 	"orders": "Orders",
 	"sandwiches": "Sandwiches",
 	"date": "Date",
-	"order": "Order"
+	"order": "Order",
+	"save": "Save"
 }

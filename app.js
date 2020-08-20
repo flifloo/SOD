@@ -14,7 +14,6 @@ let ordersRouter = require("./routes/orders");
 let sandwichesRouter = require("./routes/sandwiches");
 let profileRouter = require("./routes/profile");
 let adminRouter = require("./routes/admin");
-let adminOrdersRouter = require("./routes/admin/orders");
 
 let app = express();
 let sess = {
@@ -55,7 +54,6 @@ app.use("/orders", ordersRouter);
 app.use("/sandwiches", sandwichesRouter);
 app.use("/profile", profileRouter);
 app.use("/admin", adminRouter);
-app.use("/admin/orders", adminOrdersRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res) => {

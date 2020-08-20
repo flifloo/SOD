@@ -1,0 +1,15 @@
+extends ../../layout
+
+block content
+    div.card#sandwichesManagement
+        h1=__("admin.edit")+" "+sandwich.name
+        form(action="/admin/sandwiches/edit" method="POST")
+            input.hide(type="text" name="name" value=sandwich.name required)
+            div.field
+                label(for="name")=__("admin.name")+":"
+                input#name(type="text" name="newName" value=sandwich.name required)
+            div.field
+                label(for="price")=__("admin.price") + ":"
+                input#price(type="number" min="0" step="any" name="price" value=sandwich.price required)
+            div.field
+                input(type="submit" value=__("save"))

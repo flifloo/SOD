@@ -1,0 +1,17 @@
+extends ../../layout
+
+block content
+    div.card#sandwichesManagement
+        h1=__("admin.sandwichManagement")
+        input.add(type="button" value=__("admin.add"))
+        div
+            each sandwich in sandwiches
+                div.sandwich
+                    h2=sandwich.name
+                    div.buttons
+                        a.edit(href="/admin/sandwiches/edit?name="+sandwich.name)
+                            button=__("admin.edit")
+                        a.remove(href="/admin/sandwiches/delete?name="+sandwich.name)
+                            button=__("admin.remove")
+
+    script(src="/javascripts/admin/sandwiches.js")
