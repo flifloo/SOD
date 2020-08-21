@@ -7,6 +7,18 @@
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-  "siteKey": "yjt,kugcjvhkyhgchkuyjgugjgcvkuh",
-  "secretKey": "yjt,vhjtfykjvhkhiuyhjvkjuiyvhjblhioguikjkly_lui"
+  "reCaptcha": {
+    "siteKey": "yjt,kugcjvhkyhgchkuyjgugjgcvkuh",
+    "secretKey": "yjt,vhjtfykjvhkhiuyhjvkjuiyvhjblhioguikjkly_lui"
+  },
+  "email": {
+    "server": {
+      "user": "user",
+      "password": "password",
+      "host": "smtp.your-email.com",
+      "ssl": true
+    },
+    "from": "Contact Email <you@email.fr>",
+    "contact": "Your Contact <contact@your-email.fr>"
+  }
 }

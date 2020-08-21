@@ -13,8 +13,17 @@
 		"GEA": "Management of companies and administrations student office",
 		"IT": "IT student office",
 		"made": "Made with ❤️ by",
-		"contact": "Contact",
-		"orderIssue": "Order issue"
+		"orderIssue": "Order issue",
+		"phoneNumber": "Phone number",
+		"message": "Message",
+		"send": "Send",
+		"subject": "Subject",
+		"warnMessage": "Don't forget to specify the order number (s) if necessary",
+		"commandEdit": "Order modification",
+		"commandRemove": "Order deletion",
+		"question": "Practical question",
+		"profile": "My profile",
+		"other": "Another question"
 	},
 	"index": {
 		"welcome": "Welcome to Sandwiches Order Doua",
@@ -64,5 +73,7 @@
 	"date": "Date",
 	"order": "Order",
 	"save": "Save",
-	"sandwich": "Sandwich"
+	"sandwich": "Sandwich",
+	"contact": "Contact",
+	"messageSend": "The message has been sent"
 }

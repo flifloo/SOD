@@ -5,6 +5,7 @@ let session = require("express-session");
 let logger = require("morgan");
 let { I18n } = require("i18n");
 let Recaptcha = require("express-recaptcha").RecaptchaV3;
+let SMTPClient = require("emailjs").SMTPClient;
 let config = process.env.NODE_ENV === "test" ? {} : require("./config/config.json");
 
 let indexRouter = require("./routes/index");
@@ -16,6 +17,7 @@ let ordersRouter = require("./routes/orders");
 let sandwichesRouter = require("./routes/sandwiches");
 let profileRouter = require("./routes/profile");
 let adminRouter = require("./routes/admin");
+let contactRouter = require("./routes/contact");
 
 let app = express();
 let sess = {
@@ -29,7 +31,9 @@ let i18n = new I18n({
   directory: __dirname + "/locales",
   objectNotation: true
 });
-let recaptcha = process.env.NODE_ENV === "test" ? null : new Recaptcha(config.siteKey, config.secretKey, {callback: "cb"});
+let recaptcha = process.env.NODE_ENV === "test" ? null : new Recaptcha(config.reCaptcha.siteKey,
+    config.reCaptcha.secretKey, {callback: "cb"});
+let mailClient = new SMTPClient(process.env.NODE_ENV === "test" ? {} : config.email.server);
 
 if (app.get("env") === "production") {
   app.set("trust proxy", 1);
@@ -39,7 +43,9 @@ if (app.get("env") === "production") {
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
+app.set("config", config);
 app.set("recaptcha", recaptcha);
+app.set("mailClient", mailClient);
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -65,6 +71,7 @@ app.use("/orders", ordersRouter);
 app.use("/sandwiches", sandwichesRouter);
 app.use("/profile", profileRouter);
 app.use("/admin", adminRouter);
+app.use("/contact", contactRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res) => {

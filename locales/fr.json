@@ -13,8 +13,17 @@
 		"GEA": "BDE GEA",
 		"IT": "BDE Info",
 		"made": "Fait avec ❤️ par",
-		"contact": "Contact",
-		"orderIssue": "Problème de commande"
+		"orderIssue": "Problème de commande",
+		"phoneNumber": "Numéro de téléphone",
+		"message": "Message",
+		"send": "Envoyer",
+		"subject": "Sujet",
+		"warnMessage": "N'oubliez pas de spécifier le/les numéro/s de commande/s si nécessaire",
+		"commandEdit": "Modification de commande",
+		"commandRemove": "Suppression de commande",
+		"question": "Question Pratique",
+		"profile": "Mon profil",
+		"other": "Autre question"
 	},
 	"index": {
 		"welcome": "Bienvenue sur Sandwiches Order Doua",
@@ -64,5 +73,7 @@
 	"date": "Date",
 	"order": "Commande",
 	"save": "Enregistrer",
-	"sandwich": "Sandwich"
+	"sandwich": "Sandwich",
+	"contact": "Contact",
+	"messageSend": "Le message a bien été envoyé"
 }

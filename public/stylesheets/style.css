@@ -56,8 +56,7 @@ a {
   font-size: 100%;
 }
 
-.field input[type="text"], .field input[type="list"], .field input[type="date"], .field input[type="password"],
-.field input[type="number"], .field input[type="checkbox"], .field input[type="email"] {
+.field input {
   height: 2.5vh;
   border-top: none;
   border-left: none;
@@ -100,6 +99,28 @@ a {
   margin: 0.1em;
   color: black;
   text-decoration: underline;
+}
+
+#contact .cont {
+  display: flex;
+  justify-content: space-between;
+}
+
+#contact .cont .field {
+  margin: 0.5em;
+}
+
+.field.message {
+  width: max-content;
+  height: max-content;
+}
+
+.message>textarea {
+  width: 60vw;
+  height: 30vh;
+  overflow: auto;
+  resize: none;
+  font-size: large;
 }
 
 .popup {
@@ -223,6 +244,10 @@ p.before-link a::before {
 
 @media (hover: none) and (pointer: coarse) {
   body {
+    font-size: xx-large;
+  }
+
+  .message>textarea {
     font-size: xx-large;
   }
 }

@@ -30,7 +30,7 @@ html
 
     div#more
       a=__("layout.about")
-      a=__("layout.contact")
+      a=__("contact")
 
     div#dark.hide
     div#about.popup.card.hide
@@ -58,20 +58,36 @@ html
       p.before-link=__("layout.made")
         a(href="https://www.linkedin.com/in/florian-charlaix" target="_blank") Florian Charlaix
     div#contact.popup.card.hide
-      h1=__("layout.contact")
-      p.before-link=__("layout.orderIssue") + ":"
-        a(href="mailto: ") test@test.fr
-      p.before-link=__("layout.bio") + ":"
-        a(href="mailto: ")
-      p.before-link=__("layout.chemistry") + ":"
-        a(href="mailto: ")
-      p.before-link=__("layout.GC") + ":"
-        a(href="mailto: ")
-      p.before-link=__("layout.GCPD") + ":"
-        a(href="mailto: bde.gcgp.lyon1@gmail.com") bde.gcgp.lyon1@gmail.com
-      p.before-link=__("layout.GEA") + ":"
-        a(href="mailto: ")
-      p.before-link=__("layout.IT") + ":"
-        a(href="mailto: contact@bde-info.org") contact@bde-info.org
+      h1=__("contact")
+      form(action="/contact" method="POST")
+        div.cont
+          div.field
+            label(for="firstNameContact")="* "+__("firstName")
+            input#firstNameContact(type="text" name="firstName" value=user?user.firstName:"" required)
+          div.field
+            label(for="lastNameContact")="* "+__("lastName")
+            input#lastNameContact(type="text" name="lastName" value=user ? user.lastName : "" required)
+        div.cont
+          div.field
+            label(for="emailContact")="* "+__("email")
+            input#emailContact(type="email" name="email" value=user ? user.email : "" required)
+          div.field
+            label(for="phoneNumberContact")=__("layout.phoneNumber")
+            input#phoneNumberContact(type="tel" name="phoneNumber")
+        div.field
+          label(for="subjectContact")="* "+__("layout.subject")
+          input#subjectContact(list="subjectContactList" autocomplete="off" name="subject" required)
+          datalist#subjectContactList
+            option(value=__("layout.commandEdit"))
+            option(value=__("layout.commandRemove"))
+            option(value=__("layout.question"))
+            option(value=__("layout.profile"))
+            option(value=__("layout.other"))
+        p=__("layout.warnMessage")
+        div.field.message
+          label(for="messageContact")=__("layout.message")
+          textarea#messageContact(name="message" required)
+        div.field
+          +submit(value=__("layout.send"))
 
     script(src="/javascripts/layout.js")

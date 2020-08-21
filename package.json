@@ -9,6 +9,7 @@
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "emailjs": "^3.3.0",
     "express": "~4.16.1",
     "express-recaptcha": "^5.0.2",
     "express-session": "^1.17.1",
