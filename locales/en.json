@@ -60,7 +60,9 @@
 		"departmentsManagement": "Departments management",
 		"manageDepartments": "Manage departments",
 		"user": "User",
-		"permissions": "Permissions"
+		"permissions": "Permissions",
+		"firstDate": "First date",
+		"lastDate": "Last date"
 	},
 	"firstName": "First name",
 	"lastName": "Last name",

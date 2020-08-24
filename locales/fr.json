@@ -60,7 +60,9 @@
 		"departmentsManagement": "Gestion des départements",
 		"manageDepartments": "Gérer les départements",
 		"user": "Utilisateur",
-		"permissions": "Autorisations"
+		"permissions": "Autorisations",
+		"firstDate": "Première date",
+		"lastDate": "Dernière date"
 	},
 	"firstName": "Prénom",
 	"lastName": "Nom de famille",

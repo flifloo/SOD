@@ -22,7 +22,31 @@ router.post("/", async (req, res) => {
         if (!sandwich)
             return error(req, res, "Invalid order !", 400, "Invalid sandwich: "+req.body["sandwich" + i]);
 
-        sandwiches.push([sandwich.name, req.body["date" + i]]);
+        let date = new Date(req.body["date" + i]);
+        let firstDate, lastDate;
+
+        [firstDate, lastDate] = [await models.Data.findByPk("firstDate"),
+            await models.Data.findByPk("lastDate")];
+
+        let now = new Date();
+        now.setUTCHours(0,0,0,0);
+
+        if (firstDate && firstDate.value && lastDate && lastDate.value) {
+            [firstDate, lastDate] = [new Date(firstDate.value), new Date(lastDate.value)];
+            firstDate.setUTCHours(0,0,0,0);
+            lastDate.setUTCHours(0,0,0,0);
+
+            if (now.getTime() > date.getTime() ||
+                firstDate.getTime() > date.getTime() ||
+                lastDate.getTime() < date.getTime())
+                return error(req, res, "Invalid order !", 400, "Date not available");
+        }
+
+        try {
+        sandwiches.push([sandwich.name, date.toISOString().substring(0, 10)]);
+        } catch {
+            return error(req, res, "Invalid order !", 400, "Invalid date");
+        }
         price += sandwich.price;
     }
 
@@ -40,7 +64,7 @@ router.post("/", async (req, res) => {
             await models.SandwichOrder.create({OrderId: order.id, SandwichName: data[0], date: data[1]});
         } catch (e) {
             await order.destroy();
-            error(req, res, "Invalid order !", 400, "Invalid date");
+            error(req, res, "Invalid order !", 500);
             throw e;
         }
     res.send("Ok");

@@ -26,7 +26,7 @@ block content
           input#sandwich1(type="list" list="sandwich-list" name="sandwich1" autocomplete="off" required)
         div.field
           label(for="day1")=__("index.day")+":"
-          input#day1(type="date" name="date1" required)
+          input#day1(type="date" min=date ? date.firstDate : "" max=date ? date.lastDate.value : "" name="date1" required)
 
       div#order-action
         a#add-order +

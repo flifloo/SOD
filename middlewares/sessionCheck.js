@@ -7,7 +7,8 @@ function sessionCheck(permission) {
             req.session.save(() => res.redirect("/login"));
         } else if (req.session.user.permissions < permission)
             return error(req, res, "Permission denied !", 403);
-        next();
+        else
+            next();
     }
 }
 
