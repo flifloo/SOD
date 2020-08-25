@@ -51,100 +51,35 @@ describe("Pages tests", () => {
             return clean;
         });
 
-        it("Responds to /", (done) => {
-            request(app)
-                .get("/")
-                .expect(200, done);
-        });
-        it("Responds to /login", (done) => {
-            request(app)
-                .get("/login")
-                .expect(200, done);
-        });
-        it("Responds to /forget", (done) => {
-            request(app)
-                .get("/forget")
-                .expect(200, done)
-        });
-        it("Responds to /register", (done) => {
-            request(app)
-                .get("/register")
-                .expect(200, done);
-        });
-        it("Responds to /check", (done) => {
-            request(app)
-                .get("/check")
-                .expect(400, done);
-        });
-        it("Responds to /logout", (done) => {
-            request(app)
-                .get("/logout")
-                .expect(302, done);
-        });
-        it("Response to /profile", (done) => {
-            request(app)
-                .get("/profile")
-                .expect(302, done);
-        });
-        it("Response to /sandwiches", (done) => {
-            request(app)
-                .get("/sandwiches")
-                .expect(302, done);
-        });
-        it("Response to /orders", (done) => {
-            request(app)
-                .get("/orders")
-                .expect(302, done);
-        });
-        it("Response to /admin", (done) => {
-            request(app)
-                .get("/admin")
-                .expect(302, done);
-        });
-        it("Response to /admin/orders", (done) => {
-            request(app)
-                .get("/admin/orders")
-                .expect(302, done);
-        });
-        it("Response to /admin/orders/date", done => {
-            request(app)
-                .get("/admin/orders/date")
-                .expect(302, done);
-        });
-        it("Reponse to /admin/sandwiches", done => {
-            request(app)
-                .get("/admin/sandwiches")
-                .expect(302, done);
-        });
-        it("Reponse to /admin/sandwiches/add", done => {
-            request(app)
-                .get("/admin/sandwiches/add")
-                .expect(302, done);
-        });
-        it("Reponse to /admin/sandwiches/edit", done => {
-            request(app)
-                .get("/admin/sandwiches/edit")
-                .expect(302, done);
-        });
-        it("Reponse to /admin/departments", done => {
-            request(app)
-                .get("/admin/departments")
-                .expect(302, done);
-        });
-        it("Reponse to /admin/departments/add", done => {
-            request(app)
-                .get("/admin/departments/add")
-                .expect(302, done);
-        });
-        it("Reponse to /admin/departments/edit", done => {
-            request(app)
-                .get("/admin/departments/edit")
-                .expect(302, done);
-        });
-        it("404 everything else", (done) => {
-            request(app)
+        for (let [url, code] of Object.entries({
+            "/": 200,
+            "/login": 200,
+            "/forget": 200,
+            "/register": 200,
+            "/check": 400,
+            "/logout": 302,
+            "/profile": 302,
+            "/sandwiches": 302,
+            "/orders": 302,
+            "/admin": 302,
+            "/admin/orders": 302,
+            "/admin/orders/date": 302,
+            "/admin/sandwiches": 302,
+            "/admin/sandwiches/add": 302,
+            "/admin/sandwiches/edit": 302,
+            "/admin/departments": 302,
+            "/admin/departments/add": 302,
+            "/admin/departments/edit": 302,
+        }))
+            it("Responds to "+url, async () => {
+                await request(app)
+                    .get(url)
+                    .expect(code);
+            });
+        it("404 everything else", async () => {
+            await request(app)
                 .get("/foo/bar")
-                .expect(404, done);
+                .expect(404);
         });
     });
 
