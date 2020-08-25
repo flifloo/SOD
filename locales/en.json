@@ -42,7 +42,8 @@
 		"title": "Profile",
 		"infos": "Infos",
 		"emailCheck": "Email verification",
-		"emailCheckMessage": "We need to validate your email address, please click on the link below to validate it\n\n%s"
+		"emailCheckMessage": "We need to validate your email address, please click on the link below to validate it\n\n%s",
+		"forgetPasswordMessage": "A request to change your password has been made on your account, if it comes from clicking on the link below, otherwise ignore this email.\n\n%s"
 	},
 	"admin": {
 		"title": "Administration",
@@ -79,5 +80,6 @@
 	"save": "Save",
 	"sandwich": "Sandwich",
 	"contact": "Contact",
-	"messageSend": "The message has been sent"
+	"messageSend": "The message has been sent",
+	"forgetPassword": "Forgot your password"
 }

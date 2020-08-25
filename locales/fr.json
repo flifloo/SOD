@@ -42,7 +42,8 @@
 		"title": "Profil",
 		"infos": "Infos",
 		"emailCheck": "Vérification e-mail",
-		"emailCheckMessage": "Nous avons besoin de valider votre adresse email, merci de clicker sur le lien si dessous pour la valider\n\n%s"
+		"emailCheckMessage": "Nous avons besoin de valider votre adresse email, merci de clicker sur le lien si dessous pour la valider.\n\n%s",
+		"forgetPasswordMessage": "Une demande de changement de mot de passe a été faite sur votre compte, si cela proviens bine de vous clicquer sur le lien ci-dessous, sinon ingorer cette email.\n\n%s"
 	},
 	"admin": {
 		"title": "Administration",
@@ -79,5 +80,7 @@
 	"save": "Enregistrer",
 	"sandwich": "Sandwich",
 	"contact": "Contact",
-	"messageSend": "Le message a bien été envoyé"
+	"messageSend": "Le message a bien été envoyé",
+	"forgetPassword": "Mot de passe oublié",
+	"send": "send"
 }

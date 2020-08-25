@@ -11,6 +11,7 @@ let config = process.env.NODE_ENV === "test" ? {} : require("./config/config.jso
 let indexRouter = require("./routes/index");
 let registerRouter = require("./routes/register");
 let loginRouter = require("./routes/login");
+let forgetRouter = require("./routes/forget");
 let logoutRouter = require("./routes/logout");
 let orderRouter = require("./routes/order");
 let ordersRouter = require("./routes/orders");
@@ -66,6 +67,7 @@ app.use((req, res, next) => {
 app.use("/", indexRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
+app.use("/forget", forgetRouter);
 app.use("/logout", logoutRouter);
 app.use("/order", orderRouter);
 app.use("/orders", ordersRouter);

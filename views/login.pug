@@ -1,13 +1,18 @@
 extends layout
 
 block content
-    form.card(action="/login" method="POST")
-        h1=__("login.title")
+    div.card
+        form(action="/login" method="POST")
+            h1=__("login.title")
+            div.field
+                label(for="username")=__("username")+":"
+                input#username(type="text" name="username" required)
+            div.field
+                label(for="password")=__("password")+":"
+                input#password(type="password" name="password" required)
+            div.field
+                +submit(value=__("login.submit"))
+
         div.field
-            label(for="username")=__("username")+":"
-            input#username(type="text" name="username" required)
-        div.field
-            label(for="password")=__("password")+":"
-            input#password(type="password" name="password" required)
-        div.field
-            +submit(value=__("login.submit"))
+            a(href="/forget")
+                input(type="button" value=__("forgetPassword"))

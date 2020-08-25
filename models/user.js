@@ -60,6 +60,13 @@ module.exports = (sequelize, DataTypes) => {
                         digest("base64"));
             }
         },
+        passwordToken: {
+            type: DataTypes.STRING,
+            unique: true
+        },
+        passwordTokenDate: {
+            type: DataTypes.DATE
+        },
         permissions: { // 1 = sandwich page, 2 = order page, 3 = admin
             type: DataTypes.INTEGER,
             defaultValue: 0,

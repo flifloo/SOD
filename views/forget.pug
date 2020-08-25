@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    div.card
+        h1=__("forgetPassword")
+        if (!token)
+            form(action="/forget" method="POST")
+                div.field
+                    label(for="email")=__("email")
+                    input#email(type="email" name="email" required)
+                div.field
+                    +submit(value=__("send"))
+        else
+            form(action="/forget" method="POST")
+                input(type="hidden" name="token" value=token)
+                div.field
+                    label(for="password")=__("password")
+                    input#password(type="password" name="password" required)
+                div.field
+                    +submit(value=__("send"))
