@@ -91,3 +91,5 @@ html
           +submit(value=__("layout.send"))
 
     script(src="/javascripts/layout.js")
+    if !test
+      p !{captcha}
