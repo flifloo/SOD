@@ -60,10 +60,20 @@ describe("Public pages test", () => {
             .get("/login")
             .expect(200, done);
     });
+    it("Responds to /forget", (done) => {
+        request(app)
+            .get("/forget")
+            .expect(200, done)
+    });
     it("Responds to /register", (done) => {
         request(app)
             .get("/register")
             .expect(200, done);
+    });
+    it("Responds to /check", (done) => {
+        request(app)
+            .get("/check")
+            .expect(400, done);
     });
     it("Responds to /logout", (done) => {
         request(app)
@@ -93,6 +103,41 @@ describe("Public pages test", () => {
     it("Response to /admin/orders", (done) => {
         request(app)
             .get("/admin/orders")
+            .expect(302, done);
+    });
+    it("Response to /admin/orders/date", done => {
+        request(app)
+            .get("/admin/orders/date")
+            .expect(302, done);
+    });
+    it("Reponse to /admin/sandwiches", done => {
+        request(app)
+            .get("/admin/sandwiches")
+            .expect(302, done);
+    });
+    it("Reponse to /admin/sandwiches/add", done => {
+        request(app)
+            .get("/admin/sandwiches/add")
+            .expect(302, done);
+    });
+    it("Reponse to /admin/sandwiches/edit", done => {
+        request(app)
+            .get("/admin/sandwiches/edit")
+            .expect(302, done);
+    });
+    it("Reponse to /admin/departments", done => {
+        request(app)
+            .get("/admin/departments")
+            .expect(302, done);
+    });
+    it("Reponse to /admin/departments/add", done => {
+        request(app)
+            .get("/admin/departments/add")
+            .expect(302, done);
+    });
+    it("Reponse to /admin/departments/edit", done => {
+        request(app)
+            .get("/admin/departments/edit")
             .expect(302, done);
     });
     it("404 everything else", (done) => {
@@ -128,6 +173,11 @@ describe("Global logged user pages", () => {
             .expect(302);
         expect(res.headers.location).to.be.equal("/login?err=true");
     });
+    it("Forget page", async () => {
+        await (await getLoginAgent(app))
+            .get("/forget")
+            .expect(302);
+    });
     it("Register page", async () => {
         await (await getLoginAgent(app))
             .get("/register")
@@ -151,7 +201,12 @@ describe("Global logged user pages", () => {
     });
 });
 
-for (let [p, a] of Object.entries({0: [403, 403, 403, 403], 1: [200, 403, 403, 403], 2: [200, 200, 403, 403], 3: [200, 200, 200, 200]}))
+for (let [p, a] of Object.entries({
+    0: [403, 403, 403, 403, 403, 403, 403, 403, 403, 403, 403],
+    1: [200, 403, 403, 403, 403, 403, 403, 403, 403, 403, 403],
+    2: [200, 200, 403, 403, 403, 403, 403, 403, 403, 403, 403],
+    3: [200, 200, 200, 200, 200, 200, 200, 400, 200, 200, 400]
+}))
     describe(`Permission ${p} pages`, () => {
         let app;
         let models;
@@ -183,5 +238,40 @@ for (let [p, a] of Object.entries({0: [403, 403, 403, 403], 1: [200, 403, 403, 4
             await (await getLoginAgent(app))
                 .get("/admin/orders")
                 .expect(a[3]);
+        });
+        it("Orders date administration page", async () => {
+            await (await getLoginAgent(app))
+                .get("/admin/orders/date")
+                .expect(a[4])
+        });
+        it("Sandwiches administration page", async () => {
+            await (await getLoginAgent(app))
+                .get("/admin/sandwiches")
+                .expect(a[5])
+        });
+        it("Sandwiches add administration page", async () => {
+            await (await getLoginAgent(app))
+                .get("/admin/sandwiches/add")
+                .expect(a[6])
+        });
+        it("Sandwiches edit administration page", async () => {
+            await (await getLoginAgent(app))
+                .get("/admin/sandwiches/edit?name=test")
+                .expect(a[7])
+        });
+        it("Departments administration page", async () => {
+            await (await getLoginAgent(app))
+                .get("/admin/departments")
+                .expect(a[8])
+        });
+        it("Departments add administration page", async () => {
+            await (await getLoginAgent(app))
+                .get("/admin/departments/add")
+                .expect(a[9])
+        });
+        it("Departments edit administration page", async () => {
+            await (await getLoginAgent(app))
+                .get("/admin/departments/edit?name=test")
+                .expect(a[10])
         });
     });
