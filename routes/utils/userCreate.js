@@ -1,5 +1,6 @@
 let models = require("../../models");
 let error = require("../utils/error");
+let emailCheck = require("./emailCheck");
 
 
 module.exports = async (req, res) => {
@@ -38,6 +39,12 @@ module.exports = async (req, res) => {
                 UserUsername: null
             }}))
             await c.setUser(user);
+
+        if (!req.app.locals.test) {
+            new Promise(async done => await emailCheck(req, res, user, done));
+            await user.reload();
+        }
+
         return user;
     } catch (e) {
         error(req, res, "Registration fail !");

@@ -29,6 +29,15 @@ module.exports = (sequelize, DataTypes) => {
             },
             unique: true
         },
+        emailVerified : {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false
+        },
+        emailToken: {
+            type: DataTypes.STRING,
+            unique: true
+        },
         firstName: {
             type: DataTypes.STRING,
             allowNull: false,

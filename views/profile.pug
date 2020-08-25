@@ -30,6 +30,11 @@ block content
                 each department in departments
                     option(value=department.name)
 
+        if (!user.emailVerified)
+            div.field
+                a(href="/profile/resend")
+                    input(type="button" value=__("profile.emailCheck"))
+
     div.card#userOrderList
         h1=__("orders")
         each order in orders

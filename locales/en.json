@@ -40,7 +40,9 @@
 	},
 	"profile": {
 		"title": "Profile",
-		"infos": "Infos"
+		"infos": "Infos",
+		"emailCheck": "Email verification",
+		"emailCheckMessage": "We need to validate your email address, please click on the link below to validate it\n\n%s"
 	},
 	"admin": {
 		"title": "Administration",

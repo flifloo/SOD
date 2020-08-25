@@ -16,6 +16,7 @@ let orderRouter = require("./routes/order");
 let ordersRouter = require("./routes/orders");
 let sandwichesRouter = require("./routes/sandwiches");
 let profileRouter = require("./routes/profile");
+let checkRouter = require("./routes/check");
 let adminRouter = require("./routes/admin");
 let contactRouter = require("./routes/contact");
 
@@ -70,6 +71,7 @@ app.use("/order", orderRouter);
 app.use("/orders", ordersRouter);
 app.use("/sandwiches", sandwichesRouter);
 app.use("/profile", profileRouter);
+app.use("/check", checkRouter);
 app.use("/admin", adminRouter);
 app.use("/contact", contactRouter);
 
