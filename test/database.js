@@ -1,4 +1,6 @@
-let expect = require("chai").expect;
+let chai = require("chai");
+chai.use(require("chai-as-promised"));
+let expect = chai.expect;
 let wipeDatabase = require("./utils/wipeDatabase");
 
 
@@ -35,12 +37,7 @@ describe("Database Department tests", () => {
     });
     it("Department validation", async () => {
         await models.Department.create({name: "TestDepartment"});
-        try {
-            await models.Department.create({name: "TestDepartment"});
-        } catch (e) {
-            if (!(e instanceof models.Sequelize.ValidationError))
-                throw e;
-        }
+        return expect(models.Department.create({name: "TestDepartment"})).to.be.rejectedWith(models.Sequelize.ValidationError);
     });
 });
 
@@ -63,12 +60,7 @@ describe("Database Sandwich tests", () => {
     });
     it("Sandwich validation", async () => {
         await models.Sandwich.create({name: "TestSandwich", price: 1.5});
-        try {
-            await models.Sandwich.create({name: "TestSandwich", price: 1.5});
-        } catch (e) {
-            if (!(e instanceof models.Sequelize.ValidationError))
-                throw e;
-        }
+        return expect(models.Sandwich.create({name: "TestSandwich", price: 1.5})).to.be.rejectedWith(models.Sequelize.ValidationError);
     });
 });
 
@@ -113,47 +105,32 @@ describe("Database User test", () => {
             lastName: "Test",
             passwordHash: "test"});
 
-        //Username
-        try {
-            await models.User.create({
+        return Promise.all([
+            //Username
+            expect(models.User.create({
                 username: "test",
                 email: "test2@test.fr",
                 firstName: "Test2",
                 lastName: "Test2",
                 passwordHash: "test"
-            })
-        } catch (e) {
-            if (!(e instanceof models.Sequelize.ValidationError))
-                throw e;
-        }
-
-        //Email
-        try {
-            await models.User.create({
+            })).to.be.rejectedWith(models.Sequelize.ValidationError),
+            //Email
+            expect(models.User.create({
                 username: "test2",
                 email: "test@test.fr",
                 firstName: "Test2",
                 lastName: "Test2",
                 passwordHash: "test"
-            })
-        } catch (e) {
-            if (!(e instanceof models.Sequelize.ValidationError))
-                throw e;
-        }
-
-        //First & last name
-        try {
-            await models.User.create({
+            })).to.be.rejectedWith(models.Sequelize.ValidationError),
+            //First & last name
+            expect(models.User.create({
                 username: "test2",
                 email: "test2@test.fr",
                 firstName: "Test",
                 lastName: "Test",
                 passwordHash: "test"
-            })
-        } catch (e) {
-            if (!(e instanceof models.Sequelize.ValidationError))
-                throw e;
-        }
+            })).to.be.rejectedWith(models.Sequelize.ValidationError),
+        ])
     });
     it("User associations", async () => {
         let testUser = await models.User.create({
