@@ -101,9 +101,12 @@ describe("Database User test", () => {
         await models.User.create({
             username: "test",
             email: "test@test.fr",
+            emailToken: "Keyboard Cat",
             firstName: "Test",
             lastName: "Test",
-            passwordHash: "test"});
+            passwordHash: "test",
+            passwordToken: "Keyboard Cat"
+        });
 
         return Promise.all([
             //Username
@@ -130,6 +133,24 @@ describe("Database User test", () => {
                 lastName: "Test",
                 passwordHash: "test"
             })).to.be.rejectedWith(models.Sequelize.ValidationError),
+            //Email token
+            expect(models.User.create({
+                username: "test2",
+                email: "test2@test.fr",
+                emailToken: "Keyboard Cat",
+                firstName: "Test2",
+                lastName: "Test2",
+                passwordHash: "test"
+            })).to.be.rejectedWith(models.Sequelize.ValidationError),
+            //Password token
+            expect(models.User.create({
+                username: "test2",
+                email: "test2@test.fr",
+                firstName: "Test2",
+                lastName: "Test2",
+                passwordHash: "test",
+                passwordToken: "Keyboard Cat"
+            })).to.be.rejectedWith(models.Sequelize.ValidationError)
         ])
     });
     it("User associations", async () => {
@@ -199,4 +220,33 @@ describe("Database Order tests", () => {
         expect(testOrder.User).to.be.instanceOf(models.User);
         expect(testOrder.User.username).to.be.equal(testUser.username);
     });
+});
+
+describe("Database Data tests", () => {
+    let models;
+
+    before(async () => {
+        models = await databaseEnter();
+    });
+    after(async () => {
+        await databaseExit(models);
+    });
+
+    afterEach(async () => {
+        await wipeDatabase(models);
+    });
+
+    it("Data creation", async () => {
+        expect(await models.Data.create({
+            key: "test",
+            value: "test"
+        })).to.be.instanceOf(models.Data);
+    });
+    it("Data validation", async () => {
+        await models.Data.create({key: "test", value: "test"});
+        return expect(models.Data.create({
+            key: "test",
+            value: "test"
+        })).to.be.rejectedWith(models.Sequelize.ValidationError);
+    })
 });
