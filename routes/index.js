@@ -4,10 +4,13 @@ let models = require("../models");
 
 router.get("/", async (req, res) => {
   let now = new Date();
-  let firstDate = await models.Data.findByPk("firstDate");
+  let [firstDate, lastDate] = [await models.Data.findByPk("firstDate"),
+    await models.Data.findByPk("lastDate")];
 
-  if (firstDate && firstDate.value) {
+  if (firstDate && lastDate && firstDate.value && lastDate.value) {
+    lastDate = lastDate.value;
     firstDate = new Date(firstDate.value);
+
     if (firstDate.getTime() < now.getTime())
       firstDate = now;
   } else
@@ -21,7 +24,7 @@ router.get("/", async (req, res) => {
     sandwiches: await models.Sandwich.findAll(),
     date: {
       firstDate: firstDate,
-      lastDate: await models.Data.findByPk("lastDate")
+      lastDate: lastDate
     }
   });
 });

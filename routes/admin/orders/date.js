@@ -11,10 +11,12 @@ router.get("/", sessionCheck(3), async (req, res) => {
 
     if ((!firstDate || !firstDate.value) || (!lastDate || !lastDate.value))
         [firstDate, lastDate] = [undefined, undefined];
+    else
+        [firstDate, lastDate] = [firstDate.value, lastDate.value];
 
     res.render("admin/orders/date", {
         title: "SOD - Orders administration",
-        date: {firstDate: firstDate.value, lastDate: lastDate.value}
+        date: {firstDate: firstDate, lastDate: lastDate}
     });
 }).post("/", sessionCheck(3), async (req, res) => {
     if (!req.body.firstDate || ! req.body.lastDate)
