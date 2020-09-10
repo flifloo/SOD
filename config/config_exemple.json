@@ -20,5 +20,11 @@
     },
     "from": "Contact Email <you@email.fr>",
     "contact": "Your Contact <contact@your-email.fr>"
+  },
+  "lyfPay": {
+    "url": "https://lyf.eu/some/api/url",
+    "posUuid": "330fc62c-f549-4c57-8f65-fc977079b283",
+    "warningEmail": "contact@your-email.fr",
+    "secureKey": "0123456789ABCDEF0123456789ABCDEF01234567"
   }
 }

@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       Order.belongsToMany(models.Sandwich, {through: {model: models.SandwichOrder, unique: false}});
       Order.belongsTo(models.Department);
       Order.belongsTo(models.User);
+      Order.belongsTo(models.Payment, {foreignKey: "ShopOrderReference"});
     }
   }
   Order.init({

@@ -2,6 +2,7 @@ let express = require("express");
 let router = express.Router();
 let models = require("../models");
 let error = require("./utils/error");
+let sendPayment = require("./utils/lyfPay").sendPayment;
 
 
 router.post("/", async (req, res) => {
@@ -67,7 +68,8 @@ router.post("/", async (req, res) => {
             error(req, res, "Invalid order !", 500);
             throw e;
         }
-    res.send("Ok");
+
+    await sendPayment(req, res, order);
 });
 
 module.exports = router;
