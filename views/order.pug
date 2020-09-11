@@ -10,5 +10,5 @@ block content
         else if (state === "error")
             h2 An error occurred with the payment
         if (state !== "success")
-            a
+            a(href="/order/retry")
                 button Retry

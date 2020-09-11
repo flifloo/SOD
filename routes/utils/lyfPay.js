@@ -8,6 +8,9 @@ function macCalculator(params, key) {
 }
 
 async function sendPayment(req, res, order) {
+    if (order.paid)
+        return error(req, res, "Order already paid !", 400);
+
     let payment = await models.Payment.create();
     await payment.setOrder(order);
     await payment.reload();
@@ -45,6 +48,8 @@ async function sendPayment(req, res, order) {
         .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
         .join("&");
 
+    req.session.lastOrder = order;
+
     res.redirect(307, url);
 }
 
@@ -79,7 +84,6 @@ async function checkPayment(req, res) {
     await payment.save();
 
     if (payment.status) {
-        console.log(payment);
         payment.Order.paid = payment.status;
         await payment.Order.save();
     }

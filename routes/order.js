@@ -78,6 +78,13 @@ router.post("/", async (req, res) => {
     res.render("order", {title: "SOD - Payment", state: "error"});
 }).post("/callback", async (req, res) => {
     await lyfPay.checkPayment(req, res);
+}).get("/retry", async (req, res) => {
+    let order = await models.Order.findByPk(req.session.lastOrder.id);
+    if (!order)
+            return error(req, res, "Can't retrieve last order", 400);
+    else
+        await lyfPay.sendPayment(req, res, order);
+
 });
 
 module.exports = router;
