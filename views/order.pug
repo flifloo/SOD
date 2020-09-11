@@ -4,11 +4,11 @@ block content
     div.card
         h1 Payment
         if (state === "success")
-            h2 Payment successful !
+            h2=__("payment.successful")
         else if (state === "cancel")
-            h2 Payment canceled
+            h2=__("payment.canceled")
         else if (state === "error")
-            h2 An error occurred with the payment
+            h2=__("payment.error")
         if (state !== "success")
             a(href="/order/retry")
-                button Retry
+                button=__("payment.retry")

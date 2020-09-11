@@ -67,6 +67,12 @@
 		"firstDate": "First date",
 		"lastDate": "Last date"
 	},
+	"payment": {
+		"successful": "Payment successful !",
+		"canceled": "Payment canceled",
+		"error": "An error occurred with the payment",
+		"retry": "Retry"
+	},
 	"firstName": "First name",
 	"lastName": "Last name",
 	"username": "Username",

@@ -67,6 +67,12 @@
 		"firstDate": "Première date",
 		"lastDate": "Dernière date"
 	},
+	"payment": {
+		"successful": "Paiement réussi !",
+		"canceled": "Paiement annulé",
+		"error": "Une erreur est survenue lors du paiement",
+		"retry": "Recommencez"
+	},
 	"firstName": "Prénom",
 	"lastName": "Nom de famille",
 	"username": "Nom d'utilisateur",
