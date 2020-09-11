@@ -10,10 +10,17 @@ router.get("/", sessionCheck(1), async (req, res) => {
 
     res.render("sandwiches", {
         title: "SOD - Sandwiches",
-        sandwiches: await models.SandwichOrder.findAll({
-            attributes: ["SandwichName", [sequelize.fn("COUNT", sequelize.col("SandwichName")), "number"]],
-            where: {date: date},
-            group: "SandwichName"
+        sandwiches: await models.Sandwich.findAll({
+            attributes: ["name", [sequelize.fn("COUNT", sequelize.col("name")), "number"]],
+            include: [{
+                model: models.Order,
+                where: {paid: true},
+                through: {
+                    where: {date: date}
+                },
+                required: true
+            }],
+            group: "name"
         }),
         date: date});
 });

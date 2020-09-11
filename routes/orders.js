@@ -8,20 +8,25 @@ router.get("/", sessionCheck(2), async (req, res) => {
     let date = req.query.date ? req.query.date : (new Date()).toISOString().substring(0,10);
 
     let orders = {};
-    for (let i of await models.SandwichOrder.findAll({where: {date: date}})) {
-        i.Order = await models.Order.findByPk(i.OrderId);
-        i.Sandwich = await models.Sandwich.findByPk(i.SandwichName);
-        let name = i.Order.firstName + " " + i.Order.lastName;
+    for (let o of await models.Order.findAll({
+        where: {paid: true},
+        include: [{
+            model: models.Sandwich,
+            through: {
+                where: {date: date}
+            },
+            required: true
+        }]
+    })) {
+        let name = o.firstName + " " + o.lastName;
 
-        if (!(i.Order.DepartmentName in orders))
-            orders[i.Order.DepartmentName] = {};
+        if (!(o.DepartmentName in orders))
+            orders[o.DepartmentName] = {};
 
-        if (!(name in orders[i.Order.DepartmentName]))
-            orders[i.Order.DepartmentName][name] = {};
+        if (!(name in orders[o.DepartmentName]))
+            orders[o.DepartmentName][name] = {};
 
-        if (!(i.Order.id in orders[i.Order.DepartmentName][name]))
-            orders[i.Order.DepartmentName][name][i.Order.id] = [];
-        orders[i.Order.DepartmentName][name][i.Order.id].push(i);
+        orders[o.DepartmentName][name][o.id] = o.Sandwiches;
     }
     res.render("orders", {title: "SOD - Orders", orders: orders, date: date});
 });

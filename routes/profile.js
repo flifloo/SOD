@@ -11,7 +11,7 @@ router.get("/", sessionCheck(0), async (req, res) => {
         title: "SOD - Profile",
         departments: await models.Department.findAll(),
         orders: await models.Order.findAll({
-            where: {UserUsername: req.session.user.username},
+            where: {UserUsername: req.session.user.username, paid: true},
             include: models.Sandwich,
             order: ["date"]
         })
