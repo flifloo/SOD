@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    div.card
+        h1 Payment
+        if (state === "success")
+            h2 Payment successful !
+        else if (state === "cancel")
+            h2 Payment canceled
+        else if (state === "error")
+            h2 An error occurred with the payment
+        if (state !== "success")
+            a
+                button Retry

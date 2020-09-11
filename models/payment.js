@@ -18,7 +18,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Payment extends Model {
         static associate(models) {
-            Payment.hasOne(models.Order);
+            Payment.belongsTo(models.Order);
         }
     }
     Payment.init({
@@ -31,6 +31,18 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: DataTypes.NOW
+        },
+        status: {
+            type: DataTypes.BOOLEAN
+        },
+        amount: {
+            type: DataTypes.INTEGER
+        },
+        discount: {
+            type: DataTypes.INTEGER
+        },
+        transactionUuid: {
+            type: DataTypes.UUID,
         }
     }, {
         sequelize,

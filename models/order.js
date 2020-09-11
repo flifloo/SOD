@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       Order.belongsToMany(models.Sandwich, {through: {model: models.SandwichOrder, unique: false}});
       Order.belongsTo(models.Department);
       Order.belongsTo(models.User);
-      Order.belongsTo(models.Payment, {foreignKey: "ShopOrderReference"});
+      Order.hasMany(models.Payment, {foreignKey: "ShopOrderReference"});
     }
   }
   Order.init({
@@ -28,6 +28,11 @@ module.exports = (sequelize, DataTypes) => {
     price: {
       type: DataTypes.FLOAT,
       allowNull: false
+    },
+    paid: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     }
   }, {
     sequelize,

@@ -2,7 +2,7 @@ let express = require("express");
 let router = express.Router();
 let models = require("../models");
 let error = require("./utils/error");
-let sendPayment = require("./utils/lyfPay").sendPayment;
+let lyfPay = require("./utils/lyfPay");
 
 
 router.post("/", async (req, res) => {
@@ -69,7 +69,15 @@ router.post("/", async (req, res) => {
             throw e;
         }
 
-    await sendPayment(req, res, order);
+    await lyfPay.sendPayment(req, res, order);
+}).get("/success", (req, res) => {
+    res.render("order", {title: "SOD - Payment", state: "success"});
+}).get("/cancel", (req, res) => {
+    res.render("order", {title: "SOD - Payment", state: "cancel"});
+}).get("/error", (req, res) => {
+    res.render("order", {title: "SOD - Payment", state: "error"});
+}).post("/callback", async (req, res) => {
+    await lyfPay.checkPayment(req, res);
 });
 
 module.exports = router;

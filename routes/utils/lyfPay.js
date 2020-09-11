@@ -1,5 +1,6 @@
 const crypto = require("crypto");
 const models = require("../../models");
+const error = require("./error");
 
 
 function macCalculator(params, key) {
@@ -8,10 +9,10 @@ function macCalculator(params, key) {
 
 async function sendPayment(req, res, order) {
     let payment = await models.Payment.create();
-    await order.setPayment(payment);
+    await payment.setOrder(order);
     await payment.reload();
 
-    let baseUrl = `${req.protocol}://${req.hostname}/order`;
+    let baseUrl = `https://${req.hostname}/order`;
     let config = req.app.get("config").lyfPay;
     let url = config.url + "/Payment.aspx?";
 
@@ -47,5 +48,47 @@ async function sendPayment(req, res, order) {
     res.redirect(307, url);
 }
 
+async function checkPayment(req, res) {
+    let config = req.app.get("config").lyfPay;
 
-module.exports = {sendPayment: sendPayment};
+    let params = {
+        posUuid: req.body.posUuid,
+        shopReference: req.body.shopReference,
+        shopOrderReference: req.body.shopOrderReference,
+        amount: req.body.amount,
+        discount: req.body.discount,
+        currency: req.body.currency,
+        status: req.body.status,
+        creationDate: req.body.creationDate,
+        transactionUuid: req.body.transactionUuid,
+        additionalData: req.body.additionalData,
+    };
+
+    if (macCalculator(params, config.secureKey).toUpperCase() !== req.body.mac)
+        return error(req, res, "Invalid MAC", 400);
+
+    let payment = await models.Payment.findByPk(params.shopReference, {include: models.Order});
+    if (!payment)
+        return error(req, res, "Invalid shopReference !", 400);
+
+    payment.amount = params.amount;
+    payment.discount = params.discount;
+    payment.status = params.status === "VALIDATED";
+    payment.date = params.creationDate;
+    payment.transactionUuid = params.transactionUuid;
+    await payment.save();
+
+    if (payment.status) {
+        console.log(payment);
+        payment.Order.paid = payment.status;
+        await payment.Order.save();
+    }
+
+    res.send("OK", 200);
+}
+
+
+module.exports = {
+    sendPayment: sendPayment,
+    checkPayment: checkPayment
+};
