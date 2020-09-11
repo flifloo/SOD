@@ -17,6 +17,9 @@ block content
                                 h4 #{__("order")} N°#{id}
                                 each sandwich in order
                                     div.sandwich
+                                        form.give(method="POST" action="/orders/give")
+                                            input(type="hidden" name="id" value=id)
+                                            input.give(type="submit" value="v")
                                         h4= sandwich.name
 
     script(src="/javascripts/orders.js")

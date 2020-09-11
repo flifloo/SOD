@@ -178,6 +178,7 @@ p.before-link a::before {
 }
 
 .sandwich {
+  display: flex;
   margin-left: 1em;
 }
 
@@ -240,6 +241,11 @@ p.before-link a::before {
 
 #sandwichesManagement>a>button, #departmentsManagement>a>button, #usersManagement>a>button {
   width: 100%;
+}
+
+.give {
+  height: min-content;
+  width: min-content;
 }
 
 @media (hover: none) and (pointer: coarse) {

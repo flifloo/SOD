@@ -2,6 +2,7 @@ let express = require("express");
 let router = express.Router();
 let sessionCheck = require("../middlewares/sessionCheck");
 let models = require("../models");
+let error = require("./utils/error");
 
 
 router.get("/", sessionCheck(2), async (req, res) => {
@@ -9,7 +10,7 @@ router.get("/", sessionCheck(2), async (req, res) => {
 
     let orders = {};
     for (let o of await models.Order.findAll({
-        where: {paid: true},
+        where: {paid: true, give: false},
         include: [{
             model: models.Sandwich,
             through: {
@@ -29,6 +30,18 @@ router.get("/", sessionCheck(2), async (req, res) => {
         orders[o.DepartmentName][name][o.id] = o.Sandwiches;
     }
     res.render("orders", {title: "SOD - Orders", orders: orders, date: date});
+}).post("/give", sessionCheck(2), async (req, res) => {
+    if (!req.body.id)
+        return error(req, res, "Missing arg !", 400);
+
+    let order = await models.Order.findByPk(req.body.id, {where: {paid: true, give: false}});
+    if (!order)
+        return error(req, res, "Invalid command id !", 400);
+
+    order.give = true;
+    await order.save();
+
+    res.redirect("/orders")
 });
 
 module.exports = router;
