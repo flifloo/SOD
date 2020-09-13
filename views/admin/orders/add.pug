@@ -1,0 +1,55 @@
+extends ../../layout
+
+block content
+    div.card
+        h1=__("admin.ordersManagement")
+        form#order(method="POST")
+            div.field
+                label(for="department")=__("department") + ":"
+                input#department(type="list" list="department-list" name="department" autocomplete="off" required)
+                datalist#department-list
+                    each department in departments
+                        option(value=department.name)
+
+            div.field
+                label(for="firstname")=__("firstName") + ":"
+                input#firstname(type="text" name="firstName" required)
+            div.field
+                label(for="lastname")=__("lastName") + ":"
+                input#lastname(type="text" name="lastName" required)
+
+            div.field
+                label(for="username")=__("username")
+                input#username(list="usernames" name="username" autocomplete="off")
+
+            div#order1.order
+                h2=__("order") + " 1"
+                div.field
+                    label(for="sandwich1")=__("sandwich") + ":"
+                    input#sandwich1(type="list" list="sandwich-list" name="sandwiches[1]" autocomplete="off" required)
+                div.field
+                    label(for="day1")=__("index.day") + ":"
+                    input#day1(type="date" name="dates[1]" required)
+
+            div#order-action
+                a#add-order +
+                a#remove-order.hide -
+
+            div.field
+                label(for="paid")=__("admin.paid")
+                input#paid(type="checkbox" name="paid")
+                label(for="given")=__("admin.given")
+                input#given(type="checkbox" name="give")
+
+            div.field
+                input#send(type="submit" value=__("admin.add"))
+
+            datalist#sandwich-list
+                each sandwich in sandwiches
+                    option(value=sandwich.name)
+            datalist#usernames
+                each user in users
+                    option(value=user.username)
+
+
+    script(src="/javascripts/admin/orders/add.js")

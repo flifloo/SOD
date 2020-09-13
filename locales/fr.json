@@ -65,7 +65,9 @@
 		"user": "Utilisateur",
 		"permissions": "Autorisations",
 		"firstDate": "Première date",
-		"lastDate": "Dernière date"
+		"lastDate": "Dernière date",
+		"paid": "Payé",
+		"given": "Donné"
 	},
 	"payment": {
 		"successful": "Paiement réussi !",

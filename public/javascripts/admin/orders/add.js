@@ -5,7 +5,6 @@ const locals = {
     sandwich: document.querySelector("label[for='sandwich1']").innerHTML,
     day: document.querySelector("label[for='day1']").innerHTML
 };
-const [min, max] = [document.getElementById("day1").min, document.getElementById("day1").max];
 
 function lastOrderId() {
     let list = document.querySelectorAll("div.order h2");
@@ -22,7 +21,7 @@ document.getElementById("add-order").addEventListener("click", () => {
     </div>
     <div class="field">
         <label for="day${id}">${locals.day}</label>
-        <input id="da${id}y" type="date" min="${min}" max="${max}" name="dates[${id}]" required>
+        <input id="da${id}y" type="date" name="dates[${id}]" required>
     </div>
 </div>`);
     document.getElementById("order"+lastOrderId()).scrollIntoView({behavior: "smooth"});

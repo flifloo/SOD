@@ -3,6 +3,8 @@ extends ../../layout
 block content
     div.card#ordersManagement
         h1=__("admin.ordersManagement")
+        a.add(href="/admin/orders/add")
+            button=__("admin.add")
         div
             each order in orders
                 div.order
@@ -19,4 +21,4 @@ block content
                                 input.hide(type="number" name="id" value=sandwich.SandwichOrder.id)
                                 input(type="submit" value="x")
 
-    script(src="/javascripts/admin/orders.js")
+    script(src="/javascripts/admin/orders/index.js")

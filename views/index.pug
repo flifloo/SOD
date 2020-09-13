@@ -23,10 +23,10 @@ block content
         h2=__("order")+" 1"
         div.field
           label(for="sandwich1")=__("sandwich")+":"
-          input#sandwich1(type="list" list="sandwich-list" name="sandwich1" autocomplete="off" required)
+          input#sandwich1(type="list" list="sandwich-list" name="sandwiches[1]" autocomplete="off" required)
         div.field
           label(for="day1")=__("index.day")+":"
-          input#day1(type="date" min=date.firstDate ? date.firstDate : "" max=date.lastDate ? date.lastDate : "" name="date1" required)
+          input#day1(type="date" min=date.firstDate ? date.firstDate : "" max=date.lastDate ? date.lastDate : "" name="dates[1]" required)
 
       div#order-action
         a#add-order +

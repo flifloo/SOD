@@ -34,6 +34,8 @@ router.get("/", sessionCheck(3), async (req, res) => {
         throw e;
     }
 })
-    .use("/date", require("./date"));
+    .use("/date", require("./date"))
+    .use("/add", require("./add"))
+    .use("/edit", require("./edit"));
 
 module.exports = router;

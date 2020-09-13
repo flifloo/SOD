@@ -239,7 +239,7 @@ p.before-link a::before {
   cursor: pointer;
 }
 
-#sandwichesManagement>a>button, #departmentsManagement>a>button, #usersManagement>a>button {
+#sandwichesManagement>a>button, #departmentsManagement>a>button, #usersManagement>a>button, #ordersManagement>a>button {
   width: 100%;
 }
 
