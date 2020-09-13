@@ -23,7 +23,8 @@
 		"commandRemove": "Suppression de commande",
 		"question": "Question Pratique",
 		"profile": "Mon profil",
-		"other": "Autre question"
+		"other": "Autre question",
+		"powered": "Propulsé par"
 	},
 	"index": {
 		"welcome": "Bienvenue sur Sandwiches Order Doua",

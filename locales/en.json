@@ -23,7 +23,8 @@
 		"commandRemove": "Order deletion",
 		"question": "Practical question",
 		"profile": "My profile",
-		"other": "Another question"
+		"other": "Another question",
+		"powered": "Powered by"
 	},
 	"index": {
 		"welcome": "Welcome to Sandwiches Order Doua",
