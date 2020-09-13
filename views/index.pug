@@ -33,7 +33,7 @@ block content
         a#remove-order.hide -
 
       div.field
-        input#send(type="submit" value=__("index.pay"))
+        +submit(value=__("index.pay"))
 
       datalist#sandwich-list
         each sandwich in sandwiches
