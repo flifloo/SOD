@@ -248,6 +248,17 @@ p.before-link a::before {
   width: min-content;
 }
 
+input::-webkit-calendar-picker-indicator {
+  display: none;/* remove default arrow */
+}
+
+.list_arrow:after {
+  content: url(https://i.stack.imgur.com/i9WFO.png);
+  margin-left: -20px;
+  padding: .1em;
+  pointer-events:none;
+}
+
 @media (hover: none) and (pointer: coarse) {
   body {
     font-size: xx-large;

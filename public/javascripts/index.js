@@ -18,7 +18,7 @@ document.getElementById("add-order").addEventListener("click", () => {
     <h2>${locals.order} ${id}</h2>
     <div class="field">
         <label for="sandwich${id}">${locals.sandwich}</label>
-        <input id="sandwich${id}" type="list" list="sandwich-list" name="sandwiches[${id}]" autocomplete="off" required>
+        <span class="list_arrow"><input id="sandwich${id}" type="list" list="sandwich-list" name="sandwiches[${id}]" autocomplete="off" required></span>
     </div>
     <div class="field">
         <label for="day${id}">${locals.day}</label>

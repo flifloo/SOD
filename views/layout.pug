@@ -76,7 +76,7 @@ html
             input#phoneNumberContact(type="tel" name="phoneNumber")
         div.field
           label(for="subjectContact")="* "+__("layout.subject")
-          input#subjectContact(list="subjectContactList" autocomplete="off" name="subject" required)
+          +list("subjectContact", "subjectContactList", "subject", "", "off", true)
           datalist#subjectContactList
             option(value=__("layout.commandEdit"))
             option(value=__("layout.commandRemove"))

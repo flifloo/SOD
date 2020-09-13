@@ -6,7 +6,7 @@ block content
         form#order(method="POST")
             div.field
                 label(for="department")=__("department") + ":"
-                input#department(type="list" list="department-list" name="department" autocomplete="off" required)
+                +list("department", "department-list", "department", "", "off", true)
                 datalist#department-list
                     each department in departments
                         option(value=department.name)
@@ -20,13 +20,13 @@ block content
 
             div.field
                 label(for="username")=__("username")
-                input#username(list="usernames" name="username" autocomplete="off")
+                +list("username", "usernames", "username", "", "off")
 
             div#order1.order
                 h2=__("order") + " 1"
                 div.field
                     label(for="sandwich1")=__("sandwich") + ":"
-                    input#sandwich1(type="list" list="sandwich-list" name="sandwiches[1]" autocomplete="off" required)
+                    +list("sandwich1", "sandwich-list", "sandwiches[1]", "", "off", true)
                 div.field
                     label(for="day1")=__("index.day") + ":"
                     input#day1(type="date" name="dates[1]" required)

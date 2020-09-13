@@ -7,7 +7,7 @@ block content
     form#order(action="/order" method="POST")
       div.field
         label(for="department")=__("department")+":"
-        input#department(type="list" list="department-list" name="department" value=user ? user.DepartmentName : "" autocomplete="off" required)
+        +list("department", "department-list", "department", user ? user.DepartmentName : "", "off", true)
         datalist#department-list
           each department in departments
             option(value=department.name)
@@ -23,7 +23,7 @@ block content
         h2=__("order")+" 1"
         div.field
           label(for="sandwich1")=__("sandwich")+":"
-          input#sandwich1(type="list" list="sandwich-list" name="sandwiches[1]" autocomplete="off" required)
+          +list("sandwich1", "sandwich-list", "sandwiches[1]", "", "off", true)
         div.field
           label(for="day1")=__("index.day")+":"
           input#day1(type="date" min=date.firstDate ? date.firstDate : "" max=date.lastDate ? date.lastDate : "" name="dates[1]" required)

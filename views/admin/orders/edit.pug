@@ -7,7 +7,7 @@ block content
             input(type="hidden" name="id" value=order.id)
             div.field
                 label(for="department")=__("department") + ":"
-                input#department(type="list" list="department-list" name="department" autocomplete="off" value=order.Department.name required)
+                +list("department", "department-list", "department", order.Department.name, "off", true)
                 datalist#department-list
                     each department in departments
                         option(value=department.name)
@@ -21,7 +21,7 @@ block content
 
             div.field
                 label(for="username")=__("username")
-                input#username(list="usernames" name="username" value=order.User ? order.User.username : "" autocomplete="off")
+                +list("username", "usernames", "username", order.User ? order.User.username : "", "off")
 
             - i = 0;
             each sandwich in order.Sandwiches
@@ -30,7 +30,7 @@ block content
                     h2=__("order") + " "  + i
                     div.field
                         label(for="sandwich"+i)=__("sandwich") + ":"
-                        input(id="#sandwich"+i type="list" list="sandwich-list" name="sandwiches["+i+"]" autocomplete="off" value=sandwich.name required)
+                        +list("#sandwich"+i, "sandwich-list", "sandwiches["+i+"]", sandwich.name, "off", true)
                     div.field
                         label(for="day"+i)=__("index.day") + ":"
                         input(id="#day"+i type="date" name="dates["+i+"]" value=sandwich.SandwichOrder.date required)

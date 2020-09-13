@@ -19,7 +19,7 @@ block content
                 input#lastName(type="text" name="lastName" value=user.lastName required)
             div.field
                 label(for="department")=__("department")+":"
-                input#department(type="list" list="department-list" name="department" value=user.DepartmentName required)
+                +list("department", "department-list", "department", user.DepartmentName, "off", true)
             div.field
                 label(for="password")=__("password")+":"
                 input#password(type="password" name="password")
