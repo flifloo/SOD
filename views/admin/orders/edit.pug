@@ -1,0 +1,62 @@
+extends ../../layout
+
+block content
+    div.card
+        h1=__("admin.ordersManagement")
+        form#order(method="POST")
+            input(type="hidden" name="id" value=order.id)
+            div.field
+                label(for="department")=__("department") + ":"
+                input#department(type="list" list="department-list" name="department" autocomplete="off" value=order.Department.name required)
+                datalist#department-list
+                    each department in departments
+                        option(value=department.name)
+
+            div.field
+                label(for="firstname")=__("firstName") + ":"
+                input#firstname(type="text" name="firstName" value=order.firstName required)
+            div.field
+                label(for="lastname")=__("lastName") + ":"
+                input#lastname(type="text" name="lastName" value=order.lastName required)
+
+            div.field
+                label(for="username")=__("username")
+                input#username(list="usernames" name="username" value=order.User ? order.User.username : "" autocomplete="off")
+
+            - i = 0;
+            each sandwich in order.Sandwiches
+                - i++;
+                div.order(id="order"+i)
+                    h2=__("order") + " "  + i
+                    div.field
+                        label(for="sandwich"+i)=__("sandwich") + ":"
+                        input(id="#sandwich"+i type="list" list="sandwich-list" name="sandwiches["+i+"]" autocomplete="off" value=sandwich.name required)
+                    div.field
+                        label(for="day"+i)=__("index.day") + ":"
+                        input(id="#day"+i type="date" name="dates["+i+"]" value=sandwich.SandwichOrder.date required)
+
+            div#order-action
+                a#add-order +
+                if i > 1
+                    a#remove-order -
+                else
+                    a#remove-order.hide -
+
+            div.field
+                label(for="paid")=__("admin.paid")
+                input#paid(type="checkbox" name="paid" checked=order.paid)
+                label(for="given")=__("admin.given")
+                input#given(type="checkbox" name="give" checked=order.give)
+
+            div.field
+                input#send(type="submit" value=__("admin.add"))
+
+            datalist#sandwich-list
+                each sandwich in sandwiches
+                    option(value=sandwich.name)
+            datalist#usernames
+                each user in users
+                    option(value=user.username)
+
+
+    script(src="/javascripts/admin/orders/add.js")

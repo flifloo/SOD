@@ -10,15 +10,14 @@ block content
                 div.order
                     div.title
                         h2=order.id
-                        form(action="/admin/orders/order/delete" method="POST")
-                            input.hide(type="number" name="id" value=order.id)
-                            input(type="submit" value="x")
-                    h3 #{order.firstName} #{order.lastName}
+                    h3 #{order.firstName} #{order.lastName} - #{order.price}€
                     each sandwich in order.Sandwiches
                         div.sandwich
                             p #{sandwich.name} - #{sandwich.SandwichOrder.date}
-                            form(action="/admin/orders/sandwich/delete" method="POST")
-                                input.hide(type="number" name="id" value=sandwich.SandwichOrder.id)
-                                input(type="submit" value="x")
+                    div.buttons
+                        a.edit(href="/admin/orders/edit?id=" + order.id)
+                            button=__("admin.edit")
+                        a.remove(href="/admin/orders/delete?id=" + order.id)
+                            button=__("admin.remove")
 
     script(src="/javascripts/admin/orders/index.js")
