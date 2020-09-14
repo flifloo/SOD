@@ -30,6 +30,9 @@ block content
                 div.field
                     label(for="day1")=__("index.day") + ":"
                     input#day1(type="date" name="dates[1]" required)
+                div.field
+                    label(for="given1")=__("admin.given")
+                    input#given1(type="checkbox" name="give[1]")
 
             div#order-action
                 a#add-order +
@@ -38,8 +41,6 @@ block content
             div.field
                 label(for="paid")=__("admin.paid")
                 input#paid(type="checkbox" name="paid")
-                label(for="given")=__("admin.given")
-                input#given(type="checkbox" name="give")
 
             div.field
                 input#send(type="submit" value=__("admin.add"))

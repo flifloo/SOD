@@ -18,7 +18,7 @@ block content
                                 each sandwich in order
                                     div.sandwich
                                         form.give(method="POST" action="/orders/give")
-                                            input(type="hidden" name="id" value=id)
+                                            input(type="hidden" name="id" value=sandwich.SandwichOrder.id)
                                             input.give(type="submit" value="v")
                                         h4= sandwich.name
 

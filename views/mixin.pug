@@ -2,6 +2,6 @@ mixin submit(value)
     div.recaptcha.recaptcha-cb
         input(type="submit" value!=value)
 
-mixin list(id, list, name, value="", autocomplete="on", required="false")
+mixin list(id, list, name, value="", autocomplete="on", required=false)
     span.list_arrow
         input(id=id type="list" list=list name=name value=value autocomplete=autocomplete required=required)

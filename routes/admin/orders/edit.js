@@ -56,8 +56,12 @@ router.get("/", sessionCheck(3), async (req, res) => {
 
         let date = new Date(req.body.dates[s]);
 
+        let give = false;
+        if (req.body.give && req.body.give[s])
+            give = req.body.give[s];
+
         try {
-            sandwiches.push([sandwich.name, date.toISOString().substring(0, 10)]);
+            sandwiches.push([sandwich.name, date.toISOString().substring(0, 10), give]);
         } catch {
             return error(req, res, "Invalid order edit !", 400, "Invalid date");
         }
@@ -73,13 +77,11 @@ router.get("/", sessionCheck(3), async (req, res) => {
         order.lastName = req.body.lastName;
     if (req.body.paid !== order.paid)
         order.paid = Boolean(req.body.paid);
-    if (req.body.give !== order.give)
-        order.give = Boolean(req.body.give);
 
     await order.removeSandwiches(order.Sandwiches);
     for (let data of sandwiches)
         try {
-            await models.SandwichOrder.create({OrderId: order.id, SandwichName: data[0], date: data[1]});
+            await models.SandwichOrder.create({OrderId: order.id, SandwichName: data[0], date: data[1], give: data[2]});
         } catch (e) {
             await order.destroy();
             error(req, res, "Invalid order !");

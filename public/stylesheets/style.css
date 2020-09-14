@@ -248,7 +248,7 @@ p.before-link a::before {
   width: min-content;
 }
 
-input::-webkit-calendar-picker-indicator {
+input[type="list"]::-webkit-calendar-picker-indicator {
   display: none;/* remove default arrow */
 }
 

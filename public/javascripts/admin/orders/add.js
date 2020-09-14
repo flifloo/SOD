@@ -21,7 +21,11 @@ document.getElementById("add-order").addEventListener("click", () => {
     </div>
     <div class="field">
         <label for="day${id}">${locals.day}</label>
-        <input id="da${id}y" type="date" name="dates[${id}]" required>
+        <input id="day${id}" type="date" name="dates[${id}]" required>
+    </div>
+    <div class="field">
+        <label for="give${id}">${locals.day}</label>
+        <input id="give${id}" type="checkbox" name="give[${id}]">
     </div>
 </div>`);
     document.getElementById("order"+lastOrderId()).scrollIntoView({behavior: "smooth"});

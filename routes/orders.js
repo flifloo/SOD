@@ -10,11 +10,11 @@ router.get("/", sessionCheck(2), async (req, res) => {
 
     let orders = {};
     for (let o of await models.Order.findAll({
-        where: {paid: true, give: false},
+        where: {paid: true},
         include: [{
             model: models.Sandwich,
             through: {
-                where: {date: date}
+                where: {date: date, give: false}
             },
             required: true
         }]
@@ -34,9 +34,9 @@ router.get("/", sessionCheck(2), async (req, res) => {
     if (!req.body.id)
         return error(req, res, "Missing arg !", 400);
 
-    let order = await models.Order.findByPk(req.body.id, {where: {paid: true, give: false}});
+    let order = await models.SandwichOrder.findByPk(req.body.id, {where: {give: false}});
     if (!order)
-        return error(req, res, "Invalid command id !", 400);
+        return error(req, res, "Invalid order id !", 400);
 
     order.give = true;
     await order.save();

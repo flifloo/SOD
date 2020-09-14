@@ -34,6 +34,9 @@ block content
                     div.field
                         label(for="day"+i)=__("index.day") + ":"
                         input(id="#day"+i type="date" name="dates["+i+"]" value=sandwich.SandwichOrder.date required)
+                    div.field
+                        label(for="given"+i)=__("admin.given")
+                        input(id="given"+i type="checkbox" name="give["+i+"]" checked=sandwich.SandwichOrder.give)
 
             div#order-action
                 a#add-order +
@@ -45,11 +48,9 @@ block content
             div.field
                 label(for="paid")=__("admin.paid")
                 input#paid(type="checkbox" name="paid" checked=order.paid)
-                label(for="given")=__("admin.given")
-                input#given(type="checkbox" name="give" checked=order.give)
 
             div.field
-                input#send(type="submit" value=__("admin.add"))
+                input#send(type="submit" value=__("save"))
 
             datalist#sandwich-list
                 each sandwich in sandwiches

@@ -44,8 +44,12 @@ module.exports = async (req, res, args, dateCheck = true) => {
             }
         }
 
+        let give = false;
+        if (args.give && args.give[s])
+            give = args.give[s];
+
         try {
-            sandwiches.push([sandwich.name, date.toISOString().substring(0, 10)]);
+            sandwiches.push([sandwich.name, date.toISOString().substring(0, 10), give]);
         } catch {
             return error(req, res, "Invalid order !", 400, "Invalid date");
         }
@@ -56,7 +60,6 @@ module.exports = async (req, res, args, dateCheck = true) => {
         firstName: args.firstName,
         lastName: args.lastName,
         paid: Boolean(args.paid),
-        give: Boolean(args.give),
         price: price
     });
 
@@ -66,7 +69,7 @@ module.exports = async (req, res, args, dateCheck = true) => {
 
     for (let data of sandwiches)
         try {
-            await models.SandwichOrder.create({OrderId: order.id, SandwichName: data[0], date: data[1]});
+            await models.SandwichOrder.create({OrderId: order.id, SandwichName: data[0], date: data[1], give: data[2]});
         } catch (e) {
             await order.destroy();
             error(req, res, "Invalid order !", 500);
