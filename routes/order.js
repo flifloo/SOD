@@ -28,9 +28,14 @@ router.post("/", async (req, res) => {
 }).post("/callback", async (req, res) => {
     await lyfPay.checkPayment(req, res);
 }).get("/retry", async (req, res) => {
-    let order = await models.Order.findByPk(req.session.lastOrder.id);
+    if (!req.session || !req.session.lastOrder)
+        return error(req, res, "Can't retrieve last order", 400);
+
+    req.body.payment = req.session.lastOrder[1];
+
+    let order = await models.Order.findByPk(req.session.lastOrder[0].id);
     if (!order)
-            return error(req, res, "Can't retrieve last order", 400);
+            return error(req, res, "Last order doesn't exist", 400);
     else
         await lyfPay.sendPayment(req, res, order);
 

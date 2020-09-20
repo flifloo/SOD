@@ -63,7 +63,7 @@ async function sendPayment(req, res, order) {
 
     params.mac = macCalculator(params, config.secureKey);
     params.additionalDataEncoded = Buffer.from(params.additionalData).toString("base64");
-    params.additionalData = undefined;
+    delete params.additionalData;
     if (req.body.payment === "creditCard")
         params.version = "v2.0";
 
@@ -71,7 +71,7 @@ async function sendPayment(req, res, order) {
         .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
         .join("&");
 
-    req.session.lastOrder = order;
+    req.session.lastOrder = [order, req.body.payment];
 
     res.redirect(307, url);
 }
