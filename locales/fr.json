@@ -29,7 +29,9 @@
 	"index": {
 		"welcome": "Bienvenue sur Sandwiches Order Doua",
 		"day": "Jour",
-		"pay": "Payer"
+		"pay": "Payer",
+		"payment": "Mode de paiement",
+		"creditCard": "CB"
 	},
 	"login": {
 		"title": "Se connecter",

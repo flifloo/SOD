@@ -7,6 +7,9 @@ let addOrder = require("./utils/addOrder");
 
 
 router.post("/", async (req, res) => {
+    if (!req.body.payment || ["lyfPay", "creditCard"].indexOf(req.body.payment) < 0)
+        return error(req, res, "Missing args !", 400);
+
     let order = await addOrder(req, res, {
         department: req.body.department,
         firstName: req.body.firstName,

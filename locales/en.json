@@ -29,7 +29,9 @@
 	"index": {
 		"welcome": "Welcome to Sandwiches Order Doua",
 		"day": "Day",
-		"pay": "Pay"
+		"pay": "Pay",
+		"payment": "Payment method",
+		"creditCard": "Credit card"
 	},
 	"login": {
 		"title": "Login",

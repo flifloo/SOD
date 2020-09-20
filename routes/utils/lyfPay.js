@@ -17,32 +17,55 @@ async function sendPayment(req, res, order) {
 
     let baseUrl = `https://${req.hostname}/order`;
     let config = req.app.get("config").lyfPay;
-    let url = config.url + "/Payment.aspx?";
+    let url = "";
+    let params = {};
+    let additionalData = JSON.stringify({
+        "callBackUrl": baseUrl+"/callback",
+        "callBackEmail":config.warningEmail
+    });
 
-    let params = {
-        lang: "fr",
-        version: "v2.0",
-        timestamp: Math.floor(payment.date/1000),
-        posUuid: config.posUuid,
-        shopReference: payment.shopReference,
-        shopOrderReference: order.id,
-        deliveryFeesAmount: 0,
-        amount: order.price*100,
-        currency: "EUR",
-        mode: "IMMEDIATE",
-        onSuccess: baseUrl + "/success",
-        onCancel: baseUrl+"/cancel",
-        onError: baseUrl+"/error",
-        additionalData: JSON.stringify({
-            "callBackUrl": baseUrl+"/callback",
-            "callBackEmail":config.warningEmail
-        }),
-        enforcedIdentification: false
-    };
+    if (req.body.payment === "lyfPay") {
+        url = config.url + "/Payment.aspx?";
+        params = {
+            lang: "fr",
+            version: "v2.0",
+            timestamp: Math.floor(payment.date/1000),
+            posUuid: config.posUuid,
+            shopReference: payment.shopReference,
+            shopOrderReference: order.id,
+            deliveryFeesAmount: 0,
+            amount: order.price*100,
+            currency: "EUR",
+            mode: "IMMEDIATE",
+            onSuccess: baseUrl + "/success",
+            onCancel: baseUrl+"/cancel",
+            onError: baseUrl+"/error",
+            additionalData: additionalData,
+            enforcedIdentification: false
+        };
+    } else if (req.body.payment === "creditCard") {
+        url = config.url + "/PaymentCb.aspx?";
+        params = {
+            lang: "fr",
+            posUuid: config.posUuid,
+            shopReference: payment.shopReference,
+            shopOrderReference: order.id,
+            deliveryFeesAmount: 0,
+            amount: order.price*100,
+            currency: "EUR",
+            onSuccess: baseUrl + "/success",
+            onError: baseUrl+"/error",
+            additionalData: additionalData,
+            callbackRequired: true,
+            mode: "IMMEDIATE"
+        };
+    }
 
     params.mac = macCalculator(params, config.secureKey);
     params.additionalDataEncoded = Buffer.from(params.additionalData).toString("base64");
     params.additionalData = undefined;
+    if (req.body.payment === "creditCard")
+        params.version = "v2.0";
 
     url += Object.keys(params)
         .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))

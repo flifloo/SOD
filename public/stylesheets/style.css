@@ -54,14 +54,15 @@ a {
   margin: auto;
   width: 100%;
   font-size: 100%;
-}
-
-.field input {
   height: 2.5vh;
   border-top: none;
   border-left: none;
   border-right: none;
   border-bottom: 1px gray solid;
+}
+
+.field input[type="radio"], .field input[type="checkbox"] {
+  box-shadow: none;
 }
 
 .field input[type="submit"] {

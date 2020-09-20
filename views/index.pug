@@ -32,6 +32,13 @@ block content
         a#add-order +
         a#remove-order.hide -
 
+      h3=__("index.payment")
+      div.field.buttons
+        label(for="lyf_pay") LyfPay
+        input#lyf_pay(type="radio" name="payment" value="lyfPay" checked)
+        label(for="credit_card")=__("index.creditCard")
+        input#credit_card(type="radio" name="payment" value="creditCard")
+
       div.field
         +submit(value=__("index.pay"))
 
