@@ -10,7 +10,7 @@ block content
             select(name="department" required)
               option(value="" disabled selected hidden)=__("chooseDepartment")
               each department in departments
-                option(value=department.name)=department.name
+                option(value=department.name selected=user && user.DepartmentName===department.name)=department.name
             label=__("department")+":"
 
         div.row
