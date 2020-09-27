@@ -23,7 +23,7 @@ dark.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    M.Sidenav.init(document.querySelectorAll(".sidenav"));
+    M.AutoInit();
 });
 
 function cb(token) {

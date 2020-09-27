@@ -31,7 +31,9 @@
 		"day": "Day",
 		"pay": "Pay",
 		"payment": "Payment method",
-		"creditCard": "Credit card"
+		"creditCard": "Credit card",
+		"chooseDepartment": "Choose your department",
+		"chooseSandwich": "Choose your sandwich"
 	},
 	"login": {
 		"title": "Login",

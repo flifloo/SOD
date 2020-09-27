@@ -31,7 +31,9 @@
 		"day": "Jour",
 		"pay": "Payer",
 		"payment": "Mode de paiement",
-		"creditCard": "CB"
+		"creditCard": "CB",
+		"chooseDepartment": "Choisissez votre département",
+		"chooseSandwich": "Choisissez votre sandwiche"
 	},
 	"login": {
 		"title": "Se connecter",

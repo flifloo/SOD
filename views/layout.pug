@@ -6,7 +6,7 @@ html
     title= title
     link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css")
-    link(rel="stylesheet" href="/stylesheets/style.css")
+    //link(rel="stylesheet" href="/stylesheets/style.css")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
   body
     mixin nav
@@ -31,72 +31,72 @@ html
       ul#mobile-nav.sidenav
         +nav
 
-    div.hide
-      block content
+    block content
 
-    div#more
-      a=__("layout.about")
-      a=__("contact")
+    .hide
+      div#more
+        a=__("layout.about")
+        a=__("contact")
 
-    div#dark.hide
-    div#about.popup.card.hide
-      h1=__("layout.about")
-      p=__("layout.aboutDescription")
-      div.images
-        div
-          img(src="/images/logoBio.png")
-          p=__("layout.bio")
-        div
-          img(src="/images/logoChimie.png")
-          p=__("layout.chemistry")
-        div
-          img(src="/images/logoGC.png")
-          p=__("layout.GC")
-        div
-          img(src="/images/logoGCGP.png")
-          p=__("layout.GCPD")
-        div
-          img(src="/images/logoGEA.png")
-          p=__("layout.GEA")
-        div
-          img(src="/images/logoInfo.png")
-          p=__("layout.IT")
-      p.before-link=__("layout.made")
-        a(href="https://www.linkedin.com/in/florian-charlaix" target="_blank") Florian Charlaix
-      p.before-link=__("layout.powered")
-        a(href="https://sapinet.fr" target="_blank") Sapinet
-    div#contact.popup.card.hide
-      h1=__("contact")
-      form(action="/contact" method="POST")
-        div.cont
+      div#dark.hide
+      div#about.popup.card.hide
+        h1=__("layout.about")
+        p=__("layout.aboutDescription")
+        div.images
+          div
+            img(src="/images/logoBio.png")
+            p=__("layout.bio")
+          div
+            img(src="/images/logoChimie.png")
+            p=__("layout.chemistry")
+          div
+            img(src="/images/logoGC.png")
+            p=__("layout.GC")
+          div
+            img(src="/images/logoGCGP.png")
+            p=__("layout.GCPD")
+          div
+            img(src="/images/logoGEA.png")
+            p=__("layout.GEA")
+          div
+            img(src="/images/logoInfo.png")
+            p=__("layout.IT")
+        p.before-link=__("layout.made")
+          a(href="https://www.linkedin.com/in/florian-charlaix" target="_blank") Florian Charlaix
+        p.before-link=__("layout.powered")
+          a(href="https://sapinet.fr" target="_blank") Sapinet
+      div#contact.popup.card.hide
+        h1=__("contact")
+        form(action="/contact" method="POST")
+          div.cont
+            div.field
+              label(for="firstNameContact")="* "+__("firstName")
+              input#firstNameContact(type="text" name="firstName" value=user?user.firstName:"" required)
+            div.field
+              label(for="lastNameContact")="* "+__("lastName")
+              input#lastNameContact(type="text" name="lastName" value=user ? user.lastName : "" required)
+          div.cont
+            div.field
+              label(for="emailContact")="* "+__("email")
+              input#emailContact(type="email" name="email" value=user ? user.email : "" required)
+            div.field
+              label(for="phoneNumberContact")=__("layout.phoneNumber")
+              input#phoneNumberContact(type="tel" name="phoneNumber")
           div.field
-            label(for="firstNameContact")="* "+__("firstName")
-            input#firstNameContact(type="text" name="firstName" value=user?user.firstName:"" required)
+            label(for="subjectContact")="* "+__("layout.subject")
+            +list("subjectContact", "subjectContactList", "subject", "", "off", true)
+            datalist#subjectContactList
+              option(value=__("layout.commandEdit"))
+              option(value=__("layout.commandRemove"))
+              option(value=__("layout.question"))
+              option(value=__("layout.profile"))
+              option(value=__("layout.other"))
+          p=__("layout.warnMessage")
+          div.field.message
+            label(for="messageContact")=__("layout.message")
+            textarea#messageContact(name="message" required)
           div.field
-            label(for="lastNameContact")="* "+__("lastName")
-            input#lastNameContact(type="text" name="lastName" value=user ? user.lastName : "" required)
-        div.cont
-          div.field
-            label(for="emailContact")="* "+__("email")
-            input#emailContact(type="email" name="email" value=user ? user.email : "" required)
-          div.field
-            label(for="phoneNumberContact")=__("layout.phoneNumber")
-            input#phoneNumberContact(type="tel" name="phoneNumber")
-        div.field
-          label(for="subjectContact")="* "+__("layout.subject")
-          +list("subjectContact", "subjectContactList", "subject", "", "off", true)
-          datalist#subjectContactList
-            option(value=__("layout.commandEdit"))
-            option(value=__("layout.commandRemove"))
-            option(value=__("layout.question"))
-            option(value=__("layout.profile"))
-            option(value=__("layout.other"))
-        p=__("layout.warnMessage")
-        div.field.message
-          label(for="messageContact")=__("layout.message")
-          textarea#messageContact(name="message" required)
-        div.field
-          +submit(value=__("send"))
+            +submit(value=__("send"))
 
     script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js")
     script(src="/javascripts/layout.js")
