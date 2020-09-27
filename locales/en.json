@@ -32,7 +32,6 @@
 		"pay": "Pay",
 		"payment": "Payment method",
 		"creditCard": "Credit card",
-		"chooseDepartment": "Choose your department",
 		"chooseSandwich": "Choose your sandwich"
 	},
 	"login": {
@@ -94,5 +93,6 @@
 	"sandwich": "Sandwich",
 	"contact": "Contact",
 	"messageSend": "The message has been sent",
-	"forgetPassword": "Forgot your password"
+	"forgetPassword": "Forgot your password",
+	"chooseDepartment": "Choose your department"
 }

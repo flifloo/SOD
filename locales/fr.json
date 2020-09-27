@@ -32,7 +32,6 @@
 		"pay": "Payer",
 		"payment": "Mode de paiement",
 		"creditCard": "CB",
-		"chooseDepartment": "Choisissez votre département",
 		"chooseSandwich": "Choisissez votre sandwiche"
 	},
 	"login": {
@@ -95,5 +94,6 @@
 	"contact": "Contact",
 	"messageSend": "Le message a bien été envoyé",
 	"forgetPassword": "Mot de passe oublié",
-	"send": "send"
+	"send": "send",
+	"chooseDepartment": "Choisissez votre département"
 }
