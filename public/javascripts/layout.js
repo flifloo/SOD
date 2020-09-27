@@ -22,6 +22,10 @@ dark.addEventListener("click", () => {
         contact.classList.add("hide");
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    M.Sidenav.init(document.querySelectorAll(".sidenav"));
+});
+
 function cb(token) {
     document.querySelectorAll("div.recaptcha.recaptcha-cb").forEach(el => {
         el.classList.remove("recaptcha-cb");

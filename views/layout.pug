@@ -4,29 +4,35 @@ doctype html
 html
   head
     title= title
-    link(rel="stylesheet", href="/stylesheets/style.css")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css")
+    link(rel="stylesheet" href="/stylesheets/style.css")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
   body
-    block content
-
-    div#user
-      a(href="/")=__("layout.home")
+    mixin nav
       if user
         if user.permissions >= 1
-          p -
-          a(href="/sandwiches")=__("sandwiches")
+          li: a(href="/sandwiches")=__("sandwiches")
         if user.permissions >= 2
-          p -
-          a(href="/orders")=__("orders")
+          li: a(href="/orders")=__("orders")
         if user.permissions >= 3
-          p -
-          a(href="/admin")=__("admin.title")
-      p |
-      if user
-        a(href="/profile")=user.username
-        a(href="/logout")=__("layout.logout")
+          li: a(href="/admin")=__("admin.title")
+        li: a(href="/profile")=user.username
+        li: a(href="/logout")=__("layout.logout")
       else
-        a(href="/login")=__("layout.login")
-        a(href="/register")=__("layout.register")
+        li: a(href="/login")=__("layout.login")
+        li: a(href="/register")=__("layout.register")
+    nav.orange(role="navigation")
+      div.nav-wrapper.container
+        a.brand-logo(href="/") SOD
+        a.sidenav-trigger(href="#" data-target="mobile-nav"): i.material-icons menu
+        ul.right.hide-on-med-and-down
+          +nav
+      ul#mobile-nav.sidenav
+        +nav
+
+    div.hide
+      block content
 
     div#more
       a=__("layout.about")
@@ -92,6 +98,7 @@ html
         div.field
           +submit(value=__("send"))
 
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js")
     script(src="/javascripts/layout.js")
     if !test
       p !{captcha}
