@@ -3,7 +3,7 @@ const sandwich = document.getElementById("sandwich");
 const day = document.getElementById("day");
 const locals = {
     sandwich: document.querySelector("#oderCreator label").innerHTML,
-    date: document.querySelector("label[for=day]").innerHTML
+    day: document.querySelector("label[for=day]").innerText
 };
 
 function lastOrderId() {
