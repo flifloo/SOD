@@ -30,11 +30,11 @@ router.get("/", sessionCheck(2), async (req, res) => {
         orders[o.DepartmentName][name][o.id] = o.Sandwiches;
     }
     res.render("orders", {title: "SOD - Orders", orders: orders, date: date});
-}).post("/give", sessionCheck(2), async (req, res) => {
-    if (!req.body.id)
+}).get("/give", sessionCheck(2), async (req, res) => {
+    if (!req.query.id)
         return error(req, res, "Missing arg !", 400);
 
-    let order = await models.SandwichOrder.findByPk(req.body.id, {where: {give: false}});
+    let order = await models.SandwichOrder.findByPk(req.query.id, {where: {give: false}});
     if (!order)
         return error(req, res, "Invalid order id !", 400);
 
