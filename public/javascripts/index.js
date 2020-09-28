@@ -18,8 +18,6 @@ document.getElementById("addOrder").addEventListener("click", () => {
 
     let id = lastOrderId() + 1;
 
-    //ToDo submit button check
-
     orders.insertAdjacentHTML("beforeend", `<div id="order${id}" class="row">
     <div class="input-field col s6">
         <input id="sandwich${id}" type="text" name="sandwiches[${id}]" value="${sandwich.value}" readonly required>

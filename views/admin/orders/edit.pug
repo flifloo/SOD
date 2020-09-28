@@ -1,63 +1,75 @@
 extends ../../layout
 
 block content
-    div.card
+    div.container
         h1=__("admin.ordersManagement")
-        form#order(method="POST")
-            input(type="hidden" name="id" value=order.id)
-            div.field
-                label(for="department")=__("department") + ":"
-                +list("department", "department-list", "department", order.Department.name, "off", true)
-                datalist#department-list
-                    each department in departments
-                        option(value=department.name)
+        div.row
+            form#order.col.s12(method="POST")
+                input(type="hidden" name="id" value=order.id)
+                div.row
+                    div.input-field.col.s12
+                        select(name="department" required)
+                            each department in departments
+                                option(value=department.name selected=order.Department.name === department.name)=department.name
+                        label=__("department") + ":"
 
-            div.field
-                label(for="firstname")=__("firstName") + ":"
-                input#firstname(type="text" name="firstName" value=order.firstName required)
-            div.field
-                label(for="lastname")=__("lastName") + ":"
-                input#lastname(type="text" name="lastName" value=order.lastName required)
+                div.row
+                    div.input-field.col.s12
+                        select(name="username")
+                            each user in users
+                                option(value=user.username selected=order.User && order.User.username === user.username)=user.username
+                        label=__("username") + ":"
 
-            div.field
-                label(for="username")=__("username")
-                +list("username", "usernames", "username", order.User ? order.User.username : "", "off")
+                div.row
+                    div.input-field.col.s6
+                        input#firstname(type="text" name="firstName" value=order.firstName required)
+                        label(for="firstname")=__("firstName") + ":"
+                    div.input-field.col.s6
+                        input#lastname(type="text" name="lastName" value=order.lastName required)
+                        label(for="lastname")=__("lastName") + ":"
 
-            - i = 0;
-            each sandwich in order.Sandwiches
-                - i++;
-                div.order(id="order"+i)
-                    h2=__("order") + " "  + i
-                    div.field
-                        label(for="sandwich"+i)=__("sandwich") + ":"
-                        +list("#sandwich"+i, "sandwich-list", "sandwiches["+i+"]", sandwich.name, "off", true)
-                    div.field
-                        label(for="day"+i)=__("index.day") + ":"
-                        input(id="#day"+i type="date" name="dates["+i+"]" value=sandwich.SandwichOrder.date required)
-                    div.field
-                        label(for="given"+i)=__("admin.given")
-                        input(id="given"+i type="checkbox" name="give["+i+"]" checked=sandwich.SandwichOrder.give)
+                div#oderCreator.row
+                    h5=__("order")
+                    div.input-field.col.s6
+                        select#sandwich
+                            option(value="" disabled selected hidden)=__("index.chooseSandwich")
+                            each sandwich in sandwiches
+                                option(value=sandwich.name)=sandwich.name
+                        label=__("sandwich") + ":"
+                    div.input-field.col.s6
+                        input#day(type="date")
+                        label(for="day")=__("index.day") + ":"
+                    a#addOrder.btn-floating.btn-large.waves-effect.waves-light.blue: i.material-icons add
 
-            div#order-action
-                a#add-order +
-                if i > 1
-                    a#remove-order -
-                else
-                    a#remove-order.hide -
+                div#orders
+                    - i = 0;
+                    each sandwich in order.Sandwiches
+                        - i++;
+                        div.row(id="order"+i)
+                            div.input-field.col.s6
+                                input(id="sandwich"+i type="text" name="sandwiches[#{i}]" value=sandwich.name readonly required)
+                                label(for="sandwich"+i)=__("sandwich")
+                            div.input-field.col.s6
+                                input(id="date"+i type="date" name="dates[#{i}]" value=sandwich.SandwichOrder.date readonly required)
+                                label(for="date"+i)=__("index.day")
+                            div.input-field.col.s12.center
+                                p
+                                    label
+                                        input(type="checkbox" name="give[#{i}]" checked=sandwich.SandwichOrder.give)
+                                        span=__("admin.given")
+                            a.btn-floating.btn-large.waves-effect.waves-light.red
+                                i.material-icons remove
 
-            div.field
-                label(for="paid")=__("admin.paid")
-                input#paid(type="checkbox" name="paid" checked=order.paid)
+                div.row.center
+                    div.input-field.col.s12
+                        p
+                            label(for="paid")
+                                input#paid(type="checkbox" name="paid" checked=order.paid)
+                                span=__("admin.paid")
 
-            div.field
-                input#send(type="submit" value=__("save"))
-
-            datalist#sandwich-list
-                each sandwich in sandwiches
-                    option(value=sandwich.name)
-            datalist#usernames
-                each user in users
-                    option(value=user.username)
-
+                div.row.center
+                    div.input-field.col.s12
+                        +submit(__("save"))
 
     script(src="/javascripts/admin/orders/add.js")
+    script(src="/javascripts/admin/orders/edit.js")

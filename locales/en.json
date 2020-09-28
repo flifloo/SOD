@@ -71,7 +71,8 @@
 		"firstDate": "First date",
 		"lastDate": "Last date",
 		"paid": "Paid",
-		"given": "Given"
+		"given": "Given",
+		"chooseUser": "Choose an user"
 	},
 	"payment": {
 		"successful": "Payment successful !",

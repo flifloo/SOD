@@ -1,23 +1,23 @@
 extends ../../layout
 
 block content
-    div.card#ordersManagement
+    div.container
         h1=__("admin.ordersManagement")
-        a.add(href="/admin/orders/add")
-            button=__("admin.add")
-        div
+        ul.collection
             each order in orders
-                div.order
-                    div.title
-                        h2=order.id
-                    h3 #{order.firstName} #{order.lastName} - #{order.price}€
-                    each sandwich in order.Sandwiches
-                        div.sandwich
+                li.collection-item
+                    div #{order.id} | #{order.firstName} #{order.lastName} - #{order.price}€
+                        div.secondary-content
+                            a(href="/admin/orders/edit?id=" + order.id)
+                                i.material-icons edit
+                            a.delete(href="/admin/orders/delete?id=" + order.id)
+                                i.material-icons remove
+                        each sandwich in order.Sandwiches
                             p #{sandwich.name} - #{sandwich.SandwichOrder.date}
-                    div.buttons
-                        a.edit(href="/admin/orders/edit?id=" + order.id)
-                            button=__("admin.edit")
-                        a.remove(href="/admin/orders/delete?id=" + order.id)
-                            button=__("admin.remove")
+
+
+    div.fixed-action-btn
+        a.btn-floating.btn-large.blue(href="/admin/orders/add")
+            i.large.material-icons add
 
     script(src="/javascripts/admin/orders/index.js")
