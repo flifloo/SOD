@@ -1,11 +1,14 @@
 extends ../../layout
 
 block content
-    div.card#departmentsManagement
+    div.container
         h1=__("admin.new")+" "+__("department")
-        form(action="/admin/departments/add" method="POST")
-            div.field
-                label(for="name")=__("admin.name")+":"
-                input#name(type="text" name="name" required)
-            div.field
-                input(type="submit" value=__("admin.add"))
+        div.row
+            form(action="/admin/departments/add" method="POST")
+                div.row
+                    div.input-field.col.s12
+                        label(for="name")=__("admin.name")+":"
+                        input#name(type="text" name="name" required)
+                div.row.center
+                    div.input-field.col.s12
+                        +submit(__("admin.add"))

@@ -1,18 +1,20 @@
 extends ../../layout
 
 block content
-    div.card#departmentsManagement
+    div.container
         h1=__("admin.departmentsManagement")
-        a.add(href="/admin/departments/add")
-            button=__("admin.add")
-        div
+        ul.collection
             each department in departments
-                div.department
-                    h2=department.name
-                    div.buttons
-                        a.edit(href="/admin/departments/edit?name="+department.name)
-                            button=__("admin.edit")
-                        a.remove(href="/admin/departments/delete?name="+department.name)
-                            button=__("admin.remove")
+                li.collection-item
+                    div=department.name
+                        div.secondary-content
+                            a(href="/admin/departments/edit?name="+department.name)
+                                i.material-icons edit
+                            a.delete(href="/admin/departments/delete?name="+department.name)
+                                i.material-icons remove
+
+    div.fixed-action-btn
+        a.btn-floating.btn-large.blue(href="/admin/departments/add")
+            i.large.material-icons add
 
     script(src="/javascripts/admin/departments.js")
