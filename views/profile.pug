@@ -1,44 +1,51 @@
 extends layout
 
 block content
-    div.card
-        h1=__("profile.title")
-        form(action="/profile" method="POST")
-            h2=__("profile.infos")
-            div.field
-                label(for="username")=__("username")+":"
-                input#username(type="text" name="username" value=user.username disabled required)
-            div.field
-                label(for="email")=__("email")+":"
-                input#email(type="email" name="email" value=user.email required)
-            div.field
-                label(for="firstName")=__("firstName")+":"
-                input#firstName(type="text" name="firstName" value=user.firstName required)
-            div.field
-                label(for="lastName")=__("lastName")+":"
-                input#lastName(type="text" name="lastName" value=user.lastName required)
-            div.field
-                label(for="department")=__("department")+":"
-                +list("department", "department-list", "department", user.DepartmentName, "off", true)
-            div.field
-                label(for="password")=__("password")+":"
-                input#password(type="password" name="password")
-            div.field
-                input(type="submit" value=__("save"))
+    div.container
+        div.row
+            h4=__("profile.title")
+            form(action="/profile" method="POST")
+                h2=__("profile.infos")
+                div.row
+                    div.input-field.col.s6
+                        input#username(type="text" name="username" value=user.username disabled required)
+                        label(for="username")=__("username")+":"
+                    div.input-field.col.s6
+                        input#email(type="email" name="email" value=user.email required)
+                        label(for="email")=__("email")+":"
+                div.row
+                    div.input-field.col.s6
+                        input#firstName(type="text" name="firstName" value=user.firstName required)
+                        label(for="firstName")=__("firstName")+":"
+                    div.input-field.col.s6
+                        input#lastName(type="text" name="lastName" value=user.lastName required)
+                        label(for="lastName")=__("lastName")+":"
+                div.row
+                    div.input-field.col.s12
+                        select(name="department" required)
+                            each department in departments
+                                option(value=department.name selected=department.name===user.DepartmentName)=department.name
+                        label=__("department")+":"
+                div.row
+                    div.input-field.col.s12
+                        label(for="password")=__("password")+":"
+                        input#password(type="password" name="password")
+                div.row.center
+                    div.input-field.col.s12
+                        +submit(__("save"))
 
-            datalist#department-list
-                each department in departments
-                    option(value=department.name)
+            if (!user.emailVerified)
+                div.row.center
+                    div.input-field.col.s12
+                        a.btn.waves-effect.waves-light.yellow.darken-4(href="/profile/resend")=__("profile.emailCheck")
 
-        if (!user.emailVerified)
-            div.field
-                a(href="/profile/resend")
-                    input(type="button" value=__("profile.emailCheck"))
-
-    div.card#userOrderList
-        h1=__("orders")
-        each order in orders
-            div
-                h2=order.id
-                each sandwich in order.Sandwiches
-                    p #{sandwich.name} - #{sandwich.SandwichOrder.date}
+    div.container.valign-wrapper
+        div.row.center
+            h4=__("orders")
+            each order in orders
+                div.col
+                    div.card.blue-grey
+                        div.card-content.white-text
+                            span.card-title=order.id
+                            each sandwich in order.Sandwiches
+                                p #{sandwich.name} - #{sandwich.SandwichOrder.date}

@@ -24,14 +24,17 @@
 		"question": "Question Pratique",
 		"profile": "Mon profil",
 		"other": "Autre question",
-		"powered": "Propulsé par"
+		"powered": "Propulsé par",
+		"links": "Liens",
+		"chooseSubject": "Choisissez un sujet"
 	},
 	"index": {
 		"welcome": "Bienvenue sur Sandwiches Order Doua",
 		"day": "Jour",
 		"pay": "Payer",
 		"payment": "Mode de paiement",
-		"creditCard": "CB"
+		"creditCard": "CB",
+		"chooseSandwich": "Choisissez votre sandwiche"
 	},
 	"login": {
 		"title": "Se connecter",
@@ -70,9 +73,11 @@
 		"firstDate": "Première date",
 		"lastDate": "Dernière date",
 		"paid": "Payé",
-		"given": "Donné"
+		"given": "Donné",
+		"chooseUser": "Choisissez un utilisateur"
 	},
 	"payment": {
+		"payment": "Paiement",
 		"successful": "Paiement réussi !",
 		"canceled": "Paiement annulé",
 		"error": "Une erreur est survenue lors du paiement",
@@ -93,5 +98,6 @@
 	"contact": "Contact",
 	"messageSend": "Le message a bien été envoyé",
 	"forgetPassword": "Mot de passe oublié",
-	"send": "send"
+	"send": "send",
+	"chooseDepartment": "Choisissez votre département"
 }

@@ -24,14 +24,17 @@
 		"question": "Practical question",
 		"profile": "My profile",
 		"other": "Another question",
-		"powered": "Powered by"
+		"powered": "Powered by",
+		"links": "Links",
+		"chooseSubject": "Choose a subject"
 	},
 	"index": {
 		"welcome": "Welcome to Sandwiches Order Doua",
 		"day": "Day",
 		"pay": "Pay",
 		"payment": "Payment method",
-		"creditCard": "Credit card"
+		"creditCard": "Credit card",
+		"chooseSandwich": "Choose your sandwich"
 	},
 	"login": {
 		"title": "Login",
@@ -70,9 +73,11 @@
 		"firstDate": "First date",
 		"lastDate": "Last date",
 		"paid": "Paid",
-		"given": "Given"
+		"given": "Given",
+		"chooseUser": "Choose an user"
 	},
 	"payment": {
+		"payment": "Payment",
 		"successful": "Payment successful !",
 		"canceled": "Payment canceled",
 		"error": "An error occurred with the payment",
@@ -92,5 +97,6 @@
 	"sandwich": "Sandwich",
 	"contact": "Contact",
 	"messageSend": "The message has been sent",
-	"forgetPassword": "Forgot your password"
+	"forgetPassword": "Forgot your password",
+	"chooseDepartment": "Choose your department"
 }

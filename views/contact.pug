@@ -1,6 +1,43 @@
 extends layout
 
 block content
-    div.card
+    div.container
         h1=__("contact")
-        p=__("messageSend")
+        if !send
+            div.row
+                form(method="POST")
+                    div.row
+                        div.input-field.col.s6
+                            input#firstNameContact(type="text" name="firstName" value=user ? user.firstName : "" required)
+                            label(for="firstNameContact")="* " + __("firstName")
+                        div.input-field.col.s6
+                            input#lastNameContact(type="text" name="lastName" value=user ? user.lastName : "" required)
+                            label(for="lastNameContact")="* " + __("lastName")
+                    div.row
+                        div.input-field.col.s6
+                            input#emailContact(type="email" name="email" value=user ? user.email : "" required)
+                            label(for="emailContact")="* " + __("email")
+                        div.input-field.col.s6
+                            input#phoneNumberContact(type="tel" name="phoneNumber")
+                            label(for="phoneNumberContact")=__("layout.phoneNumber")
+                    div.row
+                        div.input-field.col.s12
+                            select(name="subject" required)
+                                option(value="" selected disabled)=__("layout.chooseSubject")
+                                option(value=__("layout.commandEdit"))=__("layout.commandEdit")
+                                option(value=__("layout.commandRemove"))=__("layout.commandRemove")
+                                option(value=__("layout.question"))=__("layout.question")
+                                option(value=__("layout.profile"))=__("layout.profile")
+                                option(value=__("layout.other"))=__("layout.other")
+                            label="* " + __("layout.subject")
+                    p.center: strong=__("layout.warnMessage")
+                    div.row
+                        div.input-field.col.s12
+                            textarea#messageContact.materialize-textarea(name="message" required)
+                            label(for="messageContact")=__("layout.message")
+                    div.row.center
+                        div.input-field.col.s12
+                            +submit(__("send"))
+
+        else
+            h5=__("messageSend")

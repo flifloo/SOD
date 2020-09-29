@@ -1,56 +1,59 @@
 extends ../../layout
 
 block content
-    div.card
+    span#dummy.hide=__("admin.given")
+    div.container
         h1=__("admin.ordersManagement")
-        form#order(method="POST")
-            div.field
-                label(for="department")=__("department") + ":"
-                +list("department", "department-list", "department", "", "off", true)
-                datalist#department-list
-                    each department in departments
-                        option(value=department.name)
+        div.row
+            form#order.col.s12(method="POST")
+                div.row
+                    div.input-field.col.s12
+                        select(name="department" required)
+                            option(value="" disabled selected hidden)=__("chooseDepartment")
+                            each department in departments
+                                option(value=department.name)=department.name
+                        label=__("department") + ":"
 
-            div.field
-                label(for="firstname")=__("firstName") + ":"
-                input#firstname(type="text" name="firstName" required)
-            div.field
-                label(for="lastname")=__("lastName") + ":"
-                input#lastname(type="text" name="lastName" required)
+                div.row
+                    div.input-field.col.s12
+                        select(name="username")
+                            option(value="" disabled selected hidden)=__("admin.chooseUser")
+                            each user in users
+                                option(value=user.username)=user.username
+                        label=__("username") + ":"
 
-            div.field
-                label(for="username")=__("username")
-                +list("username", "usernames", "username", "", "off")
+                div.row
+                    div.input-field.col.s6
+                        input#firstname(type="text" name="firstName" required)
+                        label(for="firstname")=__("firstName") + ":"
+                    div.input-field.col.s6
+                        input#lastname(type="text" name="lastName" required)
+                        label(for="lastname")=__("lastName") + ":"
 
-            div#order1.order
-                h2=__("order") + " 1"
-                div.field
-                    label(for="sandwich1")=__("sandwich") + ":"
-                    +list("sandwich1", "sandwich-list", "sandwiches[1]", "", "off", true)
-                div.field
-                    label(for="day1")=__("index.day") + ":"
-                    input#day1(type="date" name="dates[1]" required)
-                div.field
-                    label(for="given1")=__("admin.given")
-                    input#given1(type="checkbox" name="give[1]")
+                div#oderCreator.row
+                    h5=__("order")
+                    div.input-field.col.s6
+                        select#sandwich
+                            option(value="" disabled selected hidden)=__("index.chooseSandwich")
+                            each sandwich in sandwiches
+                                option(value=sandwich.name)=sandwich.name
+                        label=__("sandwich") + ":"
+                    div.input-field.col.s6
+                        input#day(type="date")
+                        label(for="day")=__("index.day") + ":"
+                    a#addOrder.btn-floating.btn-large.waves-effect.waves-light.blue: i.material-icons add
 
-            div#order-action
-                a#add-order +
-                a#remove-order.hide -
+                div#orders
 
-            div.field
-                label(for="paid")=__("admin.paid")
-                input#paid(type="checkbox" name="paid")
+                div.row.center
+                    div.input-field.col.s12
+                        p
+                            label(for="paid")
+                                input#paid(type="checkbox" name="paid")
+                                span=__("admin.paid")
 
-            div.field
-                input#send(type="submit" value=__("admin.add"))
-
-            datalist#sandwich-list
-                each sandwich in sandwiches
-                    option(value=sandwich.name)
-            datalist#usernames
-                each user in users
-                    option(value=user.username)
-
+                div.row.center
+                    div.input-field.col.s12
+                        +submit(__("admin.add"))
 
     script(src="/javascripts/admin/orders/add.js")

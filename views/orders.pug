@@ -1,25 +1,22 @@
 extends layout
 
 block content
-    div#date-selector.card
+    div.container
         label(for="date")=__("date")
         input#date(type="date" value=date)
-    div#orders.card
+    div.container
         h1=__("orders")
         each user, department in orders
-            div.department
-                h2= department
+            div.container
+                h4=department
                 each orders, name in user
-                    div.user
-                        h3= name
-                        each order, id in orders
-                            div.order
-                                h4 #{__("order")} N°#{id}
-                                each sandwich in order
-                                    div.sandwich
-                                        form.give(method="POST" action="/orders/give")
-                                            input(type="hidden" name="id" value=sandwich.SandwichOrder.id)
-                                            input.give(type="submit" value="v")
-                                        h4= sandwich.name
+                    each order, id in orders
+                        ul.collection.with-header
+                            li.collection-header: h5 #{name} - #{__("order")} N°#{id}
+                            each sandwich in order
+                                li.collection-item
+                                    div=sandwich.name
+                                        a.secondary-content(href="/orders/give?id="+sandwich.SandwichOrder.id)
+                                            i.material-icons check
 
     script(src="/javascripts/orders.js")

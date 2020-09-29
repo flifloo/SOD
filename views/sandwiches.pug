@@ -1,13 +1,15 @@
 extends layout
 
 block content
-    div#date-selector.card
+    div.container
         label(for="date")=__("date")
         input#date(type="date" value=date)
-    div.card
+    div.container
         h1=__("sandwiches")
-        each sandwich in sandwiches
-            div.sandwich
-                h2 #{sandwich.name}: #{sandwich.dataValues.number}
+        ul.collection
+            each sandwich in sandwiches
+                li.collection-item
+                    div=sandwich.name
+                        a.secondary-content=sandwich.dataValues.number
 
     script(src="/javascripts/sandwiches.js")

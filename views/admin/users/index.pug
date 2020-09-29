@@ -1,18 +1,20 @@
 extends ../../layout
 
 block content
-    div.card#usersManagement
+    div.container
         h1=__("admin.userManagement")
-        a.add(href="/admin/users/add")
-            button=__("admin.add")
-        div
+        ul.collection
             each user in users
-                div.user
-                    h2=user.username
-                    div.buttons
-                        a.edit(href="/admin/users/edit?name="+user.username)
-                            button=__("admin.edit")
-                        a.remove(href="/admin/users/delete?name="+user.username)
-                            button=__("admin.remove")
+                li.collection-item
+                    div=user.username
+                        div.secondary-content
+                            a(href="/admin/users/edit?name="+user.username)
+                                i.material-icons edit
+                            a.delete(href="/admin/users/delete?name="+user.username)
+                                i.material-icons remove
+
+    div.fixed-action-btn
+        a.btn-floating.btn-large.blue(href="/admin/users/add")
+            i.large.material-icons add
 
     script(src="/javascripts/admin/users.js")

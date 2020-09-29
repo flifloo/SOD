@@ -1,49 +1,55 @@
 extends layout
 
 block content
-  div.card
-    h1= title
-    p=__("index.welcome")
-    form#order(action="/order" method="POST")
-      div.field
-        label(for="department")=__("department")+":"
-        +list("department", "department-list", "department", user ? user.DepartmentName : "", "off", true)
-        datalist#department-list
-          each department in departments
-            option(value=department.name)
+  div.container
+    h4.center=__("index.welcome")
+    div.row
+      form#order.col.s12(action="/order" method="POST")
+        div.row
+          div.input-field.col.s12
+            select(name="department" required)
+              option(value="" disabled selected hidden)=__("chooseDepartment")
+              each department in departments
+                option(value=department.name selected=user && user.DepartmentName===department.name)=department.name
+            label=__("department")+":"
 
-      div.field
-        label(for="firstname")=__("firstName")+":"
-        input#firstname(type="text" name="firstName" value=user ? user.firstName : "" required)
-      div.field
-        label(for="lastname")=__("lastName")+":"
-        input#lastname(type="text" name="lastName" value=user ? user.lastName : "" required)
+        div.row
+          div.input-field.col.s6
+            input#firstname(type="text" name="firstName" value=user ? user.firstName : "" required)
+            label(for="firstname")=__("firstName")+":"
+          div.input-field.col.s6
+            input#lastname(type="text" name="lastName" value=user ? user.lastName : "" required)
+            label(for="lastname")=__("lastName")+":"
 
-      div#order1.order
-        h2=__("order")+" 1"
-        div.field
-          label(for="sandwich1")=__("sandwich")+":"
-          +list("sandwich1", "sandwich-list", "sandwiches[1]", "", "off", true)
-        div.field
-          label(for="day1")=__("index.day")+":"
-          input#day1(type="date" min=date.firstDate ? date.firstDate : "" max=date.lastDate ? date.lastDate : "" name="dates[1]" required)
+        div#oderCreator.row
+          h5=__("order")
+          div.input-field.col.s6
+            select#sandwich
+              option(value="" disabled selected hidden)=__("index.chooseSandwich")
+              each sandwich in sandwiches
+                option(value=sandwich.name)=sandwich.name
+            label=__("sandwich")+":"
+          div.input-field.col.s6
+            input#day(type="date" min=date.firstDate ? date.firstDate : "" max=date.lastDate ? date.lastDate : "")
+            label(for="day")=__("index.day")+":"
+          a#addOrder.btn-floating.btn-large.waves-effect.waves-light.blue: i.material-icons add
 
-      div#order-action
-        a#add-order +
-        a#remove-order.hide -
+        div#orders
 
-      h3=__("index.payment")
-      div.field.buttons
-        label(for="lyf_pay") LyfPay
-        input#lyf_pay(type="radio" name="payment" value="lyfPay" checked)
-        label(for="credit_card")=__("index.creditCard")
-        input#credit_card(type="radio" name="payment" value="creditCard")
+        div.row
+          h5=__("index.payment")
+            div.col.s12
+              p
+                label
+                  input(type="radio" name="payment" value="lyfPay" checked)
+                  span LyfPay
+              p
+                label
+                  input(type="radio" name="payment" value="creditCard")
+                  span=__("index.creditCard")
 
-      div.field
-        +submit(value=__("index.pay"))
-
-      datalist#sandwich-list
-        each sandwich in sandwiches
-          option(value=sandwich.name)
+        div.row.center
+          div.input-field.col.s12
+            +submit(__("index.pay"))
 
   script(src="/javascripts/index.js")

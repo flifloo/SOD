@@ -1,37 +1,50 @@
-const orderAction = document.getElementById("order-action");
-const rmButton = document.getElementById("remove-order");
+const orders = document.getElementById("orders");
+const sandwich = document.getElementById("sandwich");
+const day = document.getElementById("day");
 const locals = {
-    order: document.querySelector("#order1>h2").innerHTML.replace(" 1", ""),
-    sandwich: document.querySelector("label[for='sandwich1']").innerHTML,
-    day: document.querySelector("label[for='day1']").innerHTML
+    sandwich: document.querySelector("#oderCreator label").innerHTML,
+    day: document.querySelector("label[for=day]").innerText
 };
-const [min, max] = [document.getElementById("day1").min, document.getElementById("day1").max];
 
 function lastOrderId() {
-    let list = document.querySelectorAll("div.order h2");
-    return parseInt(list[list.length-1].innerText.replace(locals.order+" ", ""));
+    if (orders.lastChild)
+        return parseInt(orders.lastChild.id.replace("order", ""));
+    return 0;
 }
 
-document.getElementById("add-order").addEventListener("click", () => {
+document.getElementById("addOrder").addEventListener("click", () => {
+    if (!sandwich.value || !day.value)
+        return;
+
     let id = lastOrderId() + 1;
-    orderAction.insertAdjacentHTML("beforebegin", `<div id="order${id}" class="order">
-    <h2>${locals.order} ${id}</h2>
-    <div class="field">
+
+    orders.insertAdjacentHTML("beforeend", `<div id="order${id}" class="row">
+    <div class="input-field col s6">
+        <input id="sandwich${id}" type="text" name="sandwiches[${id}]" value="${sandwich.value}" readonly required>
         <label for="sandwich${id}">${locals.sandwich}</label>
-        <span class="list_arrow"><input id="sandwich${id}" type="list" list="sandwich-list" name="sandwiches[${id}]" autocomplete="off" required></span>
     </div>
-    <div class="field">
-        <label for="day${id}">${locals.day}</label>
-        <input id="da${id}y" type="date" min="${min}" max="${max}" name="dates[${id}]" required>
+    <div class="input-field col s6">
+        <input id="date${id}" type="date" name="dates[${id}]" value="${day.value}" readonly required>
+        <label for="date${id}">${locals.day}</label>
     </div>
+    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">remove</i></a>
 </div>`);
-    document.getElementById("order"+lastOrderId()).scrollIntoView({behavior: "smooth"});
-    rmButton.classList.remove("hide");
+
+    sandwich.selectedIndex = 0;
+    day.value = "";
+
+    let order = document.getElementById("order"+id);
+    order.querySelector("a").addEventListener("click", () => {
+        order.remove();
+        if (lastOrderId() === 0) {
+            sandwich.required = true;
+            day.required = true;
+        }
+    });
+
+    document.getElementById("order"+id).scrollIntoView({behavior: "smooth"});
 });
 
-rmButton.addEventListener("click", () => {
-    let id = lastOrderId();
-    document.getElementById("order"+id).remove();
-    if (id === 2)
-        rmButton.classList.add("hide");
+document.querySelector("form").addEventListener("submit", () => {
+    return lastOrderId();
 });

@@ -1,14 +1,17 @@
 extends ../../layout
 
 block content
-    div.card#ordersManagement
+    div.container
         h1=__("admin.ordersDate")
-        form(action="/admin/orders/date" method="POST")
-            div.field
-                label(for="firstDate")=__("admin.firstDate")
-                input#firstDate(type="date" name="firstDate" value=date? date.firstDate: "" required)
-            div.field
-                label(for="lastDate")=__("admin.lastDate")
-                input#lastDate(type="date" name="lastDate" value=date? date.lastDate: "" required)
-            div.field
-                input(type="submit" value=__("save"))
+        div.row
+            form(action="/admin/orders/date" method="POST")
+                div.row
+                    div.input-field.col.s6
+                        label(for="firstDate")=__("admin.firstDate")
+                        input#firstDate(type="date" name="firstDate" value=date? date.firstDate: "" required)
+                    div.input-field.col.s6
+                        label(for="lastDate")=__("admin.lastDate")
+                        input#lastDate(type="date" name="lastDate" value=date? date.lastDate: "" required)
+                div.row
+                    div.input-field.col.s12
+                        +submit(__("save"))
