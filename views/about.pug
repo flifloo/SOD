@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    div.container.center
+        h1=__("layout.about")
+            h6=__("layout.aboutDescription")
+            div.row
+                div.col.s4.m4
+                    div.card
+                        div.card-image
+                            img(src="/images/logoBio.png")
+                        div.card-content=__("layout.bio")
+                div.col.s4.m4
+                    div.card
+                        div.card-image
+                            img(src="/images/logoChimie.png")
+                        div.card-content=__("layout.chemistry")
+                div.col.s4.m4
+                    div.card
+                        div.card-image
+                            img(src="/images/logoGCGP.png")
+                        div.card-content=__("layout.GCPD")
+            div.row
+                div.col.s4.m4
+                    div.card
+                        div.card-image
+                            img(src="/images/logoGEA.png")
+                        div.card-content=__("layout.GEA")
+                div.col.s4.m4
+                    div.card
+                        div.card-image
+                            img(src="/images/logoInfo.png")
+                        div.card-content=__("layout.IT")
+            p.before-link
+                a(href="" target="_blank")

@@ -20,6 +20,7 @@ let profileRouter = require("./routes/profile");
 let checkRouter = require("./routes/check");
 let adminRouter = require("./routes/admin");
 let contactRouter = require("./routes/contact");
+let aboutRouter = require("./routes/about");
 
 let app = express();
 let sess = {
@@ -76,6 +77,7 @@ app.use("/profile", profileRouter);
 app.use("/check", checkRouter);
 app.use("/admin", adminRouter);
 app.use("/contact", contactRouter);
+app.use("/about", aboutRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res) => {

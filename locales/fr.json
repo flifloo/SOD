@@ -24,7 +24,9 @@
 		"question": "Question Pratique",
 		"profile": "Mon profil",
 		"other": "Autre question",
-		"powered": "Propulsé par"
+		"powered": "Propulsé par",
+		"links": "Liens",
+		"chooseSubject": "Choisissez un sujet"
 	},
 	"index": {
 		"welcome": "Bienvenue sur Sandwiches Order Doua",

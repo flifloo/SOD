@@ -5,7 +5,9 @@ let reCaptcha = require("../middlewares/reCaptcha");
 let Message = require("emailjs").Message;
 
 
-router.post("/", reCaptcha, async (req, res) => {
+router.get("/", async (req, res) => {
+    res.render("contact", {title: "SOD - Contact", send: req.query.send});
+}).post("/", reCaptcha, async (req, res) => {
     if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.subject || ! req.body.message)
         return error(req, res, "Invalid contact form !", 400, "Missing arg");
 
@@ -25,7 +27,7 @@ ${req.body.message}`,
             return error(req, res, "Fail to send message !", 500,
                 req.app.get("env") !== "production" ? err : undefined);
         else
-            res.render("contact", {title: "SOD - Contact"});
+            res.redirect("/contact?send=1");
     });
 });
 
