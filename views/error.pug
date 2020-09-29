@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div.card
-    h1= message
-    h2= error.status
-    pre #{error.stack}
+  div.container.center
+    h1=message
+    h3=error.status
+    h5=error.stack

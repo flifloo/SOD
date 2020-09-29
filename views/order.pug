@@ -1,14 +1,13 @@
 extends layout
 
 block content
-    div.card
-        h1 Payment
+    div.container.center
+        h1=__("payment.payment")
         if (state === "success")
-            h2=__("payment.successful")
+            h4=__("payment.successful")
         else if (state === "cancel")
-            h2=__("payment.canceled")
+            h4=__("payment.canceled")
         else if (state === "error")
-            h2=__("payment.error")
+            h4=__("payment.error")
         if (state !== "success")
-            a(href="/order/retry")
-                button=__("payment.retry")
+            a.waves-effect.waves-teal.btn(href="/order/retry")=__("payment.retry")

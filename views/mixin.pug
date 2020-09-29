@@ -2,7 +2,3 @@ mixin submit(value)
     div.recaptcha.recaptcha-cb
         button.btn.waves-effect.waves-light(type="submit" name="action")=value
             i.material-icons.right send
-
-mixin list(id, list, name, value="", autocomplete="on", required=false)
-    span.list_arrow
-        input(id=id type="list" list=list name=name value=value autocomplete=autocomplete required=required)

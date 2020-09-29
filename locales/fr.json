@@ -77,6 +77,7 @@
 		"chooseUser": "Choisissez un utilisateur"
 	},
 	"payment": {
+		"payment": "Paiement",
 		"successful": "Paiement réussi !",
 		"canceled": "Paiement annulé",
 		"error": "Une erreur est survenue lors du paiement",
