@@ -30,6 +30,8 @@ document.getElementById("addOrder").addEventListener("click", () => {
     <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">remove</i></a>
 </div>`);
 
+    M.updateTextFields();
+
     sandwich.selectedIndex = 0;
     day.value = "";
 

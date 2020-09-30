@@ -4,7 +4,7 @@ const day = document.getElementById("day");
 const locals = {
     sandwich: document.querySelector("#oderCreator label").innerHTML,
     day: document.querySelector("label[for=day]").innerText,
-    give: document.querySelector("p label span").innerText
+    give: document.getElementById("dummy").innerText
 };
 
 function lastOrderId() {
@@ -38,6 +38,8 @@ document.getElementById("addOrder").addEventListener("click", () => {
     </div>
     <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">remove</i></a>
 </div>`);
+
+    M.updateTextFields();
 
     sandwich.selectedIndex = 0;
     day.value = "";

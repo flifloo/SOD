@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     M.AutoInit();
-    M.updateTextFields;
+    M.updateTextFields();
 });
 
 function cb(token) {
