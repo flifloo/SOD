@@ -31,7 +31,9 @@ html
         li: a(href="/register")=__("layout.register")
     nav.orange(role="navigation")
       div.nav-wrapper.container
-        a.brand-logo(href="/") SOD
+        a.brand-logo(href="/")
+          img(src="/images/logo.png")
+          | SOD
         a.sidenav-trigger(href="#" data-target="mobile-nav"): i.material-icons menu
         ul.right.hide-on-med-and-down
           +nav
