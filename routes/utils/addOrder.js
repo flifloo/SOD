@@ -30,6 +30,7 @@ module.exports = async (req, res, args, dateCheck = true) => {
             let [firstDate, lastDate] = [await models.Data.findByPk("firstDate"),
                 await models.Data.findByPk("lastDate")];
             let now = new Date();
+            now.setDate(now.getDate()+1);
             now.setUTCHours(0, 0, 0, 0);
 
             if (firstDate && firstDate.value && lastDate && lastDate.value) {

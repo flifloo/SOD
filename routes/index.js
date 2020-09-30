@@ -4,6 +4,7 @@ let models = require("../models");
 
 router.get("/", async (req, res) => {
   let now = new Date();
+  now.setDate(now.getDate()+1);
   let [firstDate, lastDate] = [await models.Data.findByPk("firstDate"),
     await models.Data.findByPk("lastDate")];
 
