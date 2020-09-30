@@ -8,8 +8,8 @@ const addOrder = require("../../utils/addOrder");
 router.get("/", sessionCheck(3), async (req, res) => {
     res.render("admin/orders/add", {
         title: "SOD - Orders administration",
-        departments: await models.Department.findAll(),
-        sandwiches: await models.Sandwich.findAll(),
+        departments: await models.Department.findAll({where: {enable: true}}),
+        sandwiches: await models.Sandwich.findAll({where: {enable: true}}),
         users: await models.User.findAll()
     });
 }).post("/", sessionCheck(3), async (req, res) => {

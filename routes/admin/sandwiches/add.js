@@ -15,7 +15,7 @@ router.get("/", sessionCheck(3), (req, res) => {
     if (await models.Sandwich.findByPk(req.body.name))
         return error(req, res, "Fail to add sandwich", 400, "Name already used");
 
-    await models.Sandwich.create({name: req.body.name, price: req.body.price});
+    await models.Sandwich.create({name: req.body.name, price: req.body.price, enable: !!req.body.enable});
     res.redirect("/admin/sandwiches");
 });
 

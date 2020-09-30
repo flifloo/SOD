@@ -26,9 +26,13 @@ router.get("/", sessionCheck(3), async (req, res) => {
 
     if (req.body.price && req.body.price !== sandwich.price)
         sandwich.price = req.body.price;
+    if(req.body.enable !== sandwich.enable)
+        sandwich.enable = !!req.body.enable;
     await sandwich.save();
+
     if (req.body.newName && req.body.newName !== sandwich.name)
         await models.Sandwich.update({name: req.body.newName}, {where: {name: req.body.name}});
+
     res.redirect("/admin/sandwiches");
 });
 

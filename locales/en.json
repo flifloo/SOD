@@ -74,7 +74,8 @@
 		"lastDate": "Last date",
 		"paid": "Paid",
 		"given": "Given",
-		"chooseUser": "Choose an user"
+		"chooseUser": "Choose an user",
+		"enable": "Enable"
 	},
 	"payment": {
 		"payment": "Payment",

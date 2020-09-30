@@ -20,8 +20,8 @@ router.get("/", async (req, res) => {
 
   res.render("index", {
     title: "SOD - Home",
-    departments: await models.Department.findAll(),
-    sandwiches: await models.Sandwich.findAll(),
+    departments: await models.Department.findAll({where: {enable: true}}),
+    sandwiches: await models.Sandwich.findAll({where: {enable: true}}),
     date: {
       firstDate: firstDate,
       lastDate: lastDate

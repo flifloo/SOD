@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     if (req.session.user)
         res.redirect("/");
     else
-        res.render("register", {title: "SOD - register", departments: await models.Department.findAll()});
+        res.render("register", {title: "SOD - register", departments: await models.Department.findAll({where: {enable: true}})});
 })
     .post("/", reCaptcha, async (req, res) => {
         let user = await userCreate(req, res);

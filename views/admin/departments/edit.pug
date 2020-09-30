@@ -8,8 +8,14 @@ block content
                 input.hide(type="text" name="name" value=department.name required)
                 div.row
                     div.input-field.col.s12
-                    label(for="name")=__("admin.name")+":"
-                    input#name(type="text" name="newName" value=department.name required)
+                        input#name(type="text" name="newName" value=department.name required)
+                        label(for="name")=__("admin.name")+":"
+                div.row
+                    div.input-field.col.s12
+                        p
+                            label(for="enable")
+                                input#enable(type="checkbox" name="enable" checked=department.enable)
+                                span=__("admin.enable")
                 div.row.center
                     div.input-field.col.s12
                         +submit(__("save"))

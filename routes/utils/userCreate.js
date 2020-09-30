@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
     if (await models.User.findOne({where: {email: req.body.email}}))
         return error(req, res, "Invalid register !", 400, "Email already used");
 
-    let department = await models.Department.findByPk(req.body.department);
+    let department = await models.Department.findByPk(req.body.department, {where: {enable: true}});
     if (!department)
         return error(req, res, "Invalid register !", 400, "Invalid department");
 

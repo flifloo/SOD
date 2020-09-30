@@ -6,7 +6,7 @@ module.exports = async (req, res, args, dateCheck = true) => {
         args.sandwiches.length !==  args.dates.length)
         return error(req, res, "Invalid order !", 400, "Missing arguments");
 
-    let department = await models.Department.findByPk(args.department);
+    let department = await models.Department.findByPk(args.department, {where: {enable: true}});
     if (!department)
         return error(req, res, "Invalid order !", 400, "Invalid department");
 
@@ -20,7 +20,7 @@ module.exports = async (req, res, args, dateCheck = true) => {
         if (!args.dates[s])
             return error(req, res, "Invalid order !", 400, "Sandwich without date");
 
-        let sandwich = await models.Sandwich.findByPk(args.sandwiches[s]);
+        let sandwich = await models.Sandwich.findByPk(args.sandwiches[s], {where: {enable: true}});
         if (!sandwich)
             return error(req, res, "Invalid order !", 400, "Invalid sandwich: "+args.sandwiches[s]);
 

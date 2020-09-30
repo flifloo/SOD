@@ -74,7 +74,8 @@
 		"lastDate": "Dernière date",
 		"paid": "Payé",
 		"given": "Donné",
-		"chooseUser": "Choisissez un utilisateur"
+		"chooseUser": "Choisissez un utilisateur",
+		"enable": "Activer"
 	},
 	"payment": {
 		"payment": "Paiement",

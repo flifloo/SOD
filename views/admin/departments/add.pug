@@ -9,6 +9,12 @@ block content
                     div.input-field.col.s12
                         label(for="name")=__("admin.name")+":"
                         input#name(type="text" name="name" required)
+                div.row
+                    div.input-field.col.s12
+                        p
+                            label(for="enable")
+                                input#enable(type="checkbox" name="enable" checked)
+                                span=__("admin.enable")
                 div.row.center
                     div.input-field.col.s12
                         +submit(__("admin.add"))

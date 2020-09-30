@@ -24,7 +24,10 @@ router.get("/", sessionCheck(3), async (req, res) => {
     if (!department)
         return error(req, res, "Fail to edit department !", 400, "Invalid department name");
 
+    if (department.enable !== req.body.enable)
+        department.enable = !!req.body.enable;
     await department.save();
+
     if (req.body.newName && req.body.newName !== department.name)
         await models.Department.update({name: req.body.newName}, {where: {name: req.body.name}});
 

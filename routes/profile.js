@@ -9,7 +9,7 @@ let error = require("./utils/error");
 router.get("/", sessionCheck(0), async (req, res) => {
     res.render("profile", {
         title: "SOD - Profile",
-        departments: await models.Department.findAll(),
+        departments: await models.Department.findAll({where: {enable: true}}),
         orders: await models.Order.findAll({
             where: {UserUsername: req.session.user.username, paid: true},
             include: models.Sandwich,

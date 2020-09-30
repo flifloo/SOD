@@ -14,6 +14,12 @@ block content
                     div.input-field.col.s12
                         label(for="price")=__("admin.price") + ":"
                         input#price(type="number" min="0" step="any" name="price" value=sandwich.price required)
+                div.row
+                    div.input-field.col.s12
+                        p
+                            label(for="enable")
+                                input#enable(type="checkbox" name="enable" checked=sandwich.enable)
+                                span=__("admin.enable")
                 div.row.center
                     div.input-field.col.s12
                         +submit(__("save"))

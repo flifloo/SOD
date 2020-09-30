@@ -7,7 +7,7 @@ let userCreate = require("../../utils/userCreate");
 router.get("/", sessionCheck(3), async (req, res) => {
     res.render("admin/users/add", {
         title: "SOD - Users administration",
-        departments: await models.Department.findAll()
+        departments: await models.Department.findAll({where: {enable: true}})
     });
 }).post("/", sessionCheck(3), async (req, res) => {
     let user = await userCreate(req, res);

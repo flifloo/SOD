@@ -15,7 +15,7 @@ router.get("/", sessionCheck(3), (req, res) => {
     if (await models.Department.findByPk(req.body.name))
         return error(req, res, "Fail to add department", 400, "Name already used");
 
-    await models.Department.create({name: req.body.name});
+    await models.Department.create({name: req.body.name, enable: !!req.body.enable});
     res.redirect("/admin/departments");
 });
 
