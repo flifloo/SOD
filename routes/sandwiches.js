@@ -13,9 +13,11 @@ router.get("/", sessionCheck(1), async (req, res) => {
         sandwiches: await models.Sandwich.findAll({
             attributes: ["name", [sequelize.fn("COUNT", sequelize.col("name")), "number"]],
             include: [{
+                attributes: [],
                 model: models.Order,
                 where: {paid: true},
                 through: {
+                    attributes: [],
                     where: {date: date}
                 },
                 required: true
